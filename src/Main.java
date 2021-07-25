@@ -20,7 +20,7 @@ public class Main extends Application{
 
 
         Parent root = FXMLLoader.load(getClass().getResource("fxml/main.fxml"));
-        Scene scene = new Scene(root, 500, 500);
+        Scene scene = new Scene(root, 1280, 853);
         primaryStage.setTitle("Sample JavaFx MVC APP");
         primaryStage.setScene(scene);
         primaryStage.show();
