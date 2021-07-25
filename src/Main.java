@@ -8,7 +8,7 @@ import model.MainModel;
 import view.MainView;
 
 
-public class App extends Application{
+public class Main extends Application{
     public static void main(String[] args) {
         launch(args);
     }
@@ -19,7 +19,7 @@ public class App extends Application{
         MainView view = new MainView(model, controller);
 
 
-        Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("fxml/main.fxml"));
         Scene scene = new Scene(root, 500, 500);
         primaryStage.setTitle("Sample JavaFx MVC APP");
         primaryStage.setScene(scene);
