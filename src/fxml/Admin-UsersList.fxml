@@ -104,7 +104,7 @@
                   <TableColumn prefWidth="75.0" text="Nom" />
                 <TableColumn prefWidth="75.0" text="Prenom" />
                   <TableColumn prefWidth="75.0" text="Pseudo" />
-                  <TableColumn prefWidth="75.0" text="Autorisation" />
+                  <TableColumn prefWidth="109.0" text="Autorisation" />
                   <TableColumn prefWidth="75.0" text="Activer" />
               </columns>
             </TableView>

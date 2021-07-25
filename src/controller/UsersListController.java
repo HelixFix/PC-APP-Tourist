@@ -1,14 +1,44 @@
 package controller;
 
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.stage.Stage;
 
+import java.awt.event.ActionEvent;
 import java.io.IOException;
 
 public class UsersListController {
+
+    @FXML
+    private TableView<?> table_users;
+
+    @FXML
+    private TableColumn<?, ?> col_id;
+
+    @FXML
+    private TableColumn<?, ?> col_nom;
+
+    @FXML
+    private TableColumn<?, ?> col_prenom;
+
+    @FXML
+    private TableColumn<?, ?> col_pseudo;
+
+    @FXML
+    private TableColumn<?, ?> col_autorisation;
+
+    @FXML
+    private TableColumn<?, ?> col_activer;
+
+    @FXML
+    void formScreenButtonPushed(ActionEvent event) {
+
+    }
 
     /**
      * Quand cette méthode est appelé ont change de scene vers Utilisateurs
