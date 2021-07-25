@@ -14,10 +14,6 @@ public class Main extends Application{
     }
 
     public void start(Stage primaryStage) throws Exception {
-        MainModel model = new MainModel();
-        MainController controller = new MainController(primaryStage, model);
-        MainView view = new MainView(model, controller);
-
 
         Parent root = FXMLLoader.load(getClass().getResource("fxml/main.fxml"));
         Scene scene = new Scene(root, 1280, 853);
