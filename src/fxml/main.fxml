@@ -18,12 +18,12 @@
                <children>
                   <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="83.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../Asset/Images/1519884129266.png" />
+                        <Image url="@../Asset/Images/1519884129266.jpg" />
                      </image>
                   </ImageView>
                </children>
             </Pane>
-            <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="330.0" stylesheets="@../css/fullpackstyling.css" text="Villes" textFill="WHITE">
+            <Button alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="330.0" stylesheets="@../css/fullpackstyling.css" text="Villes" textFill="WHITE">
                <graphic>
                   <FontAwesomeIcon fill="WHITE" glyphName="BUILDING" />
                </graphic>
@@ -34,7 +34,7 @@
                   <Font size="24.0" />
                </font>
             </Button>
-            <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="330.0" stylesheets="@../css/fullpackstyling.css" text="Favoris" textFill="WHITE">
+            <Button alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="330.0" stylesheets="@../css/fullpackstyling.css" text="Favoris" textFill="WHITE">
                <graphic>
                   <FontAwesomeIcon fill="WHITE" glyphName="STAR" />
                </graphic>
@@ -45,7 +45,7 @@
                   <Font size="24.0" />
                </font>
             </Button>
-            <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="330.0" stylesheets="@../css/fullpackstyling.css" text="Formulaire" textFill="WHITE">
+            <Button alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="330.0" stylesheets="@../css/fullpackstyling.css" text="Formulaire" textFill="WHITE">
                <graphic>
                   <FontAwesomeIcon fill="WHITE" glyphName="FILE_TEXT" />
                </graphic>
@@ -56,7 +56,7 @@
                   <Font size="24.0" />
                </font>
             </Button>
-            <Button id="users" alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#changeScreenButtonPushed" prefHeight="59.0" prefWidth="330.0" stylesheets="@../css/fullpackstyling.css" text="Utilisateurs" textFill="WHITE">
+            <Button id="users" alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" onAction="#usersScreenButtonPushed" prefHeight="59.0" prefWidth="330.0" stylesheets="@../css/fullpackstyling.css" text="Utilisateurs" textFill="WHITE">
                <graphic>
                   <FontAwesomeIcon fill="WHITE" glyphName="GROUP" />
                </graphic>
@@ -67,7 +67,8 @@
                   <Font size="24.0" />
                </font>
             </Button>
-            <Button id="users" alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="330.0" stylesheets="@../css/fullpackstyling.css" text="Déconnexion" textFill="WHITE">
+            <Pane prefHeight="369.0" prefWidth="330.0" />
+            <Button id="users" alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="330.0" stylesheets="@../css/fullpackstyling.css" text="Déconnexion" textFill="WHITE">
                <graphic>
                   <FontAwesomeIcon fill="WHITE" glyphName="SIGN_OUT" />
                </graphic>

@@ -3,9 +3,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import controller.MainController;
-import model.MainModel;
-import view.MainView;
 
 
 public class Main extends Application{

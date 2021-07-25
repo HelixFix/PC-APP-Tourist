@@ -8,13 +8,13 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class UsersListController {
+public class FormController {
 
     /**
      * Quand cette méthode est appelé ont change de scene vers Utilisateurs
      */
-    public void formScreenButtonPushed(javafx.event.ActionEvent actionEvent) throws IOException {
-        Parent usersParent = FXMLLoader.load(getClass().getResource("../fxml/Admin-Form.fxml"));
+    public void usersScreenButtonPushed(javafx.event.ActionEvent actionEvent) throws IOException {
+        Parent usersParent = FXMLLoader.load(getClass().getResource("../fxml/Admin-UsersList.fxml"));
         Scene usersScene = new Scene(usersParent);
 
         // Cette ligne récupère l'information du Stage
@@ -23,5 +23,4 @@ public class UsersListController {
         window.setScene(usersScene);
         window.show();
     }
-
 }
