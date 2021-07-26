@@ -41,7 +41,7 @@ public class UsersListController {
     }
 
     /**
-     * Quand cette méthode est appelé ont change de scene vers Utilisateurs
+     * Quand cette méthode est appelé ont change de scene vers Formulaire
      */
     public void formScreenButtonPushed(javafx.event.ActionEvent actionEvent) throws IOException {
         Parent usersParent = FXMLLoader.load(getClass().getResource("../fxml/Admin-Form.fxml"));

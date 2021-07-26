@@ -98,14 +98,14 @@
           <RowConstraints maxHeight="523.0" minHeight="10.0" prefHeight="516.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <TableView prefHeight="200.0" prefWidth="200.0" stylesheets="@../css/fullpackstyling.css">
+            <TableView fx:id="table_users" prefHeight="200.0" prefWidth="200.0" stylesheets="@../css/fullpackstyling.css">
               <columns>
-                <TableColumn prefWidth="75.0" text="ID" />
-                  <TableColumn prefWidth="75.0" text="Nom" />
-                <TableColumn prefWidth="75.0" text="Prenom" />
-                  <TableColumn prefWidth="75.0" text="Pseudo" />
-                  <TableColumn prefWidth="109.0" text="Autorisation" />
-                  <TableColumn prefWidth="75.0" text="Activer" />
+                <TableColumn fx:id="col_id" prefWidth="75.0" text="ID" />
+                  <TableColumn fx:id="col_nom" prefWidth="75.0" text="Nom" />
+                <TableColumn fx:id="col_prenom" prefWidth="75.0" text="Prenom" />
+                  <TableColumn fx:id="col_pseudo" prefWidth="75.0" text="Pseudo" />
+                  <TableColumn fx:id="col_autorisation" prefWidth="109.0" text="Autorisation" />
+                  <TableColumn fx:id="col_activer" prefWidth="75.0" text="Activer" />
               </columns>
             </TableView>
          </children>
