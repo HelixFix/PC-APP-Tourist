@@ -9,10 +9,12 @@ import java.sql.*;
 
 /**
  * @author Jerome
+ * get user list from database
  */
 public class mysqlconnect {
     Connection conn = null;
 
+    // connect to the database
     public static Connection ConnectDb() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
@@ -25,6 +27,7 @@ public class mysqlconnect {
         }
     }
 
+    // get list of data users from database
     public static ObservableList<Users> getDataUsers() {
         Connection conn = ConnectDb();
         ObservableList<Users> list = FXCollections.observableArrayList();

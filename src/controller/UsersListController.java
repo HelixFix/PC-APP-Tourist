@@ -13,9 +13,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import model.Users;
-
-import javax.annotation.Resource;
-import java.awt.event.ActionEvent;
 import java.net.URL;
 import java.io.IOException;
 import java.sql.Connection;
@@ -55,6 +52,7 @@ public class UsersListController implements Initializable {
     PreparedStatement ps = null;
 
     @Override
+    // initializes list controller with given url
     public void initialize (URL url, ResourceBundle rb) {
 
         col_id.setCellValueFactory(new PropertyValueFactory<Users, Integer>("id"));

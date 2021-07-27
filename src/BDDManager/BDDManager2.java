@@ -3,7 +3,6 @@ package BDDManager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.Users;
-
 import java.io.*;
 import java.sql.*;
 import java.util.ArrayList;
@@ -185,11 +184,10 @@ public class BDDManager2 {
     }
 
 
+    // get the list of data users
     public static ObservableList<Users> getDataUsers() {
 
         BDDManager2 bdd = new BDDManager2();
-
-        //list.add(new Users(Integer("ID_utilisateur")))
         bdd.start("jdbc:mysql://localhost:3306/voyage?characterEncoding=utf8", "root", "");
         ObservableList<Users> list = FXCollections.observableArrayList();
         String queryUsers = ("SELECT `ID_utilisateur`,`nom_utilisateur`,`prenom`,`pseudo`,`droit_acces`,`activer` FROM `utilisateur`");
