@@ -60,6 +60,9 @@ public class UsersListController implements Initializable {
         col_id.setCellValueFactory(new PropertyValueFactory<Users, Integer>("id"));
         col_autorisation.setCellValueFactory(new PropertyValueFactory<Users, Integer>("Autorisation"));
         col_nom.setCellValueFactory(new PropertyValueFactory<Users, String>("nom"));
+        col_prenom.setCellValueFactory(new  PropertyValueFactory<Users, String>("prenom"));
+        col_pseudo.setCellValueFactory(new  PropertyValueFactory<Users, String>("pseudo"));
+        col_activer.setCellValueFactory(new PropertyValueFactory<Users, Boolean>("Activer"));
 
         listM = BDDManager2.getDataUsers();
         table_users.setItems(listM);

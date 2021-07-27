@@ -1,17 +1,17 @@
 package model;
 
 public class Users {
-    int id, autorisation;
-    String nom, prenom, pseudo;
-    Boolean activer;
+    int id, autorisation, activer;
+    String nom, prenom, pseudo, password;
 
-    public Users(int id, int autorisation, String nom) {
+    public Users(int id, String nom, String prenom, String pseudo, String password, int autorisation, int activer)  {
         this.id = id;
-        this.autorisation = autorisation;
         this.nom = nom;
-        //this.prenom = prenom;
-        //this.pseudo = pseudo;
-        //this.activer = activer;
+        this.prenom = prenom;
+        this.pseudo = pseudo;
+        this.password = password;
+        this.autorisation = autorisation;
+        this.activer = activer;
     }
 
     public int getId() {
@@ -34,7 +34,7 @@ public class Users {
         return pseudo;
     }
 
-    public Boolean getActiver() {
+    public int getActiver() {
         return activer;
     }
 }
