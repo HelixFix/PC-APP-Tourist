@@ -192,7 +192,7 @@ public class BDDManager2 {
         //list.add(new Users(Integer("ID_utilisateur")))
         bdd.start("jdbc:mysql://localhost:3306/voyage?characterEncoding=utf8", "root", "");
         ObservableList<Users> list = FXCollections.observableArrayList();
-        String queryUsers = ("SELECT * FROM `utilisateur` ");
+        String queryUsers = ("SELECT `ID_utilisateur`,`nom_utilisateur`,`prenom`,`pseudo`,`droit_acces`,`activer` FROM `utilisateur`");
         ArrayList<ArrayList<String>> resultatDeMaRequete = new ArrayList<>(bdd.select(queryUsers));
 
         for (int i = 0; i < resultatDeMaRequete.size(); i++) {
@@ -200,7 +200,7 @@ public class BDDManager2 {
 
             System.out.println("test1" + resultatDeMaRequete.get(i));
 
-            list.add(new Users(Integer.parseInt(resultatDeMaRequete.get(i).get(0)), resultatDeMaRequete.get(i).get(1), resultatDeMaRequete.get(i).get(2), resultatDeMaRequete.get(i).get(3),resultatDeMaRequete.get(i).get(4), Integer.parseInt(resultatDeMaRequete.get(i).get(5)), Integer.parseInt(resultatDeMaRequete.get(i).get(6))));
+            list.add(new Users(Integer.parseInt(resultatDeMaRequete.get(i).get(0)), resultatDeMaRequete.get(i).get(1), resultatDeMaRequete.get(i).get(2), resultatDeMaRequete.get(i).get(3), Integer.parseInt(resultatDeMaRequete.get(i).get(4)), Integer.parseInt(resultatDeMaRequete.get(i).get(5))));
 
         }
 
