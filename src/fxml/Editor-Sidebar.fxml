@@ -18,7 +18,7 @@
                <children>
                   <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="83.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../Asset/Images/1519884129266.png" />
+                        <Image url="@../Asset/Images/1519884129266.jpg" />
                      </image>
                   </ImageView>
                </children>
@@ -59,7 +59,6 @@
             </Button>
          </children>
       </VBox>
-      <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
    </children>

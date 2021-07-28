@@ -42,17 +42,6 @@
                   <Font size="24.0" />
                </font>
             </Button>
-            <Button alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="330.0" stylesheets="@../css/fullpackstyling.css" text="Favoris" textFill="WHITE">
-               <graphic>
-                  <FontAwesomeIcon fill="WHITE" glyphName="STAR" />
-               </graphic>
-               <padding>
-                  <Insets left="50.0" />
-               </padding>
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Button>
             <Button alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" onAction="#formScreenButtonPushed" prefHeight="59.0" prefWidth="330.0" stylesheets="@../css/fullpackstyling.css" text="Formulaire" textFill="WHITE">
                <graphic>
                   <FontAwesomeIcon fill="WHITE" glyphName="FILE_TEXT" />
@@ -64,9 +53,9 @@
                   <Font size="24.0" />
                </font>
             </Button>
-            <Button alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="330.0" stylesheets="@../css/fullpackstyling.css" text="Utilisateurs" textFill="WHITE">
+            <Button alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="330.0" stylesheets="@../css/fullpackstyling.css" text="Points d'intérêt" textFill="WHITE">
                <graphic>
-                  <FontAwesomeIcon fill="WHITE" glyphName="GROUP" />
+                  <FontAwesomeIcon fill="WHITE" glyphName="UNIVERSITY" />
                </graphic>
                <padding>
                   <Insets left="50.0" />
@@ -78,18 +67,7 @@
                   <Glow />
                </effect>
             </Button>
-            <Button alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="330.0" stylesheets="@../css/fullpackstyling.css" text="Points d'intérêt" textFill="WHITE">
-               <graphic>
-                  <FontAwesomeIcon fill="WHITE" glyphName="UNIVERSITY" />
-               </graphic>
-               <padding>
-                  <Insets left="50.0" />
-               </padding>
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Button>
-            <Pane prefHeight="368.0" prefWidth="330.0" />
+            <Pane prefHeight="428.0" prefWidth="330.0" />
             <Button alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="330.0" stylesheets="@../css/fullpackstyling.css" text="Déconnexion" textFill="WHITE">
                <graphic>
                   <FontAwesomeIcon fill="WHITE" glyphName="SIGN_OUT" />
@@ -115,15 +93,16 @@
               <columns>
                 <TableColumn fx:id="col_id" prefWidth="75.0" text="ID" />
                   <TableColumn fx:id="col_nom" prefWidth="75.0" text="Nom" />
-                <TableColumn fx:id="col_prenom" prefWidth="75.0" text="Prenom" />
-                  <TableColumn fx:id="col_pseudo" prefWidth="75.0" text="Pseudo" />
-                  <TableColumn fx:id="col_autorisation" prefWidth="109.0" text="Autorisation" />
-                  <TableColumn fx:id="col_activer" prefWidth="75.0" text="Activer" />
+                <TableColumn fx:id="col_prenom" prefWidth="75.0" text="Epoque" />
+                  <TableColumn fx:id="col_pseudo" prefWidth="75.0" text="Catégorie" />
+                  <TableColumn fx:id="col_autorisation" prefWidth="109.0" text="Description" />
+                  <TableColumn fx:id="col_activer" prefWidth="75.0" text="Architecte" />
+                  <TableColumn fx:id="col_activer1" prefWidth="75.0" text="Publier" />
               </columns>
             </TableView>
          </children>
       </GridPane>
       <JFXTextField disable="true" layoutX="412.0" layoutY="100.0" promptText="ID" />
-      <JFXButton layoutX="587.0" layoutY="100.0" text="Activer" />
+      <JFXButton layoutX="587.0" layoutY="100.0" text="Modifier" />
    </children>
 </AnchorPane>

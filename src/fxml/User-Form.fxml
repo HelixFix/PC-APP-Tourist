@@ -1,12 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXTextField?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
 <?import javafx.scene.effect.Glow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -42,31 +38,9 @@
                   <Font size="24.0" />
                </font>
             </Button>
-            <Button alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="330.0" stylesheets="@../css/fullpackstyling.css" text="Favoris" textFill="WHITE">
-               <graphic>
-                  <FontAwesomeIcon fill="WHITE" glyphName="STAR" />
-               </graphic>
-               <padding>
-                  <Insets left="50.0" />
-               </padding>
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Button>
             <Button alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" onAction="#formScreenButtonPushed" prefHeight="59.0" prefWidth="330.0" stylesheets="@../css/fullpackstyling.css" text="Formulaire" textFill="WHITE">
                <graphic>
                   <FontAwesomeIcon fill="WHITE" glyphName="FILE_TEXT" />
-               </graphic>
-               <padding>
-                  <Insets left="50.0" />
-               </padding>
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Button>
-            <Button alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="330.0" stylesheets="@../css/fullpackstyling.css" text="Utilisateurs" textFill="WHITE">
-               <graphic>
-                  <FontAwesomeIcon fill="WHITE" glyphName="GROUP" />
                </graphic>
                <padding>
                   <Insets left="50.0" />
@@ -89,7 +63,7 @@
                   <Font size="24.0" />
                </font>
             </Button>
-            <Pane prefHeight="368.0" prefWidth="330.0" />
+            <Pane prefHeight="428.0" prefWidth="330.0" />
             <Button alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="330.0" stylesheets="@../css/fullpackstyling.css" text="Déconnexion" textFill="WHITE">
                <graphic>
                   <FontAwesomeIcon fill="WHITE" glyphName="SIGN_OUT" />
@@ -110,20 +84,6 @@
         <rowConstraints>
           <RowConstraints maxHeight="523.0" minHeight="10.0" prefHeight="516.0" vgrow="SOMETIMES" />
         </rowConstraints>
-         <children>
-            <TableView fx:id="table_users" prefHeight="200.0" prefWidth="200.0" stylesheets="@../css/fullpackstyling.css">
-              <columns>
-                <TableColumn fx:id="col_id" prefWidth="75.0" text="ID" />
-                  <TableColumn fx:id="col_nom" prefWidth="75.0" text="Nom" />
-                <TableColumn fx:id="col_prenom" prefWidth="75.0" text="Prenom" />
-                  <TableColumn fx:id="col_pseudo" prefWidth="75.0" text="Pseudo" />
-                  <TableColumn fx:id="col_autorisation" prefWidth="109.0" text="Autorisation" />
-                  <TableColumn fx:id="col_activer" prefWidth="75.0" text="Activer" />
-              </columns>
-            </TableView>
-         </children>
       </GridPane>
-      <JFXTextField disable="true" layoutX="412.0" layoutY="100.0" promptText="ID" />
-      <JFXButton layoutX="587.0" layoutY="100.0" text="Activer" />
    </children>
 </AnchorPane>
