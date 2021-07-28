@@ -1,11 +1,9 @@
+import BDDManager.BDDManager2;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import controller.MainController;
-import model.MainModel;
-import view.MainView;
 
 
 public class Main extends Application{
@@ -14,14 +12,13 @@ public class Main extends Application{
     }
 
     public void start(Stage primaryStage) throws Exception {
-        MainModel model = new MainModel();
-        MainController controller = new MainController(primaryStage, model);
-        MainView view = new MainView(model, controller);
 
+        BDDManager2 bdd = new BDDManager2();
+        bdd.start("jdbc:mysql://localhost:3306/tourist?characterEncoding=utf8", "root", "");
 
         Parent root = FXMLLoader.load(getClass().getResource("fxml/sample.fxml"));
         Scene scene = new Scene(root, 1280, 853);
-        primaryStage.setTitle("Sample JavaFx MVC APP");
+        primaryStage.setTitle("Application touristique - Stage Two");
         primaryStage.setScene(scene);
         primaryStage.show();
     }
