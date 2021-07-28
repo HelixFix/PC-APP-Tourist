@@ -78,7 +78,7 @@
                   <Glow />
                </effect>
             </Button>
-            <Button alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="330.0" stylesheets="@../css/fullpackstyling.css" text="Points d'intérêt" textFill="WHITE">
+            <Button alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" onAction="#ptInteretScreenButtonPushed" prefHeight="59.0" prefWidth="330.0" stylesheets="@../css/fullpackstyling.css" text="Points d'intérêt" textFill="WHITE">
                <graphic>
                   <FontAwesomeIcon fill="WHITE" glyphName="UNIVERSITY" />
                </graphic>
