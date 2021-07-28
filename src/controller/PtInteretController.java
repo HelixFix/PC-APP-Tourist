@@ -9,6 +9,21 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class PtInteretController {
+
+    /**
+     * Quand cette méthode est appelé ont change de scene vers Utilisateurs
+     */
+    public void usersScreenButtonPushed(javafx.event.ActionEvent actionEvent) throws IOException {
+        Parent usersParent = FXMLLoader.load(getClass().getResource("../fxml/Admin-UsersList.fxml"));
+        Scene usersScene = new Scene(usersParent);
+
+        // Cette ligne récupère l'information du Stage
+        Stage window = (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
+
+        window.setScene(usersScene);
+        window.show();
+    }
+
     /**
      * Quand cette méthode est appelé ont change de scene vers Formulaire
      */

@@ -82,7 +82,7 @@ public class UsersListController implements Initializable {
     }
 
     /**
-     * Quand cette méthode est appelé ont change de scene vers Formulaire
+     * Quand cette méthode est appelé ont change de scene vers Points d'intérêt
      */
     public void ptInteretScreenButtonPushed(javafx.event.ActionEvent actionEvent) throws IOException {
         Parent usersParent = FXMLLoader.load(getClass().getResource("../fxml/Admin-PtInteret.fxml"));

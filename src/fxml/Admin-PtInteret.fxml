@@ -64,7 +64,7 @@
                   <Font size="24.0" />
                </font>
             </Button>
-            <Button alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="330.0" stylesheets="@../css/fullpackstyling.css" text="Utilisateurs" textFill="WHITE">
+            <Button alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" onAction="#usersScreenButtonPushed" prefHeight="59.0" prefWidth="330.0" stylesheets="@../css/fullpackstyling.css" text="Utilisateurs" textFill="WHITE">
                <graphic>
                   <FontAwesomeIcon fill="WHITE" glyphName="GROUP" />
                </graphic>
@@ -115,11 +115,11 @@
               <columns>
                 <TableColumn fx:id="col_id" prefWidth="75.0" text="ID" />
                   <TableColumn fx:id="col_nom" prefWidth="75.0" text="Nom" />
-                <TableColumn fx:id="col_prenom" prefWidth="75.0" text="Epoque" />
-                  <TableColumn fx:id="col_pseudo" prefWidth="75.0" text="Catégorie" />
-                  <TableColumn fx:id="col_autorisation" prefWidth="109.0" text="Description" />
-                  <TableColumn fx:id="col_activer" prefWidth="75.0" text="Architecte" />
-                  <TableColumn fx:id="col_activer1" prefWidth="75.0" text="Publier" />
+                <TableColumn fx:id="col_epoque" prefWidth="75.0" text="Epoque" />
+                  <TableColumn fx:id="col_categorie" prefWidth="75.0" text="Catégorie" />
+                  <TableColumn fx:id="col_description" prefWidth="109.0" text="Description" />
+                  <TableColumn fx:id="col_architecte" prefWidth="75.0" text="Architecte" />
+                  <TableColumn fx:id="col_publier" prefWidth="75.0" text="Publier" />
               </columns>
             </TableView>
          </children>
