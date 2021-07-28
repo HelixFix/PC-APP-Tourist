@@ -1,6 +1,8 @@
 package controller;
 
 import BDDManager.BDDManager2;
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXTextField;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,6 +13,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import model.Users;
 import java.net.URL;
@@ -40,6 +43,22 @@ public class UsersListController implements Initializable {
 
     @FXML
     private TableColumn<Users, Boolean> col_activer;
+
+    @FXML
+    private JFXTextField txtfldid;
+
+    @FXML
+    private JFXButton btnactivate;
+
+    @FXML
+    public void clickItem(MouseEvent event)
+    {
+        if (event.getClickCount() == 2) //Checking double click
+        {
+            System.out.println(table_users.getSelectionModel().getSelectedItem().getId());
+            txtfldid.setText(String.valueOf(table_users.getSelectionModel().getSelectedItem().getId()));
+        }
+    }
 
     ObservableList<Users> listM;
 

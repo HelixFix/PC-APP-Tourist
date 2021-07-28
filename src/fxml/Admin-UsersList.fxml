@@ -111,7 +111,7 @@
           <RowConstraints maxHeight="523.0" minHeight="10.0" prefHeight="516.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <TableView fx:id="table_users" prefHeight="200.0" prefWidth="200.0" stylesheets="@../css/fullpackstyling.css">
+            <TableView fx:id="table_users" onMouseClicked="#clickItem" prefHeight="200.0" prefWidth="200.0" stylesheets="@../css/fullpackstyling.css">
               <columns>
                 <TableColumn fx:id="col_id" prefWidth="75.0" text="ID" />
                   <TableColumn fx:id="col_nom" prefWidth="75.0" text="Nom" />
@@ -123,7 +123,7 @@
             </TableView>
          </children>
       </GridPane>
-      <JFXTextField disable="true" layoutX="412.0" layoutY="100.0" promptText="ID" />
-      <JFXButton layoutX="587.0" layoutY="100.0" text="Activer" />
+      <JFXTextField fx:id="txtfldid" disable="true" layoutX="412.0" layoutY="100.0" promptText="ID" />
+      <JFXButton fx:id="btnactivate" layoutX="587.0" layoutY="100.0" text="Activer" />
    </children>
 </AnchorPane>
