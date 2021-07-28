@@ -11,10 +11,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
@@ -92,23 +89,15 @@
             </Button>
          </children>
       </VBox>
-      <GridPane layoutX="342.0" layoutY="285.0" prefHeight="563.0" prefWidth="932.0">
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints maxHeight="523.0" minHeight="10.0" prefHeight="516.0" vgrow="SOMETIMES" />
-        </rowConstraints>
-      </GridPane>
-      <JFXComboBox layoutX="398.0" layoutY="362.0" promptText="Ville" />
-      <JFXTextField layoutX="399.0" layoutY="81.0" promptText="Nom" />
-      <JFXTextField layoutX="398.0" layoutY="285.0" promptText="Architecte" />
-      <JFXTextField layoutX="398.0" layoutY="210.0" promptText="Catégorie" />
-      <JFXTextField layoutX="398.0" layoutY="142.0" promptText="Epoque" />
-      <JFXTextField layoutX="863.0" layoutY="81.0" promptText="Photo 1" />
-      <JFXTextField layoutX="863.0" layoutY="210.0" promptText="Photo 3" />
-      <JFXTextField layoutX="863.0" layoutY="142.0" promptText="Photo 2" />
-      <JFXTextArea layoutX="863.0" layoutY="270.0" prefHeight="185.0" prefWidth="330.0" promptText="Description" />
-      <JFXButton layoutX="746.0" layoutY="565.0" onAction="#saveScreenButtonPushed" text="Enregistrer" />
+      <JFXComboBox fx:id="ville" layoutX="398.0" layoutY="362.0" promptText="Ville" />
+      <JFXTextField fx:id="nom" layoutX="399.0" layoutY="81.0" promptText="Nom" />
+      <JFXTextField fx:id="architecte" layoutX="398.0" layoutY="285.0" promptText="Architecte" />
+      <JFXTextField fx:id="categorie" layoutX="398.0" layoutY="210.0" promptText="Catégorie" />
+      <JFXTextField fx:id="epoque" layoutX="398.0" layoutY="142.0" promptText="Epoque" />
+      <JFXTextField fx:id="photo1" layoutX="863.0" layoutY="81.0" promptText="Photo 1" />
+      <JFXTextField fx:id="photo3" layoutX="863.0" layoutY="210.0" promptText="Photo 3" />
+      <JFXTextField fx:id="photo2" layoutX="863.0" layoutY="142.0" promptText="Photo 2" />
+      <JFXTextArea fx:id="description" layoutX="863.0" layoutY="270.0" prefHeight="185.0" prefWidth="330.0" promptText="Description" />
+      <JFXButton fx:id="btnSave" layoutX="746.0" layoutY="565.0" onAction="#saveScreenButtonPushed" text="Enregistrer" />
    </children>
 </AnchorPane>

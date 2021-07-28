@@ -1,15 +1,48 @@
 package controller;
 
+import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXTextArea;
+import com.jfoenix.controls.JFXTextField;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.util.Objects;
 
 public class FormController {
+
+    @FXML
+    private JFXComboBox<?> ville;
+
+    @FXML
+    private JFXTextField nom;
+
+    @FXML
+    private JFXTextField architecte;
+
+    @FXML
+    private JFXTextField categorie;
+
+    @FXML
+    private JFXTextField epoque;
+
+    @FXML
+    private JFXTextField photo1;
+
+    @FXML
+    private JFXTextField photo3;
+
+    @FXML
+    private JFXTextField photo2;
+
+    @FXML
+    private JFXTextArea description;
+
 
     /**
      * Quand cette méthode est appelé ont change de scene vers Formulaire
@@ -40,7 +73,7 @@ public class FormController {
     }
 
     /**
-     * Quand cette méthode est appelé ont change de scene vers Points d'intérêt
+     * Quand cette méthode est appelé ont change de scene vers Points d'intérêt - Editor
      */
     public void ptInteretEditorMenuButtonPushed(javafx.event.ActionEvent actionEvent) throws IOException {
         Parent usersParent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../fxml/Admin-PtInteret.fxml")));
@@ -54,7 +87,7 @@ public class FormController {
     }
 
     /**
-     * Quand cette méthode est appelé ont change de scene vers Points d'intérêt
+     * Quand cette méthode est appelé ont change de scene vers Points d'intérêt - Admin
      */
     public void ptInteretAdminMenuButtonPushed(javafx.event.ActionEvent actionEvent) throws IOException {
         Parent usersParent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../fxml/Admin-PtInteret.fxml")));
