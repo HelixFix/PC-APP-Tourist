@@ -15,9 +15,7 @@ import javafx.stage.Stage;
 import model.Users;
 import java.net.URL;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class UsersListController implements Initializable {
@@ -45,22 +43,16 @@ public class UsersListController implements Initializable {
 
     ObservableList<Users> listM;
 
-    int index = -1;
-
-    Connection conn = null;
-    ResultSet rs = null;
-    PreparedStatement ps = null;
-
     @Override
     // initializes list controller with given url
     public void initialize (URL url, ResourceBundle rb) {
 
-        col_id.setCellValueFactory(new PropertyValueFactory<Users, Integer>("id"));
-        col_autorisation.setCellValueFactory(new PropertyValueFactory<Users, Integer>("Autorisation"));
-        col_nom.setCellValueFactory(new PropertyValueFactory<Users, String>("nom"));
-        col_prenom.setCellValueFactory(new  PropertyValueFactory<Users, String>("prenom"));
-        col_pseudo.setCellValueFactory(new  PropertyValueFactory<Users, String>("pseudo"));
-        col_activer.setCellValueFactory(new PropertyValueFactory<Users, Boolean>("Activer"));
+        col_id.setCellValueFactory(new PropertyValueFactory<>("id"));
+        col_autorisation.setCellValueFactory(new PropertyValueFactory<>("Autorisation"));
+        col_nom.setCellValueFactory(new PropertyValueFactory<>("nom"));
+        col_prenom.setCellValueFactory(new  PropertyValueFactory<>("prenom"));
+        col_pseudo.setCellValueFactory(new  PropertyValueFactory<>("pseudo"));
+        col_activer.setCellValueFactory(new PropertyValueFactory<>("Activer"));
 
         listM = BDDManager2.getDataUsers();
         table_users.setItems(listM);
@@ -71,7 +63,7 @@ public class UsersListController implements Initializable {
      * Quand cette méthode est appelé ont change de scene vers Formulaire
      */
     public void formScreenButtonPushed(javafx.event.ActionEvent actionEvent) throws IOException {
-        Parent usersParent = FXMLLoader.load(getClass().getResource("../fxml/Admin-Form.fxml"));
+        Parent usersParent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../fxml/Admin-Form.fxml")));
         Scene usersScene = new Scene(usersParent);
 
         // Cette ligne récupère l'information du Stage
@@ -85,7 +77,7 @@ public class UsersListController implements Initializable {
      * Quand cette méthode est appelé ont change de scene vers Points d'intérêt
      */
     public void ptInteretScreenButtonPushed(javafx.event.ActionEvent actionEvent) throws IOException {
-        Parent usersParent = FXMLLoader.load(getClass().getResource("../fxml/Admin-PtInteret.fxml"));
+        Parent usersParent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../fxml/Admin-PtInteret.fxml")));
         Scene usersScene = new Scene(usersParent);
 
         // Cette ligne récupère l'information du Stage
