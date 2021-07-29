@@ -2,7 +2,7 @@ package BDDManager;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import model.Users;
+import model.User;
 
 import javax.swing.*;
 import java.sql.*;
@@ -28,9 +28,9 @@ public class mysqlconnect {
     }
 
     // get list of data users from database
-    public static ObservableList<Users> getDataUsers() {
+    public static ObservableList<User> getDataUsers() {
         Connection conn = ConnectDb();
-        ObservableList<Users> list = FXCollections.observableArrayList();
+        ObservableList<User> list = FXCollections.observableArrayList();
         try {
             PreparedStatement ps = conn.prepareStatement("select * from utilisateur");
             ResultSet rs = ps.executeQuery();

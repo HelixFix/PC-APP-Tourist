@@ -92,18 +92,18 @@ public class PointsOfInterest {
         this.publier = publier;
     }
 
-    public PointsOfInterest(Integer id, String nom, String architecte, Integer publier, String categorie, String description, String epoque, String photo1, String photo2, String photo3) {
+    public PointsOfInterest(Integer id, String nom, String ville, String architecte, Integer publier, String categorie, String description, String epoque, String photo1, String photo2, String photo3) {
         this.id = id;
-        //this.ville = ville;
-        this.nom = nom;
-        this.architecte = architecte;
-        this.publier = publier;
-        this.categorie = categorie;
+        this.ville = ville;
+        this.nom         = nom;
+        this.architecte  = architecte;
+        this.publier     = publier;
+        this.categorie   = categorie;
         this.description = description;
-        this.epoque = epoque;
-        this.photo1 = photo1;
-        this.photo2 = photo2;
-        this.photo3 = photo3;
+        this.epoque      = epoque;
+        this.photo1      = photo1;
+        this.photo2      = photo2;
+        this.photo3      = photo3;
 
     }
 }

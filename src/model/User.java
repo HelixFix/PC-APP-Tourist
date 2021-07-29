@@ -4,11 +4,11 @@ package model;
  * @author Jerome 
  * Crée un nouvel utilisateur
  */
-public class Users {
+public class User {
     int id, autorisation, activer;
     String nom, prenom, pseudo;
 
-    public Users(int id, String nom, String prenom, String pseudo, int autorisation, int activer)  {
+    public User(int id, String nom, String prenom, String pseudo, int autorisation, int activer)  {
         this.id           = id;
         this.nom          = nom;
         this.prenom       = prenom;

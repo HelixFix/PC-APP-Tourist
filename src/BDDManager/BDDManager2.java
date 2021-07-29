@@ -3,7 +3,7 @@ package BDDManager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.PointsOfInterest;
-import model.Users;
+import model.User;
 import java.io.*;
 import java.sql.*;
 import java.util.ArrayList;
@@ -186,11 +186,11 @@ public class BDDManager2 {
 
 
     // get the list of data users
-    public static ObservableList<Users> getDataUsers() {
+    public static ObservableList<User> getDataUsers() {
 
         BDDManager2 bdd = new BDDManager2();
         bdd.start("jdbc:mysql://localhost:3306/voyage?characterEncoding=utf8", "root", "");
-        ObservableList<Users> list = FXCollections.observableArrayList();
+        ObservableList<User> list = FXCollections.observableArrayList();
         String queryUsers = ("SELECT `ID_utilisateur`,`nom_utilisateur`,`prenom`,`pseudo`,`droit_acces`,`activer` FROM `utilisateur`");
         ArrayList<ArrayList<String>> resultatDeMaRequete = new ArrayList<>(bdd.select(queryUsers));
 
@@ -199,7 +199,7 @@ public class BDDManager2 {
 
             System.out.println("test1" + resultatDeMaRequete.get(i));
 
-            list.add(new Users(Integer.parseInt(resultatDeMaRequete.get(i).get(0)), resultatDeMaRequete.get(i).get(1), resultatDeMaRequete.get(i).get(2), resultatDeMaRequete.get(i).get(3), Integer.parseInt(resultatDeMaRequete.get(i).get(4)), Integer.parseInt(resultatDeMaRequete.get(i).get(5))));
+            list.add(new User(Integer.parseInt(resultatDeMaRequete.get(i).get(0)), resultatDeMaRequete.get(i).get(1), resultatDeMaRequete.get(i).get(2), resultatDeMaRequete.get(i).get(3), Integer.parseInt(resultatDeMaRequete.get(i).get(4)), Integer.parseInt(resultatDeMaRequete.get(i).get(5))));
 
         }
 
@@ -212,7 +212,7 @@ public class BDDManager2 {
         BDDManager2 bdd = new BDDManager2();
         bdd.start("jdbc:mysql://localhost:3306/voyage?characterEncoding=utf8", "root", "");
         ObservableList<PointsOfInterest> list = FXCollections.observableArrayList();
-        String queryPointsOfInterest = ("SELECT `ID_pt_interet`,`nom_pt_interet`,`nom_architecte`,`publier`,`categorie`,`description_pt_interet`,`epoque`,`chemin_photo1`,`chemin_photo2`,`chemin_photo3` FROM `point_interet`");
+        String queryPointsOfInterest = ("SELECT `ID_pt_interet`,`nom_pt_interet`,`nom_ville`,`nom_architecte`,`publier`,`categorie`,`description_pt_interet`,`epoque`,`chemin_photo1`,`chemin_photo2`,`chemin_photo3` FROM `point_interet` INNER JOIN ville ON ville.id_ville = point_interet.id_ville");
         ArrayList<ArrayList<String>> resultatDeMaRequete = new ArrayList<>(bdd.select(queryPointsOfInterest));
 
         for (int i = 0; i < resultatDeMaRequete.size(); i++) {
@@ -220,12 +220,17 @@ public class BDDManager2 {
 
             System.out.println("test1" + resultatDeMaRequete.get(i));
 
-            list.add(new PointsOfInterest(Integer.parseInt(resultatDeMaRequete.get(i).get(0)), resultatDeMaRequete.get(i).get(1), resultatDeMaRequete.get(i).get(2), Integer.parseInt(resultatDeMaRequete.get(i).get(3)), resultatDeMaRequete.get(i).get(4), resultatDeMaRequete.get(i).get(5),resultatDeMaRequete.get(i).get(6),resultatDeMaRequete.get(i).get(7),resultatDeMaRequete.get(i).get(8),resultatDeMaRequete.get(i).get(9)));
+            list.add(new PointsOfInterest(Integer.parseInt(resultatDeMaRequete.get(i).get(0)), resultatDeMaRequete.get(i).get(1), resultatDeMaRequete.get(i).get(2), resultatDeMaRequete.get(i).get(3), Integer.parseInt(resultatDeMaRequete.get(i).get(4)), resultatDeMaRequete.get(i).get(5), resultatDeMaRequete.get(i).get(6),resultatDeMaRequete.get(i).get(7),resultatDeMaRequete.get(i).get(8),resultatDeMaRequete.get(i).get(9),resultatDeMaRequete.get(i).get(10)));
 
         }
 
         return list;
     }
+
+
+    final ObservableList options = FXCollections.observableArrayList();
+
+
 }
 
 

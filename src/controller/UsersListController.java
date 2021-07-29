@@ -15,7 +15,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import model.Users;
+import model.User;
 import java.net.URL;
 import java.io.IOException;
 import java.util.Objects;
@@ -24,25 +24,25 @@ import java.util.ResourceBundle;
 public class UsersListController implements Initializable {
 
     @FXML
-    private TableView<Users> table_users;
+    private TableView<User> table_users;
 
     @FXML
-    private TableColumn<Users, Integer> col_id;
+    private TableColumn<User, Integer> col_id;
 
     @FXML
-    private TableColumn<Users, String> col_nom;
+    private TableColumn<User, String> col_nom;
 
     @FXML
-    private TableColumn<Users, String> col_prenom;
+    private TableColumn<User, String> col_prenom;
 
     @FXML
-    private TableColumn<Users, String> col_pseudo;
+    private TableColumn<User, String> col_pseudo;
 
     @FXML
-    private TableColumn<Users, Integer> col_autorisation;
+    private TableColumn<User, Integer> col_autorisation;
 
     @FXML
-    private TableColumn<Users, Boolean> col_activer;
+    private TableColumn<User, Boolean> col_activer;
 
     @FXML
     private JFXTextField txtfldid;
@@ -51,6 +51,7 @@ public class UsersListController implements Initializable {
     private JFXButton btnactivate;
 
     @FXML
+    // mouse listener for table users
     public void clickItem(MouseEvent event)
     {
         if (event.getClickCount() == 2) //Checking double click
@@ -60,7 +61,7 @@ public class UsersListController implements Initializable {
         }
     }
 
-    ObservableList<Users> listM;
+    ObservableList<User> listM;
 
     @Override
     // initializes list controller with given url
