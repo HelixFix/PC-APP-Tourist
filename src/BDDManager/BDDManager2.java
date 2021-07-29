@@ -2,6 +2,7 @@ package BDDManager;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import model.PointsOfInterest;
 import model.Users;
 import java.io.*;
 import java.sql.*;
@@ -199,6 +200,27 @@ public class BDDManager2 {
             System.out.println("test1" + resultatDeMaRequete.get(i));
 
             list.add(new Users(Integer.parseInt(resultatDeMaRequete.get(i).get(0)), resultatDeMaRequete.get(i).get(1), resultatDeMaRequete.get(i).get(2), resultatDeMaRequete.get(i).get(3), Integer.parseInt(resultatDeMaRequete.get(i).get(4)), Integer.parseInt(resultatDeMaRequete.get(i).get(5))));
+
+        }
+
+        return list;
+    }
+
+    // get the list of data PointsOfInterest
+    public static ObservableList<PointsOfInterest> getDataPtInterest() {
+
+        BDDManager2 bdd = new BDDManager2();
+        bdd.start("jdbc:mysql://localhost:3306/voyage?characterEncoding=utf8", "root", "");
+        ObservableList<PointsOfInterest> list = FXCollections.observableArrayList();
+        String queryPointsOfInterest = ("SELECT `ID_pt_interet`,`nom_pt_interet`,`nom_architecte`,`publier`,`categorie`,`description_pt_interet`,`epoque`,`chemin_photo1`,`chemin_photo2`,`chemin_photo3` FROM `point_interet`");
+        ArrayList<ArrayList<String>> resultatDeMaRequete = new ArrayList<>(bdd.select(queryPointsOfInterest));
+
+        for (int i = 0; i < resultatDeMaRequete.size(); i++) {
+
+
+            System.out.println("test1" + resultatDeMaRequete.get(i));
+
+            list.add(new PointsOfInterest(Integer.parseInt(resultatDeMaRequete.get(i).get(0)), resultatDeMaRequete.get(i).get(1), resultatDeMaRequete.get(i).get(2), Integer.parseInt(resultatDeMaRequete.get(i).get(3)), resultatDeMaRequete.get(i).get(4), resultatDeMaRequete.get(i).get(5),resultatDeMaRequete.get(i).get(6),resultatDeMaRequete.get(i).get(7),resultatDeMaRequete.get(i).get(8),resultatDeMaRequete.get(i).get(9)));
 
         }
 

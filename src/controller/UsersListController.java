@@ -82,7 +82,7 @@ public class UsersListController implements Initializable {
      * Quand cette méthode est appelé ont change de scene vers Formulaire
      */
     public void formScreenButtonPushed(javafx.event.ActionEvent actionEvent) throws IOException {
-        Parent usersParent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../fxml/Admin-Form.fxml")));
+        Parent usersParent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../fxml/Admin-Formv2.fxml")));
         Scene usersScene = new Scene(usersParent);
 
         // Cette ligne récupère l'information du Stage

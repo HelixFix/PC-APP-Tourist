@@ -1,6 +1,7 @@
 package model;
 
 public class PointsOfInterest {
+    Integer id, publier;
     String ville, nom, architecte, categorie, epoque, photo1, photo2, photo3, description;
 
     public String getVille() {
@@ -75,15 +76,34 @@ public class PointsOfInterest {
         this.description = description;
     }
 
-    public PointsOfInterest(String ville, String nom, String architecte, String categorie, String epoque, String photo1, String photo2, String photo3, String description) {
-        this.ville = ville;
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getPublier() {
+        return publier;
+    }
+
+    public void setPublier(Integer publier) {
+        this.publier = publier;
+    }
+
+    public PointsOfInterest(Integer id, String nom, String architecte, Integer publier, String categorie, String description, String epoque, String photo1, String photo2, String photo3) {
+        this.id = id;
+        //this.ville = ville;
         this.nom = nom;
         this.architecte = architecte;
+        this.publier = publier;
         this.categorie = categorie;
+        this.description = description;
         this.epoque = epoque;
         this.photo1 = photo1;
         this.photo2 = photo2;
         this.photo3 = photo3;
-        this.description = description;
+
     }
 }
