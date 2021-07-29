@@ -22,7 +22,7 @@
    <children>
       <VBox layoutX="-5.0" layoutY="-4.0" prefHeight="863.0" prefWidth="330.0" style="-fx-background-color: #3F2B63;" stylesheets="@../css/fullpackstyling.css">
          <children>
-            <Pane prefHeight="200.0" prefWidth="200.0">
+            <Pane prefHeight="194.0" prefWidth="330.0">
                <children>
                   <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="83.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -45,17 +45,6 @@
             <Button alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="330.0" stylesheets="@../css/fullpackstyling.css" text="Favoris" textFill="WHITE">
                <graphic>
                   <FontAwesomeIcon fill="WHITE" glyphName="STAR" />
-               </graphic>
-               <padding>
-                  <Insets left="50.0" />
-               </padding>
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Button>
-            <Button alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" onAction="#formScreenButtonPushed" prefHeight="59.0" prefWidth="330.0" stylesheets="@../css/fullpackstyling.css" text="Formulaire" textFill="WHITE">
-               <graphic>
-                  <FontAwesomeIcon fill="WHITE" glyphName="FILE_TEXT" />
                </graphic>
                <padding>
                   <Insets left="50.0" />
