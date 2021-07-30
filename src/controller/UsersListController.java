@@ -80,23 +80,9 @@ public class UsersListController implements Initializable {
 
 
     /**
-     * Quand cette méthode est appelé ont change de scene vers Formulaire
-     */
-    public void formScreenButtonPushed(javafx.event.ActionEvent actionEvent) throws IOException {
-        Parent usersParent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../fxml/Admin-Form.fxml")));
-        Scene usersScene = new Scene(usersParent);
-
-        // Cette ligne récupère l'information du Stage
-        Stage window = (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
-
-        window.setScene(usersScene);
-        window.show();
-    }
-
-    /**
      * Quand cette méthode est appelé ont change de scene vers Points d'intérêt
      */
-    public void ptInteretScreenButtonPushed(javafx.event.ActionEvent actionEvent) throws IOException {
+    public void ptInteretMenuButtonPushed(javafx.event.ActionEvent actionEvent) throws IOException {
         Parent usersParent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../fxml/Admin-PtInteret.fxml")));
         Scene usersScene = new Scene(usersParent);
 
@@ -107,6 +93,25 @@ public class UsersListController implements Initializable {
         window.show();
     }
 
+    /**
+     * Quand cette méthode est appelé ont enregistre un nouveau point d'intérêt et recharge la scene
+     */
+    public void activateScreenButtonPushed(javafx.event.ActionEvent actionEvent) throws IOException {
+        BDDManager2 insert = new BDDManager2();
+        insert.start("jdbc:mysql://localhost:3306/voyage?characterEncoding=utf8", "root", "");
+        String queryClient = ("UPDATE `utilisateur` SET `activer` = '1' WHERE `utilisateur`.`ID_utilisateur` = " + txtfldid.getText() + "");
+        insert.update(queryClient);
+        insert.stop();
 
+
+        Parent usersParent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../fxml/Admin-UsersList.fxml")));
+        Scene usersScene = new Scene(usersParent);
+
+        // Cette ligne récupère l'information du Stage
+        Stage window = (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
+
+        window.setScene(usersScene);
+        window.show();
+    }
 
 }

@@ -340,7 +340,7 @@ public class PtInteretController implements Initializable {
     }
 
     /**
-     * Quand cette méthode est appelé ont recharge la scene
+     * Quand cette méthode est appelé ont enregistre un nouveau point d'intérêt et recharge la scene
      */
     public void saveScreenButtonPushed(javafx.event.ActionEvent actionEvent) throws IOException {
         BDDManager2 insert = new BDDManager2();
