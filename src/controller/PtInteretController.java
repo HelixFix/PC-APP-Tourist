@@ -29,6 +29,7 @@ import java.util.*;
 
 public class PtInteretController implements Initializable {
     ObservableList<PointsOfInterest> list = FXCollections.observableArrayList();
+    ObservableList<PointsOfInterest> list2 = FXCollections.observableArrayList();
     private ObservableList<Ville> villes;
 
     public PtInteretController() {
@@ -320,6 +321,30 @@ public class PtInteretController implements Initializable {
         }
 
         return list;
+
+
+    }
+
+    public ObservableList<PointsOfInterest> getLastIDPtInterest() {
+
+        list.clear();
+
+        BDDManager2 bdd = new BDDManager2();
+        bdd.start("jdbc:mysql://localhost:3306/voyage?characterEncoding=utf8", "root", "");
+
+        String queryPointsOfInterest = ("SELECT `ID_pt_interet` FROM `point_interet` ORDER BY ID_pt_interet DESC LIMIT 1\n");
+        ArrayList<ArrayList<String>> resultatDeMaRequete = new ArrayList<>(bdd.select(queryPointsOfInterest));
+
+        for (ArrayList<String> strings : resultatDeMaRequete) {
+
+
+            System.out.println("test1" + strings);
+
+            list2.add(new PointsOfInterest(Integer.parseInt(strings.get(0))));
+
+        }
+
+        return list;
     }
 
     /**
@@ -368,23 +393,30 @@ public class PtInteretController implements Initializable {
      * Quand cette méthode est appelé ont enregistre ou modifie un point d'intérêt et recharge la scene
      */
     public void saveScreenButtonPushed(){
-        BDDManager2 insert = new BDDManager2();
+        BDDManager2 db = new BDDManager2();
 
         if ( txtfldid.getText().trim().isEmpty()) {
 
-            insert.start("jdbc:mysql://localhost:3306/voyage?characterEncoding=utf8", "root", "");
-            String queryClient = ("INSERT INTO `point_interet` (`ID_pt_interet`, `nom_pt_interet`, `epoque`, `categorie`, `description_pt_interet`, `nom_architecte`, `publier`, `chemin_photo1`, `chemin_photo2`, `chemin_photo3`, `ID_ville`) " +
+            db.start("jdbc:mysql://localhost:3306/voyage?characterEncoding=utf8", "root", "");
+            String queryInterest = ("INSERT INTO `point_interet` (`ID_pt_interet`, `nom_pt_interet`, `epoque`, `categorie`, `description_pt_interet`, `nom_architecte`, `publier`, `chemin_photo1`, `chemin_photo2`, `chemin_photo3`, `ID_ville`) " +
                     "VALUES (NULL, \"" + txtfldnom.getText() + "\", \"" + txtfldepoque.getText() + "\", \"" + txtfldcategorie.getText() + "\",\"" + txtareadescription.getText() + "\", \"" + txtfldarchitecte.getText() + "\", '0', \"" + txtfldphoto1.getText() + "\", \"" + txtfldphoto2.getText() + "\", \"" + txtfldphoto3.getText() + "\", '6' )");
-            insert.insert(queryClient);
-            insert.stop();
+            db.insert(queryInterest);
+            db.stop();
+
+            getLastIDPtInterest();
+
+
+
+            txtfldid.setText(String.valueOf(list2.get(0).getId()));
+            //System.out.println(txtfldid.getText());
 
 
         } else {
-            insert.start("jdbc:mysql://localhost:3306/voyage?characterEncoding=utf8", "root", "");
-            String queryClient = ("UPDATE `point_interet` SET `nom_pt_interet` = \"" + txtfldnom.getText() + "\", `epoque` = \"" + txtfldepoque.getText() + "\", `categorie` = \"" + txtfldcategorie.getText() + "\", `description_pt_interet` = \"" + txtareadescription.getText() + "\", `nom_architecte` = \"" + txtfldarchitecte.getText() + "\", `chemin_photo1` = \"" + txtfldphoto1.getText() + "\", `chemin_photo2` = \"" + txtfldphoto2.getText() + "\", `chemin_photo3` = \"" + txtfldphoto3.getText() + "\", `ID_ville` = 6 " +
+            db.start("jdbc:mysql://localhost:3306/voyage?characterEncoding=utf8", "root", "");
+            String queryInterest = ("UPDATE `point_interet` SET `nom_pt_interet` = \"" + txtfldnom.getText() + "\", `epoque` = \"" + txtfldepoque.getText() + "\", `categorie` = \"" + txtfldcategorie.getText() + "\", `description_pt_interet` = \"" + txtareadescription.getText() + "\", `nom_architecte` = \"" + txtfldarchitecte.getText() + "\", `chemin_photo1` = \"" + txtfldphoto1.getText() + "\", `chemin_photo2` = \"" + txtfldphoto2.getText() + "\", `chemin_photo3` = \"" + txtfldphoto3.getText() + "\", `ID_ville` = 6 " +
                     "WHERE `point_interet`.`ID_pt_interet` = " + txtfldid.getText() + "");
-            insert.update(queryClient);
-            insert.stop();
+            db.update(queryInterest);
+            db.stop();
 
         }
 
@@ -393,14 +425,18 @@ public class PtInteretController implements Initializable {
 
     }
 
+    /*TODO
+    Créer un bouton Nouveau
+     */
+
     /**
      * Quand cette méthode est appelé ont publie un point d'intérêt
      */
     public void publishScreenButtonPushed() {
         BDDManager2 insert = new BDDManager2();
         insert.start("jdbc:mysql://localhost:3306/voyage?characterEncoding=utf8", "root", "");
-        String queryClient = ("UPDATE `point_interet` SET `publier` = '1' WHERE `point_interet`.`ID_pt_interet` = " + txtfldid.getText() + "");
-        insert.update(queryClient);
+        String queryInterest = ("UPDATE `point_interet` SET `publier` = '1' WHERE `point_interet`.`ID_pt_interet` = " + txtfldid.getText() + "");
+        insert.update(queryInterest);
         insert.stop();
 
         getDataPtInterest();

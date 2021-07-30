@@ -92,6 +92,10 @@ public class PointsOfInterest {
         this.publier = publier;
     }
 
+    public PointsOfInterest(Integer id) {
+        this.id = id;
+    }
+
     public PointsOfInterest(Integer id, String nom, String ville, String architecte, Integer publier, String categorie, String description, String epoque, String photo1, String photo2, String photo3) {
         this.id = id;
         this.ville = ville;
