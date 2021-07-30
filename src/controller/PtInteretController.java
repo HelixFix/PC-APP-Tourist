@@ -28,6 +28,7 @@ import java.net.URL;
 import java.util.*;
 
 public class PtInteretController implements Initializable {
+    ObservableList<PointsOfInterest> list = FXCollections.observableArrayList();
     private ObservableList<Ville> villes;
 
     public PtInteretController() {
@@ -299,11 +300,13 @@ public class PtInteretController implements Initializable {
     }
 
     // get the list of data PointsOfInterest
-    public static ObservableList<PointsOfInterest> getDataPtInterest() {
+    public ObservableList<PointsOfInterest> getDataPtInterest() {
+
+        list.clear();
 
         BDDManager2 bdd = new BDDManager2();
         bdd.start("jdbc:mysql://localhost:3306/voyage?characterEncoding=utf8", "root", "");
-        ObservableList<PointsOfInterest> list = FXCollections.observableArrayList();
+
         String queryPointsOfInterest = ("SELECT `ID_pt_interet`,`nom_pt_interet`,`nom_ville`,`nom_architecte`,`publier`,`categorie`,`description_pt_interet`,`epoque`,`chemin_photo1`,`chemin_photo2`,`chemin_photo3` FROM `point_interet` INNER JOIN ville ON ville.id_ville = point_interet.id_ville ORDER BY ID_pt_interet DESC");
         ArrayList<ArrayList<String>> resultatDeMaRequete = new ArrayList<>(bdd.select(queryPointsOfInterest));
 
@@ -364,7 +367,7 @@ public class PtInteretController implements Initializable {
     /**
      * Quand cette méthode est appelé ont enregistre ou modifie un point d'intérêt et recharge la scene
      */
-    public void saveScreenButtonPushed(javafx.event.ActionEvent actionEvent) throws IOException {
+    public void saveScreenButtonPushed(){
         BDDManager2 insert = new BDDManager2();
 
         if ( txtfldid.getText().trim().isEmpty()) {
@@ -385,36 +388,23 @@ public class PtInteretController implements Initializable {
 
         }
 
-        Parent usersParent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../fxml/Admin-PtInteret.fxml")));
-        Scene usersScene = new Scene(usersParent);
-
-        // Cette ligne récupère l'information du Stage
-        Stage window = (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
-
-        window.setScene(usersScene);
-        window.show();
+        getDataPtInterest();
+        table_ptinteret.refresh();
 
     }
 
     /**
      * Quand cette méthode est appelé ont publie un point d'intérêt
      */
-    public void publishScreenButtonPushed(javafx.event.ActionEvent actionEvent) throws IOException {
+    public void publishScreenButtonPushed() {
         BDDManager2 insert = new BDDManager2();
         insert.start("jdbc:mysql://localhost:3306/voyage?characterEncoding=utf8", "root", "");
         String queryClient = ("UPDATE `point_interet` SET `publier` = '1' WHERE `point_interet`.`ID_pt_interet` = " + txtfldid.getText() + "");
         insert.update(queryClient);
         insert.stop();
 
-
-        Parent usersParent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../fxml/Admin-PtInteret.fxml")));
-        Scene usersScene = new Scene(usersParent);
-
-        // Cette ligne récupère l'information du Stage
-        Stage window = (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
-
-        window.setScene(usersScene);
-        window.show();
+        getDataPtInterest();
+        table_ptinteret.refresh();
     }
 
 
