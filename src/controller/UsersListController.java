@@ -2,6 +2,7 @@ package controller;
 
 import BDDManager.BDDManager2;
 import com.jfoenix.controls.JFXTextField;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,6 +18,7 @@ import javafx.stage.Stage;
 import model.User;
 import java.net.URL;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
@@ -70,10 +72,30 @@ public class UsersListController implements Initializable {
         col_pseudo.setCellValueFactory(new  PropertyValueFactory<>("pseudo"));
         col_activer.setCellValueFactory(new PropertyValueFactory<>("Activer"));
 
-        listM = BDDManager2.getDataUsers();
+        listM = getDataUsers();
         table_users.setItems(listM);
     }
 
+    // get the list of data users
+    public static ObservableList<User> getDataUsers() {
+
+        BDDManager2 bdd = new BDDManager2();
+        bdd.start("jdbc:mysql://localhost:3306/voyage?characterEncoding=utf8", "root", "");
+        ObservableList<User> list = FXCollections.observableArrayList();
+        String queryUsers = ("SELECT `ID_utilisateur`,`nom_utilisateur`,`prenom`,`pseudo`,`droit_acces`,`activer` FROM `utilisateur` ORDER BY ID_utilisateur DESC");
+        ArrayList<ArrayList<String>> resultatDeMaRequete = new ArrayList<>(bdd.select(queryUsers));
+
+        for (ArrayList<String> strings : resultatDeMaRequete) {
+
+
+            System.out.println("test1" + strings);
+
+            list.add(new User(Integer.parseInt(strings.get(0)), strings.get(1), strings.get(2), strings.get(3), Integer.parseInt(strings.get(4)), Integer.parseInt(strings.get(5))));
+
+        }
+
+        return list;
+    }
 
     /**
      * Quand cette méthode est appelé ont change de scene vers Points d'intérêt

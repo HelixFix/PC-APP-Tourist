@@ -5,6 +5,7 @@ import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import javafx.beans.InvalidationListener;
+import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -293,8 +294,29 @@ public class PtInteretController implements Initializable {
         col_publier.setCellValueFactory(new PropertyValueFactory<>("publier"));
 
 
-        listM = BDDManager2.getDataPtInterest();
+        listM = getDataPtInterest();
         table_ptinteret.setItems(listM);
+    }
+
+    // get the list of data PointsOfInterest
+    public static ObservableList<PointsOfInterest> getDataPtInterest() {
+
+        BDDManager2 bdd = new BDDManager2();
+        bdd.start("jdbc:mysql://localhost:3306/voyage?characterEncoding=utf8", "root", "");
+        ObservableList<PointsOfInterest> list = FXCollections.observableArrayList();
+        String queryPointsOfInterest = ("SELECT `ID_pt_interet`,`nom_pt_interet`,`nom_ville`,`nom_architecte`,`publier`,`categorie`,`description_pt_interet`,`epoque`,`chemin_photo1`,`chemin_photo2`,`chemin_photo3` FROM `point_interet` INNER JOIN ville ON ville.id_ville = point_interet.id_ville ORDER BY ID_pt_interet DESC");
+        ArrayList<ArrayList<String>> resultatDeMaRequete = new ArrayList<>(bdd.select(queryPointsOfInterest));
+
+        for (ArrayList<String> strings : resultatDeMaRequete) {
+
+
+            System.out.println("test1" + strings);
+
+            list.add(new PointsOfInterest(Integer.parseInt(strings.get(0)), strings.get(1), strings.get(2), strings.get(3), Integer.parseInt(strings.get(4)), strings.get(5), strings.get(6), strings.get(7), strings.get(8), strings.get(9), strings.get(10)));
+
+        }
+
+        return list;
     }
 
     /**
@@ -340,16 +362,28 @@ public class PtInteretController implements Initializable {
     }
 
     /**
-     * Quand cette méthode est appelé ont enregistre un nouveau point d'intérêt et recharge la scene
+     * Quand cette méthode est appelé ont enregistre ou modifie un point d'intérêt et recharge la scene
      */
     public void saveScreenButtonPushed(javafx.event.ActionEvent actionEvent) throws IOException {
         BDDManager2 insert = new BDDManager2();
-        insert.start("jdbc:mysql://localhost:3306/voyage?characterEncoding=utf8", "root", "");
-        String queryClient = ("INSERT INTO `point_interet` (`ID_pt_interet`, `nom_pt_interet`, `epoque`, `categorie`, `description_pt_interet`, `nom_architecte`, `publier`, `chemin_photo1`, `chemin_photo2`, `chemin_photo3`, `ID_ville`) " +
-                "VALUES (NULL, \"" + txtfldnom.getText() + "\", \"" + txtfldepoque.getText() + "\", \"" + txtfldcategorie.getText() + "\",\"" + txtareadescription.getText() + "\", \"" + txtfldarchitecte.getText() + "\", '0', \"" + txtfldphoto1.getText() +"\", \"" + txtfldphoto2.getText() + "\", \"" + txtfldphoto3.getText() + "\", '6' )");
-        insert.insert(queryClient);
-        insert.stop();
 
+        if ( txtfldid.getText().trim().isEmpty()) {
+
+            insert.start("jdbc:mysql://localhost:3306/voyage?characterEncoding=utf8", "root", "");
+            String queryClient = ("INSERT INTO `point_interet` (`ID_pt_interet`, `nom_pt_interet`, `epoque`, `categorie`, `description_pt_interet`, `nom_architecte`, `publier`, `chemin_photo1`, `chemin_photo2`, `chemin_photo3`, `ID_ville`) " +
+                    "VALUES (NULL, \"" + txtfldnom.getText() + "\", \"" + txtfldepoque.getText() + "\", \"" + txtfldcategorie.getText() + "\",\"" + txtareadescription.getText() + "\", \"" + txtfldarchitecte.getText() + "\", '0', \"" + txtfldphoto1.getText() + "\", \"" + txtfldphoto2.getText() + "\", \"" + txtfldphoto3.getText() + "\", '6' )");
+            insert.insert(queryClient);
+            insert.stop();
+
+
+        } else {
+            insert.start("jdbc:mysql://localhost:3306/voyage?characterEncoding=utf8", "root", "");
+            String queryClient = ("UPDATE `point_interet` SET `nom_pt_interet` = \"" + txtfldnom.getText() + "\", `epoque` = \"" + txtfldepoque.getText() + "\", `categorie` = \"" + txtfldcategorie.getText() + "\", `description_pt_interet` = \"" + txtareadescription.getText() + "\", `nom_architecte` = \"" + txtfldarchitecte.getText() + "\", `chemin_photo1` = \"" + txtfldphoto1.getText() + "\", `chemin_photo2` = \"" + txtfldphoto2.getText() + "\", `chemin_photo3` = \"" + txtfldphoto3.getText() + "\", `ID_ville` = 6 " +
+                    "WHERE `point_interet`.`ID_pt_interet` = " + txtfldid.getText() + "");
+            insert.update(queryClient);
+            insert.stop();
+
+        }
 
         Parent usersParent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../fxml/Admin-PtInteret.fxml")));
         Scene usersScene = new Scene(usersParent);
@@ -359,10 +393,11 @@ public class PtInteretController implements Initializable {
 
         window.setScene(usersScene);
         window.show();
+
     }
 
     /**
-     * Quand cette méthode est appelé ont enregistre un nouveau point d'intérêt et recharge la scene
+     * Quand cette méthode est appelé ont publie un point d'intérêt
      */
     public void publishScreenButtonPushed(javafx.event.ActionEvent actionEvent) throws IOException {
         BDDManager2 insert = new BDDManager2();
