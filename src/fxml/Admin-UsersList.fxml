@@ -113,6 +113,6 @@
          </children>
       </GridPane>
       <JFXTextField fx:id="txtfldid" disable="true" layoutX="412.0" layoutY="100.0" promptText="ID" />
-      <JFXButton fx:id="btnactivate" layoutX="587.0" layoutY="100.0" onAction="#activateScreenButtonPushed" text="Activer" />
+      <JFXButton layoutX="587.0" layoutY="100.0" onAction="#activateScreenButtonPushed" text="Activer" />
    </children>
 </AnchorPane>

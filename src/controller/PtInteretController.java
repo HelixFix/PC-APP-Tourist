@@ -360,4 +360,27 @@ public class PtInteretController implements Initializable {
         window.setScene(usersScene);
         window.show();
     }
+
+    /**
+     * Quand cette méthode est appelé ont enregistre un nouveau point d'intérêt et recharge la scene
+     */
+    public void publishScreenButtonPushed(javafx.event.ActionEvent actionEvent) throws IOException {
+        BDDManager2 insert = new BDDManager2();
+        insert.start("jdbc:mysql://localhost:3306/voyage?characterEncoding=utf8", "root", "");
+        String queryClient = ("UPDATE `point_interet` SET `publier` = '1' WHERE `point_interet`.`ID_pt_interet` = " + txtfldid.getText() + "");
+        insert.update(queryClient);
+        insert.stop();
+
+
+        Parent usersParent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../fxml/Admin-PtInteret.fxml")));
+        Scene usersScene = new Scene(usersParent);
+
+        // Cette ligne récupère l'information du Stage
+        Stage window = (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
+
+        window.setScene(usersScene);
+        window.show();
+    }
+
+
 }

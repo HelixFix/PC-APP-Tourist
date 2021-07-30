@@ -1,7 +1,6 @@
 package controller;
 
 import BDDManager.BDDManager2;
-import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -48,9 +47,6 @@ public class UsersListController implements Initializable {
     private JFXTextField txtfldid;
 
     @FXML
-    private JFXButton btnactivate;
-
-    @FXML
     // mouse listener for table users
     public void clickItem(MouseEvent event)
     {
@@ -94,7 +90,7 @@ public class UsersListController implements Initializable {
     }
 
     /**
-     * Quand cette méthode est appelé ont enregistre un nouveau point d'intérêt et recharge la scene
+     * Quand cette méthode est appelé ont active un utilisateur
      */
     public void activateScreenButtonPushed(javafx.event.ActionEvent actionEvent) throws IOException {
         BDDManager2 insert = new BDDManager2();

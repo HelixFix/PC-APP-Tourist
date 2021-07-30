@@ -128,6 +128,6 @@
       </GridPane>
       <JFXTextField fx:id="txtfldid" disable="true" layoutX="399.0" layoutY="28.0" promptText="ID" />
       <JFXButton layoutX="483.0" layoutY="428.0" text="Modifier" />
-      <JFXButton layoutX="544.0" layoutY="428.0" text="Publier" />
+      <JFXButton layoutX="544.0" layoutY="428.0" onAction="#publishScreenButtonPushed" text="Publier" />
    </children>
 </AnchorPane>
