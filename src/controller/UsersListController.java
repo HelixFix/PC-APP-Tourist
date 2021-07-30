@@ -23,6 +23,7 @@ import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class UsersListController implements Initializable {
+    ObservableList<User> list = FXCollections.observableArrayList();
 
     @FXML
     private TableView<User> table_users;
@@ -77,11 +78,13 @@ public class UsersListController implements Initializable {
     }
 
     // get the list of data users
-    public static ObservableList<User> getDataUsers() {
+    public ObservableList<User> getDataUsers() {
+
+        list.clear();
 
         BDDManager2 bdd = new BDDManager2();
         bdd.start("jdbc:mysql://localhost:3306/voyage?characterEncoding=utf8", "root", "");
-        ObservableList<User> list = FXCollections.observableArrayList();
+
         String queryUsers = ("SELECT `ID_utilisateur`,`nom_utilisateur`,`prenom`,`pseudo`,`droit_acces`,`activer` FROM `utilisateur` ORDER BY ID_utilisateur DESC");
         ArrayList<ArrayList<String>> resultatDeMaRequete = new ArrayList<>(bdd.select(queryUsers));
 
@@ -114,22 +117,15 @@ public class UsersListController implements Initializable {
     /**
      * Quand cette méthode est appelé ont active un utilisateur
      */
-    public void activateScreenButtonPushed(javafx.event.ActionEvent actionEvent) throws IOException {
+    public void activateScreenButtonPushed() {
         BDDManager2 insert = new BDDManager2();
         insert.start("jdbc:mysql://localhost:3306/voyage?characterEncoding=utf8", "root", "");
         String queryClient = ("UPDATE `utilisateur` SET `activer` = '1' WHERE `utilisateur`.`ID_utilisateur` = " + txtfldid.getText() + "");
         insert.update(queryClient);
         insert.stop();
 
-
-        Parent usersParent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../fxml/Admin-UsersList.fxml")));
-        Scene usersScene = new Scene(usersParent);
-
-        // Cette ligne récupère l'information du Stage
-        Stage window = (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
-
-        window.setScene(usersScene);
-        window.show();
+        getDataUsers();
+        table_users.refresh();
     }
 
 }
