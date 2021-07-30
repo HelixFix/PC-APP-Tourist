@@ -78,7 +78,7 @@
                   <Font size="24.0" />
                </font>
             </Button>
-            <Pane onMouseClicked="#activateScreenButtonPushed" prefHeight="368.0" prefWidth="330.0" />
+            <Pane disable="true" onMouseClicked="#activateScreenButtonPushed" prefHeight="368.0" prefWidth="330.0" visible="false" />
             <Button alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="330.0" stylesheets="@../css/fullpackstyling.css" text="Déconnexion" textFill="WHITE">
                <graphic>
                   <FontAwesomeIcon fill="WHITE" glyphName="SIGN_OUT" />
