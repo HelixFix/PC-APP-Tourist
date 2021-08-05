@@ -78,3 +78,7 @@
     -fx-border-color: derive(-fx-pie-color, 1%);
     -fx-border-width: 0px;
 }
+
+.login-bg {
+    -fx-background-color: linear-gradient(to top, #c31399, #9118fd);
+}
