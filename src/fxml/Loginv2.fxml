@@ -3,6 +3,7 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXPasswordField?>
 <?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
@@ -42,11 +43,11 @@
                               <content>
                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="259.0" prefWidth="386.0">
                                        <children>
-                                          <JFXPasswordField focusColor="#e431e4" labelFloat="true" layoutX="54.0" layoutY="104.0" prefWidth="245.0" promptText="Admin Password">
+                                          <JFXPasswordField focusColor="#e431e4" labelFloat="true" layoutX="46.0" layoutY="104.0" prefWidth="277.0" promptText="Admin Password">
                                              <font>
                                                 <Font name="System Bold Italic" size="13.0" />
                                              </font></JFXPasswordField>
-                                          <JFXTextField focusColor="#e431e4" labelFloat="true" layoutX="54.0" layoutY="43.0" prefWidth="245.0" promptText="Admin Username">
+                                          <JFXTextField focusColor="#e431e4" labelFloat="true" layoutX="46.0" layoutY="43.0" prefWidth="277.0" promptText="Admin Username">
                                              <font>
                                                 <Font name="System Bold Italic" size="13.0" />
                                              </font></JFXTextField>
@@ -56,17 +57,35 @@
                               </content>
                             </Tab>
                             <Tab text="USER">
-                              <content>
-                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-                              </content>
+                                 <content>
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="259.0" prefWidth="386.0">
+                                       <children>
+                                          <JFXPasswordField focusColor="#e431e4" labelFloat="true" layoutX="46.0" layoutY="104.0" prefWidth="277.0" promptText="Mot de passe">
+                                             <font>
+                                                <Font name="System Bold Italic" size="13.0" />
+                                             </font>
+                                          </JFXPasswordField>
+                                          <JFXTextField focusColor="#e431e4" labelFloat="true" layoutX="46.0" layoutY="43.0" prefWidth="277.0" promptText="Pseudo">
+                                             <font>
+                                                <Font name="System Bold Italic" size="13.0" />
+                                             </font>
+                                          </JFXTextField>
+                                          <JFXButton layoutX="120.0" layoutY="167.0" prefHeight="35.0" prefWidth="111.0" styleClass="btn-login" text="CONNECTER" />
+                                       </children>
+                                    </AnchorPane>
+                                 </content>
                             </Tab>
                           </tabs>
                         </TabPane>
-                        <Label layoutX="82.0" layoutY="391.0" prefHeight="17.0" prefWidth="238.0" text="Nouveau client ? Commencer ici." textFill="#ea249b">
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="82.0" layoutY="391.0" prefHeight="17.0" prefWidth="238.0" text="Nouveau client ? Commencer ici." textFill="#c3189d">
                            <font>
                               <Font name="System Bold" size="15.0" />
                            </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
                         </Label>
+                        <Label layoutX="49.0" layoutY="36.0" prefHeight="35.0" prefWidth="160.0" styleClass="lbl-status" text="ADMINISTRATEUR" />
                      </children>
                   </AnchorPane>
                </children>
