@@ -79,6 +79,16 @@
     -fx-border-width: 0px;
 }
 
+
+/* Login */
 .login-bg {
     -fx-background-color: linear-gradient(to top, #c31399, #9118fd);
+}
+
+.btn-login {
+    -fx-background-color: #9013fb;
+    -fx-text-fill: #FFF;
+    -fx-font-size:15px;
+    -fx-font-weight:700;
+    -fx-background-radius: 8px;
 }

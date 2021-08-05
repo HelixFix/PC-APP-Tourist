@@ -14,7 +14,7 @@ public class Main extends Application{
 
     public void start(Stage primaryStage) throws Exception {
 
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("fxml/main.fxml")));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("fxml/loginv2.fxml")));
         Scene scene = new Scene(root, 1280, 853);
         primaryStage.setTitle("Application touristique - Stage Two");
         primaryStage.setScene(scene);
