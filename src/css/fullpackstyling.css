@@ -100,3 +100,20 @@
     -fx-font-size        : 16px;
     -fx-background-radius: 8px;
 }
+
+.lbl-user {
+    -fx-text-fill        : black;
+    -fx-alignment        : center;
+    -fx-font-size        : 16px;
+    -fx-font-weight : 700;
+}
+
+/* Use tab pane as navigation hack */
+
+.tab-pane{
+    -fx-tab-max-height: 0px;
+}
+
+.tab-pane .tab-header-area {
+    visibility: hidden;
+}

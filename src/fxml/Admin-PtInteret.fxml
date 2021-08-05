@@ -81,7 +81,7 @@
                </effect>
             </Button>
             <Pane prefHeight="425.0" prefWidth="330.0" visible="false" />
-            <Button alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="330.0" stylesheets="@../css/fullpackstyling.css" text="Déconnexion" textFill="WHITE">
+            <Button alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" onAction="#disconnectMenuButtonPushed" prefHeight="59.0" prefWidth="330.0" stylesheets="@../css/fullpackstyling.css" text="Déconnexion" textFill="WHITE">
                <graphic>
                   <FontAwesomeIcon fill="WHITE" glyphName="SIGN_OUT" />
                </graphic>
