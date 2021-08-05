@@ -120,7 +120,7 @@ public class UsersListController implements Initializable {
     public void activateScreenButtonPushed() {
         BDDManager2 insert = new BDDManager2();
         insert.start("jdbc:mysql://localhost:3306/voyage?characterEncoding=utf8", "root", "");
-        String queryClient = ("UPDATE `utilisateur` SET `activer` = '1' WHERE `utilisateur`.`ID_utilisateur` = " + txtfldid.getText() + "");
+        String queryClient = ("UPDATE `utilisateur` SET `activer` = NOT `activer` WHERE `utilisateur`.`ID_utilisateur` = " + txtfldid.getText() + "");
         insert.update(queryClient);
         insert.stop();
 
