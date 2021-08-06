@@ -393,35 +393,44 @@ public class PtInteretController implements Initializable {
      * Quand cette méthode est appelé ont enregistre ou modifie un point d'intérêt et recharge la scene
      */
     public void saveScreenButtonPushed(){
+
+
         BDDManager2 db = new BDDManager2();
 
         if ( txtfldid.getText().trim().isEmpty()) {
+            if (txtfldnom.getText().trim().isEmpty() || txtfldepoque.getText().trim().isEmpty() || txtfldcategorie.getText().trim().isEmpty() || txtfldarchitecte.getText().trim().isEmpty() || txtfldphoto1.getText().trim().isEmpty()) {
+                System.out.println("secnd if");
+            } else {
 
-            db.start("jdbc:mysql://localhost:3306/voyage?characterEncoding=utf8", "root", "");
-            String queryInterest = ("INSERT INTO `point_interet` (`ID_pt_interet`, `nom_pt_interet`, `epoque`, `categorie`, `description_pt_interet`, `nom_architecte`, `publier`, `chemin_photo1`, `chemin_photo2`, `chemin_photo3`, `ID_ville`) " +
-                    "VALUES (NULL, \"" + txtfldnom.getText() + "\", \"" + txtfldepoque.getText() + "\", \"" + txtfldcategorie.getText() + "\",\"" + txtareadescription.getText() + "\", \"" + txtfldarchitecte.getText() + "\", '0', \"" + txtfldphoto1.getText() + "\", \"" + txtfldphoto2.getText() + "\", \"" + txtfldphoto3.getText() + "\", '6' )");
-            db.insert(queryInterest);
-            db.stop();
+                db.start("jdbc:mysql://localhost:3306/voyage?characterEncoding=utf8", "root", "");
+                String queryInterest = ("INSERT INTO `point_interet` (`ID_pt_interet`, `nom_pt_interet`, `epoque`, `categorie`, `description_pt_interet`, `nom_architecte`, `publier`, `chemin_photo1`, `chemin_photo2`, `chemin_photo3`, `ID_ville`) " +
+                        "VALUES (NULL, \"" + txtfldnom.getText() + "\", \"" + txtfldepoque.getText() + "\", \"" + txtfldcategorie.getText() + "\",\"" + txtareadescription.getText() + "\", \"" + txtfldarchitecte.getText() + "\", '0', \"" + txtfldphoto1.getText() + "\", \"" + txtfldphoto2.getText() + "\", \"" + txtfldphoto3.getText() + "\", '6' )");
+                db.insert(queryInterest);
+                db.stop();
 
-            getLastIDPtInterest();
+                getLastIDPtInterest();
 
 
-
-            txtfldid.setText(String.valueOf(list2.get(0).getId()));
-            //System.out.println(txtfldid.getText());
-
+                txtfldid.setText(String.valueOf(list2.get(0).getId()));
+                //System.out.println(txtfldid.getText());
+                getDataPtInterest();
+                table_ptinteret.refresh();
+            }
 
         } else {
+
             db.start("jdbc:mysql://localhost:3306/voyage?characterEncoding=utf8", "root", "");
             String queryInterest = ("UPDATE `point_interet` SET `nom_pt_interet` = \"" + txtfldnom.getText() + "\", `epoque` = \"" + txtfldepoque.getText() + "\", `categorie` = \"" + txtfldcategorie.getText() + "\", `description_pt_interet` = \"" + txtareadescription.getText() + "\", `nom_architecte` = \"" + txtfldarchitecte.getText() + "\", `chemin_photo1` = \"" + txtfldphoto1.getText() + "\", `chemin_photo2` = \"" + txtfldphoto2.getText() + "\", `chemin_photo3` = \"" + txtfldphoto3.getText() + "\", `ID_ville` = 6 " +
                     "WHERE `point_interet`.`ID_pt_interet` = " + txtfldid.getText() + "");
             db.update(queryInterest);
             db.stop();
+            System.out.println("secnd else");
 
+            getDataPtInterest();
+            table_ptinteret.refresh();
         }
 
-        getDataPtInterest();
-        table_ptinteret.refresh();
+
 
     }
 
