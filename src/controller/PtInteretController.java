@@ -433,14 +433,20 @@ public class PtInteretController implements Initializable {
      * Quand cette méthode est appelé ont publie un point d'intérêt
      */
     public void publishScreenButtonPushed() {
-        BDDManager2 insert = new BDDManager2();
-        insert.start("jdbc:mysql://localhost:3306/voyage?characterEncoding=utf8", "root", "");
-        String queryInterest = ("UPDATE `point_interet` SET `publier` = '1' WHERE `point_interet`.`ID_pt_interet` = " + txtfldid.getText() + "");
-        insert.update(queryInterest);
-        insert.stop();
 
-        getDataPtInterest();
-        table_ptinteret.refresh();
+        if (txtfldid.getText().trim().isEmpty() ) {
+
+        } else {
+
+            BDDManager2 insert = new BDDManager2();
+            insert.start("jdbc:mysql://localhost:3306/voyage?characterEncoding=utf8", "root", "");
+            String queryInterest = ("UPDATE `point_interet` SET `publier` = NOT publier WHERE `point_interet`.`ID_pt_interet` = " + txtfldid.getText() + "");
+            insert.update(queryInterest);
+            insert.stop();
+
+            getDataPtInterest();
+            table_ptinteret.refresh();
+        }
     }
 
     /**
