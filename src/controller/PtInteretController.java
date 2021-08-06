@@ -447,6 +447,10 @@ public class PtInteretController implements Initializable {
 
         if (txtfldid.getText().trim().isEmpty() ) {
 
+            /**
+             * TODO ajout d'un feedback visuel avec un message invitant l'utilisateur à selectionner une ligne du tableau
+             */
+
         } else {
 
             BDDManager2 insert = new BDDManager2();
