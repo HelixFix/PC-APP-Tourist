@@ -1,8 +1,10 @@
 package controller;
 
+import com.jfoenix.controls.JFXCheckBox;
+import com.jfoenix.controls.JFXPasswordField;
+import com.jfoenix.controls.JFXTextField;
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -28,7 +30,22 @@ public class LoginController {
     private Tab tabAdmin;
 
     @FXML
+    private JFXPasswordField txtfldadminpassword;
+
+    @FXML
+    private JFXTextField txtfldadminusername;
+
+    @FXML
+    private JFXCheckBox chkboxeditor;
+
+    @FXML
     private Tab tabUser;
+
+    @FXML
+    private JFXPasswordField txtflduserpassword;
+
+    @FXML
+    private JFXTextField txtflduserusername;
 
     @FXML
     private Label lblCreateAccount;
@@ -73,8 +90,20 @@ public class LoginController {
 
     }
 
+
+
     public void loginScreenButtonPushed(javafx.event.ActionEvent actionEvent) throws IOException {
-        Parent usersParent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../fxml/Admin-UsersList.fxml")));
+        Parent usersParent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../fxml/Login.fxml")));
+
+        if (tabAdmin.isSelected()) {
+            usersParent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../fxml/Admin-UsersList.fxml")));
+            if (chkboxeditor.isSelected()){
+                usersParent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../fxml/Editor-PtInteret.fxml")));
+            }
+        } else if (tabUser.isSelected()) {
+            usersParent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../fxml/User-PtInteret.fxml")));
+        }
+
         Scene usersScene = new Scene(usersParent);
 
         // Cette ligne récupère l'information du Stage
