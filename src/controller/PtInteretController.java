@@ -399,7 +399,9 @@ public class PtInteretController implements Initializable {
 
         if ( txtfldid.getText().trim().isEmpty()) {
             if (txtfldnom.getText().trim().isEmpty() || txtfldepoque.getText().trim().isEmpty() || txtfldcategorie.getText().trim().isEmpty() || txtfldarchitecte.getText().trim().isEmpty() || txtfldphoto1.getText().trim().isEmpty()) {
-                System.out.println("secnd if");
+                /**
+                 * TODO ajout d'un feedback visuel avec un message invitant l'utilisateur à remplir les champs requis
+                 */
             } else {
 
                 db.start("jdbc:mysql://localhost:3306/voyage?characterEncoding=utf8", "root", "");
