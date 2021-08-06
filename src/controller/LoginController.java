@@ -54,6 +54,7 @@ public class LoginController {
         toLeftTransition.setOnFinished((ActionEvent event2)->{
             lblStatus.setText("ADMINISTRATEUR");
         });
+        tabPaneLogin.getSelectionModel().select(tabAdmin);
 
     }
 
