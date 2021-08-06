@@ -118,14 +118,19 @@ public class UsersListController implements Initializable {
      * Quand cette méthode est appelé ont active un utilisateur
      */
     public void activateScreenButtonPushed() {
-        BDDManager2 insert = new BDDManager2();
-        insert.start("jdbc:mysql://localhost:3306/voyage?characterEncoding=utf8", "root", "");
-        String queryClient = ("UPDATE `utilisateur` SET `activer` = NOT `activer` WHERE `utilisateur`.`ID_utilisateur` = " + txtfldid.getText() + "");
-        insert.update(queryClient);
-        insert.stop();
 
-        getDataUsers();
-        table_users.refresh();
+        if ( txtfldid.getText().trim().isEmpty()) {
+
+        } else {
+            BDDManager2 insert = new BDDManager2();
+            insert.start("jdbc:mysql://localhost:3306/voyage?characterEncoding=utf8", "root", "");
+            String queryClient = ("UPDATE `utilisateur` SET `activer` = NOT `activer` WHERE `utilisateur`.`ID_utilisateur` = " + txtfldid.getText() + "");
+            insert.update(queryClient);
+            insert.stop();
+
+            getDataUsers();
+            table_users.refresh();
+        }
     }
 
     /**
