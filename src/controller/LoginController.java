@@ -1,5 +1,8 @@
 package controller;
 
+import javafx.animation.TranslateTransition;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -11,6 +14,7 @@ import javafx.scene.control.TabPane;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -43,11 +47,28 @@ public class LoginController {
 
     @FXML
     void openAdminTab(MouseEvent event) {
+        // Open admin tab when admin label is clicked
+        TranslateTransition toLeftTransition = new TranslateTransition(new Duration(500), lblStatus);
+        toLeftTransition.setToX(slidingPane.getTranslateX());
+        toLeftTransition.play();
+        toLeftTransition.setOnFinished((ActionEvent event2)->{
+            lblStatus.setText("ADMINISTRATEUR");
+        });
 
     }
 
     @FXML
     void openUserTab(MouseEvent event) {
+        // Using translation animation to slide label left and right
+        TranslateTransition toRightAnimation = new TranslateTransition(new Duration(500), lblStatus);
+        // ugly fix
+        toRightAnimation.setToX(slidingPane.getTranslateX()+(slidingPane.getPrefWidth()-lblStatus.getPrefWidth()));
+        toRightAnimation.play();
+        toRightAnimation.setOnFinished((ActionEvent event1) -> {
+            lblStatus.setText("UTILISATEUR");
+        });
+        // Set selected tab as Utilisateur
+        tabPaneLogin.getSelectionModel().select(tabUser);
 
     }
 
