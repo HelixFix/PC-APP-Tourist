@@ -99,10 +99,7 @@
       <JFXTextField fx:id="txtfldarchitecte" layoutX="398.0" layoutY="285.0" promptText="Architecte" />
       <JFXTextField fx:id="txtfldcategorie" layoutX="398.0" layoutY="210.0" promptText="Catégorie" />
       <JFXTextField fx:id="txtfldepoque" layoutX="398.0" layoutY="142.0" promptText="Epoque" />
-      <JFXTextField fx:id="txtfldphoto1" layoutX="863.0" layoutY="81.0" promptText="Photo 1" />
-      <JFXTextField fx:id="txtfldphoto3" layoutX="863.0" layoutY="210.0" promptText="Photo 3" />
-      <JFXTextField fx:id="txtfldphoto2" layoutX="863.0" layoutY="142.0" promptText="Photo 2" />
-      <JFXTextArea fx:id="txtareadescription" layoutX="863.0" layoutY="270.0" prefHeight="185.0" prefWidth="330.0" promptText="Description" />
+      <JFXTextArea fx:id="txtareadescription" layoutX="699.0" layoutY="270.0" prefHeight="185.0" prefWidth="494.0" promptText="Description" />
       <JFXButton fx:id="btnSave" layoutX="398.0" layoutY="428.0" onAction="#saveScreenButtonPushed" text="Enregistrer" />
       <GridPane layoutX="352.0" layoutY="490.0" prefHeight="356.0" prefWidth="920.0">
          <columnConstraints>
@@ -128,5 +125,11 @@
       </GridPane>
       <JFXTextField fx:id="txtfldid" disable="true" layoutX="399.0" layoutY="28.0" promptText="ID" />
       <JFXButton layoutX="472.0" layoutY="428.0" onAction="#publishScreenButtonPushed" text="Publier" />
+      <ImageView fx:id="img1View" fitHeight="150.0" fitWidth="200.0" layoutX="612.0" layoutY="80.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="838.0" layoutY="80.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="1061.0" layoutY="80.0" pickOnBounds="true" preserveRatio="true" />
+      <JFXButton fx:id="btnbrwseimg1" layoutX="614.0" layoutY="28.0" onAction="#choosePhoto1" text="Photo 1" />
+      <JFXButton fx:id="btnbrwseimg2" layoutX="838.0" layoutY="28.0" onAction="#choosePhoto2" text="Photo 2" />
+      <JFXButton fx:id="btnbrwseimg3" layoutX="1061.0" layoutY="28.0" onAction="#choosePhoto3" text="Photo 3" />
    </children>
 </AnchorPane>

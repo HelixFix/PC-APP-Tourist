@@ -1,6 +1,7 @@
 package controller;
 
 import BDDManager.BDDManager2;
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
@@ -17,15 +18,25 @@ import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import model.PointsOfInterest;
 import model.Ville;
 
 
+import java.awt.*;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.*;
+import java.util.List;
 
 public class PtInteretController implements Initializable {
     ObservableList<PointsOfInterest> list = FXCollections.observableArrayList();
@@ -232,6 +243,18 @@ public class PtInteretController implements Initializable {
     private JFXTextArea txtareadescription;
 
     @FXML
+    private JFXButton btnbrwseimg1;
+
+    @FXML
+    private JFXButton btnbrwseimg2;
+
+    @FXML
+    private JFXButton btnbrwseimg3;
+
+    @FXML
+    private ImageView img1View;
+
+    @FXML
     private TableView<PointsOfInterest> table_ptinteret;
 
     @FXML
@@ -282,6 +305,8 @@ public class PtInteretController implements Initializable {
 
     ObservableList<PointsOfInterest> listM;
 
+    private PreparedStatement store, retrieve;
+
     @Override
     // initializes list controller with given url
     public void initialize (URL url, ResourceBundle rb) {
@@ -298,6 +323,15 @@ public class PtInteretController implements Initializable {
 
         listM = getDataPtInterest();
         table_ptinteret.setItems(listM);
+
+        try {
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/voyage?characterEncoding=utf8", "root", "");
+
+            store = connection.prepareStatement(storeStatement);
+            retrieve = connection.prepareStatement(retrieveStatement);
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     // get the list of data PointsOfInterest
@@ -387,6 +421,38 @@ public class PtInteretController implements Initializable {
 
         window.setScene(usersScene);
         window.show();
+    }
+
+    private String storeStatement = "INSERT INTO `point_interet` (`chemin_photo1`) VALUES (?)";
+    private String retrieveStatement = "SELECT `chemin_photo1` FROM `point_interet` WHERE ID_pt_interet = ?";
+
+    public void choosePhoto1() {
+        
+        FileChooser fileChooser = new FileChooser();
+        File file = fileChooser.showOpenDialog(btnbrwseimg1.getScene().getWindow());
+        try {
+            FileInputStream fileInputStream = new FileInputStream(file);
+            store.setBinaryStream(1, fileInputStream, fileInputStream.available());
+            store.execute();
+
+            javafx.scene.image.Image image = new javafx.scene.image.Image(fileInputStream);
+            img1View.setImage(image);
+
+
+
+        } catch (IOException | SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void choosePhoto2() {
+        FileChooser fileChooser = new FileChooser();
+        File file = fileChooser.showOpenDialog(btnbrwseimg1.getScene().getWindow());
+    }
+
+    public void choosePhoto3() {
+        FileChooser fileChooser = new FileChooser();
+        File file = fileChooser.showOpenDialog(btnbrwseimg1.getScene().getWindow());
     }
 
     /**
