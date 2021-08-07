@@ -1,9 +1,10 @@
-import BDDManager.BDDManager2;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+
+import java.util.Objects;
 
 
 public class Main extends Application{
@@ -13,10 +14,7 @@ public class Main extends Application{
 
     public void start(Stage primaryStage) throws Exception {
 
-        BDDManager2 bdd = new BDDManager2();
-        bdd.start("jdbc:mysql://localhost:3306/tourist?characterEncoding=utf8", "root", "");
-
-        Parent root = FXMLLoader.load(getClass().getResource("fxml/sample.fxml"));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("fxml/loginv2.fxml")));
         Scene scene = new Scene(root, 1280, 853);
         primaryStage.setTitle("Application touristique - Stage Two");
         primaryStage.setScene(scene);

@@ -1,6 +1,8 @@
 package controller;
 
 import BDDManager.BDDManager2;
+import com.jfoenix.controls.JFXTextField;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,81 +13,98 @@ import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import model.Users;
+import model.User;
 import java.net.URL;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class UsersListController implements Initializable {
+    ObservableList<User> list = FXCollections.observableArrayList();
 
     @FXML
-    private TableView<Users> table_users;
+    private TableView<User> table_users;
 
     @FXML
-    private TableColumn<Users, Integer> col_id;
+    private TableColumn<User, Integer> col_id;
 
     @FXML
-    private TableColumn<Users, String> col_nom;
+    private TableColumn<User, String> col_nom;
 
     @FXML
-    private TableColumn<Users, String> col_prenom;
+    private TableColumn<User, String> col_prenom;
 
     @FXML
-    private TableColumn<Users, String> col_pseudo;
+    private TableColumn<User, String> col_pseudo;
 
     @FXML
-    private TableColumn<Users, Integer> col_autorisation;
+    private TableColumn<User, Integer> col_autorisation;
 
     @FXML
-    private TableColumn<Users, Boolean> col_activer;
+    private TableColumn<User, Boolean> col_activer;
 
-    ObservableList<Users> listM;
+    @FXML
+    private JFXTextField txtfldid;
 
-    int index = -1;
+    @FXML
+    // mouse listener for table users
+    public void clickItem(MouseEvent event)
+    {
+        if (event.getClickCount() == 2) //Checking double click
+        {
+            System.out.println(table_users.getSelectionModel().getSelectedItem().getId());
+            txtfldid.setText(String.valueOf(table_users.getSelectionModel().getSelectedItem().getId()));
+        }
+    }
 
-    Connection conn = null;
-    ResultSet rs = null;
-    PreparedStatement ps = null;
+    ObservableList<User> listM;
 
     @Override
     // initializes list controller with given url
     public void initialize (URL url, ResourceBundle rb) {
 
-        col_id.setCellValueFactory(new PropertyValueFactory<Users, Integer>("id"));
-        col_autorisation.setCellValueFactory(new PropertyValueFactory<Users, Integer>("Autorisation"));
-        col_nom.setCellValueFactory(new PropertyValueFactory<Users, String>("nom"));
-        col_prenom.setCellValueFactory(new  PropertyValueFactory<Users, String>("prenom"));
-        col_pseudo.setCellValueFactory(new  PropertyValueFactory<Users, String>("pseudo"));
-        col_activer.setCellValueFactory(new PropertyValueFactory<Users, Boolean>("Activer"));
+        col_id.setCellValueFactory(new PropertyValueFactory<>("id"));
+        col_autorisation.setCellValueFactory(new PropertyValueFactory<>("Autorisation"));
+        col_nom.setCellValueFactory(new PropertyValueFactory<>("nom"));
+        col_prenom.setCellValueFactory(new  PropertyValueFactory<>("prenom"));
+        col_pseudo.setCellValueFactory(new  PropertyValueFactory<>("pseudo"));
+        col_activer.setCellValueFactory(new PropertyValueFactory<>("Activer"));
 
-        listM = BDDManager2.getDataUsers();
+        listM = getDataUsers();
         table_users.setItems(listM);
     }
 
+    // get the list of data users
+    public ObservableList<User> getDataUsers() {
 
-    /**
-     * Quand cette méthode est appelé ont change de scene vers Formulaire
-     */
-    public void formScreenButtonPushed(javafx.event.ActionEvent actionEvent) throws IOException {
-        Parent usersParent = FXMLLoader.load(getClass().getResource("../fxml/Admin-Form.fxml"));
-        Scene usersScene = new Scene(usersParent);
+        list.clear();
 
-        // Cette ligne récupère l'information du Stage
-        Stage window = (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
+        BDDManager2 bdd = new BDDManager2();
+        bdd.start("jdbc:mysql://localhost:3306/voyage?characterEncoding=utf8", "root", "");
 
-        window.setScene(usersScene);
-        window.show();
+        String queryUsers = ("SELECT `ID_utilisateur`,`nom_utilisateur`,`prenom`,`pseudo`,`droit_acces`,`activer` FROM `utilisateur` ORDER BY ID_utilisateur DESC");
+        ArrayList<ArrayList<String>> resultatDeMaRequete = new ArrayList<>(bdd.select(queryUsers));
+
+        for (ArrayList<String> strings : resultatDeMaRequete) {
+
+
+            System.out.println("test1" + strings);
+
+            list.add(new User(Integer.parseInt(strings.get(0)), strings.get(1), strings.get(2), strings.get(3), Integer.parseInt(strings.get(4)), Integer.parseInt(strings.get(5))));
+
+        }
+
+        return list;
     }
 
     /**
      * Quand cette méthode est appelé ont change de scene vers Points d'intérêt
      */
-    public void ptInteretScreenButtonPushed(javafx.event.ActionEvent actionEvent) throws IOException {
-        Parent usersParent = FXMLLoader.load(getClass().getResource("../fxml/Admin-PtInteret.fxml"));
+    public void ptInteretMenuButtonPushed(javafx.event.ActionEvent actionEvent) throws IOException {
+        Parent usersParent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../fxml/Admin-PtInteret.fxml")));
         Scene usersScene = new Scene(usersParent);
 
         // Cette ligne récupère l'information du Stage
@@ -95,6 +114,41 @@ public class UsersListController implements Initializable {
         window.show();
     }
 
+    /**
+     * Quand cette méthode est appelé ont active un utilisateur
+     */
+    public void activateScreenButtonPushed() {
 
+        if ( txtfldid.getText().trim().isEmpty()) {
+
+            /**
+             * TODO ajout d'un feedback visuel avec un message invitant l'utilisateur à selectionner une ligne du tableau
+             */
+
+        } else {
+            BDDManager2 insert = new BDDManager2();
+            insert.start("jdbc:mysql://localhost:3306/voyage?characterEncoding=utf8", "root", "");
+            String queryClient = ("UPDATE `utilisateur` SET `activer` = NOT `activer` WHERE `utilisateur`.`ID_utilisateur` = " + txtfldid.getText() + "");
+            insert.update(queryClient);
+            insert.stop();
+
+            getDataUsers();
+            table_users.refresh();
+        }
+    }
+
+    /**
+     * Quand cette méthode est appelé ont change de scene vers Connexion
+     */
+    public void disconnectMenuButtonPushed(javafx.event.ActionEvent actionEvent) throws IOException {
+        Parent usersParent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../fxml/loginv2.fxml")));
+        Scene usersScene = new Scene(usersParent);
+
+        // Cette ligne récupère l'information du Stage
+        Stage window = (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
+
+        window.setScene(usersScene);
+        window.show();
+    }
 
 }
