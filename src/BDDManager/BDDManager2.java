@@ -185,14 +185,6 @@ public class BDDManager2 {
     }
 
 
-
-
-
-
-
-    final ObservableList options = FXCollections.observableArrayList();
-
-
 }
 
 

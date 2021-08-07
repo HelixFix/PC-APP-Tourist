@@ -26,7 +26,6 @@ import model.PointsOfInterest;
 import model.Ville;
 
 
-import java.awt.*;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -41,182 +40,19 @@ import java.util.List;
 public class PtInteretController implements Initializable {
     ObservableList<PointsOfInterest> list = FXCollections.observableArrayList();
     ObservableList<PointsOfInterest> list2 = FXCollections.observableArrayList();
-    private ObservableList<Ville> villes;
+    ObservableList<Ville> listVille = FXCollections.observableArrayList();
+
+
 
     public PtInteretController() {
-        villes = new ObservableList<Ville>() {
-            @Override
-            public void addListener(ListChangeListener<? super Ville> listener) {
 
-            }
-
-            @Override
-            public void removeListener(ListChangeListener<? super Ville> listener) {
-
-            }
-
-            @Override
-            public boolean addAll(Ville... elements) {
-                return false;
-            }
-
-            @Override
-            public boolean setAll(Ville... elements) {
-                return false;
-            }
-
-            @Override
-            public boolean setAll(Collection<? extends Ville> col) {
-                return false;
-            }
-
-            @Override
-            public boolean removeAll(Ville... elements) {
-                return false;
-            }
-
-            @Override
-            public boolean retainAll(Ville... elements) {
-                return false;
-            }
-
-            @Override
-            public void remove(int from, int to) {
-
-            }
-
-            @Override
-            public int size() {
-                return 0;
-            }
-
-            @Override
-            public boolean isEmpty() {
-                return false;
-            }
-
-            @Override
-            public boolean contains(Object o) {
-                return false;
-            }
-
-            @Override
-            public Iterator<Ville> iterator() {
-                return null;
-            }
-
-            @Override
-            public Object[] toArray() {
-                return new Object[0];
-            }
-
-            @Override
-            public <T> T[] toArray(T[] a) {
-                return null;
-            }
-
-            @Override
-            public boolean add(Ville ville) {
-                return false;
-            }
-
-            @Override
-            public boolean remove(Object o) {
-                return false;
-            }
-
-            @Override
-            public boolean containsAll(Collection<?> c) {
-                return false;
-            }
-
-            @Override
-            public boolean addAll(Collection<? extends Ville> c) {
-                return false;
-            }
-
-            @Override
-            public boolean addAll(int index, Collection<? extends Ville> c) {
-                return false;
-            }
-
-            @Override
-            public boolean removeAll(Collection<?> c) {
-                return false;
-            }
-
-            @Override
-            public boolean retainAll(Collection<?> c) {
-                return false;
-            }
-
-            @Override
-            public void clear() {
-
-            }
-
-            @Override
-            public Ville get(int index) {
-                return null;
-            }
-
-            @Override
-            public Ville set(int index, Ville element) {
-                return null;
-            }
-
-            @Override
-            public void add(int index, Ville element) {
-
-            }
-
-            @Override
-            public Ville remove(int index) {
-                return null;
-            }
-
-            @Override
-            public int indexOf(Object o) {
-                return 0;
-            }
-
-            @Override
-            public int lastIndexOf(Object o) {
-                return 0;
-            }
-
-            @Override
-            public ListIterator<Ville> listIterator() {
-                return null;
-            }
-
-            @Override
-            public ListIterator<Ville> listIterator(int index) {
-                return null;
-            }
-
-            @Override
-            public List<Ville> subList(int fromIndex, int toIndex) {
-                return null;
-            }
-
-            @Override
-            public void addListener(InvalidationListener listener) {
-
-            }
-
-            @Override
-            public void removeListener(InvalidationListener listener) {
-
-            }
-        };
     }
 
     @FXML
     private JFXTextField txtfldid;
 
     @FXML
-    private JFXComboBox<Ville> cmbville;
+    private JFXComboBox cmbville;
 
     @FXML
     private JFXTextField txtfldnom;
@@ -289,8 +125,8 @@ public class PtInteretController implements Initializable {
         {
             System.out.println(table_ptinteret.getSelectionModel().getSelectedItem().getNom());
             txtfldid.setText(String.valueOf(table_ptinteret.getSelectionModel().getSelectedItem().getId()));
-            villes.add(new Ville(table_ptinteret.getSelectionModel().getSelectedItem().getVille()));
-            cmbville.setItems(villes);
+            //villes.add(new Ville(table_ptinteret.getSelectionModel().getSelectedItem().getVille()));
+            //cmbville.setItems(villes);
 
             txtfldnom.setText(String.valueOf(table_ptinteret.getSelectionModel().getSelectedItem().getNom()));
             txtfldepoque.setText(String.valueOf(table_ptinteret.getSelectionModel().getSelectedItem().getEpoque()));
@@ -304,6 +140,7 @@ public class PtInteretController implements Initializable {
     }
 
     ObservableList<PointsOfInterest> listM;
+    final ObservableList options = FXCollections.observableArrayList();
 
     private PreparedStatement store, retrieve;
 
@@ -324,6 +161,11 @@ public class PtInteretController implements Initializable {
         listM = getDataPtInterest();
         table_ptinteret.setItems(listM);
 
+        fillComboBox();
+        initCombo();
+
+
+
         try {
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/voyage?characterEncoding=utf8", "root", "");
 
@@ -332,6 +174,34 @@ public class PtInteretController implements Initializable {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    public void fillComboBox() {
+
+        BDDManager2 bdd = new BDDManager2();
+        bdd.start("jdbc:mysql://localhost:3306/voyage?characterEncoding=utf8", "root", "");
+        String queryCity = "SELECT nom_ville FROM ville";
+        options.add(queryCity);
+
+    }
+    private ArrayList<ArrayList<String>> listeVille;
+    public void initCombo() {
+        BDDManager2 bdd = new BDDManager2();
+        bdd.start("jdbc:mysql://localhost:3306/voyage?characterEncoding=utf8", "root", "");
+
+
+        listeVille = bdd.select("SELECT nom_ville FROM ville;");
+        bdd.stop();
+        for (int i = 0; i < listeVille.size(); i++) {
+            cmbville.getItems().addAll(listeVille.get(i));
+
+
+        }
+
+        Ville v = new Ville();
+        ObservableList<Ville> obsVilles = v.getVilles();
+        //this.cmbville.setItems(obsVilles);
+
     }
 
     // get the list of data PointsOfInterest
@@ -381,6 +251,7 @@ public class PtInteretController implements Initializable {
         return list;
     }
 
+
     /**
      * Quand cette méthode est appelé ont change de scene vers Utilisateurs
      */
@@ -427,13 +298,14 @@ public class PtInteretController implements Initializable {
     private String retrieveStatement = "SELECT `chemin_photo1` FROM `point_interet` WHERE ID_pt_interet = ?";
 
     public void choosePhoto1() {
-        
+
         FileChooser fileChooser = new FileChooser();
         File file = fileChooser.showOpenDialog(btnbrwseimg1.getScene().getWindow());
         try {
             FileInputStream fileInputStream = new FileInputStream(file);
             store.setBinaryStream(1, fileInputStream, fileInputStream.available());
-            store.execute();
+
+            //store.execute();
 
             javafx.scene.image.Image image = new javafx.scene.image.Image(fileInputStream);
             img1View.setImage(image);
@@ -458,8 +330,12 @@ public class PtInteretController implements Initializable {
     /**
      * Quand cette méthode est appelé ont enregistre ou modifie un point d'intérêt et recharge la scene
      */
-    public void saveScreenButtonPushed(){
+    public void saveScreenButtonPushed() throws SQLException {
 
+        btnbrwseimg1.setOnAction(e ->{
+            //Single File Selection
+
+        });
 
         BDDManager2 db = new BDDManager2();
 
@@ -472,13 +348,13 @@ public class PtInteretController implements Initializable {
 
                 db.start("jdbc:mysql://localhost:3306/voyage?characterEncoding=utf8", "root", "");
                 String queryInterest = ("INSERT INTO `point_interet` (`ID_pt_interet`, `nom_pt_interet`, `epoque`, `categorie`, `description_pt_interet`, `nom_architecte`, `publier`, `chemin_photo1`, `chemin_photo2`, `chemin_photo3`, `ID_ville`) " +
-                        "VALUES (NULL, \"" + txtfldnom.getText() + "\", \"" + txtfldepoque.getText() + "\", \"" + txtfldcategorie.getText() + "\",\"" + txtareadescription.getText() + "\", \"" + txtfldarchitecte.getText() + "\", '0', \"" + txtfldphoto1.getText() + "\", \"" + txtfldphoto2.getText() + "\", \"" + txtfldphoto3.getText() + "\", '6' )");
+                        "VALUES (NULL, \"" + txtfldnom.getText() + "\", \"" + txtfldepoque.getText() + "\", \"" + txtfldcategorie.getText() + "\",\"" + txtareadescription.getText() + "\", \"" + txtfldarchitecte.getText() + "\", '0', \"" + img1View + "\", \"" + txtfldphoto2.getText() + "\", \"" + txtfldphoto3.getText() + "\", '6' )");
                 db.insert(queryInterest);
                 db.stop();
 
                 getLastIDPtInterest();
 
-
+                store.execute();
                 txtfldid.setText(String.valueOf(list2.get(0).getId()));
                 //System.out.println(txtfldid.getText());
                 getDataPtInterest();
