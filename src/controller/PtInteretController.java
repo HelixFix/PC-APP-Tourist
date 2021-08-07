@@ -5,9 +5,7 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
-import javafx.beans.InvalidationListener;
 import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -35,12 +33,10 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.*;
-import java.util.List;
 
 public class PtInteretController implements Initializable {
     ObservableList<PointsOfInterest> list = FXCollections.observableArrayList();
     ObservableList<PointsOfInterest> list2 = FXCollections.observableArrayList();
-    ObservableList<Ville> listVille = FXCollections.observableArrayList();
 
 
 
@@ -197,10 +193,6 @@ public class PtInteretController implements Initializable {
 
 
         }
-
-        Ville v = new Ville();
-        ObservableList<Ville> obsVilles = v.getVilles();
-        //this.cmbville.setItems(obsVilles);
 
     }
 
