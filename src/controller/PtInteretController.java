@@ -21,7 +21,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import model.PointsOfInterest;
-import model.Ville;
 
 
 import java.io.File;
@@ -34,9 +33,13 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.*;
 
+import static java.lang.Integer.parseInt;
+
 public class PtInteretController implements Initializable {
     ObservableList<PointsOfInterest> list = FXCollections.observableArrayList();
     ObservableList<PointsOfInterest> list2 = FXCollections.observableArrayList();
+    private ArrayList<ArrayList<String>> listeVille;
+    private int idVille;
 
 
 
@@ -48,7 +51,7 @@ public class PtInteretController implements Initializable {
     private JFXTextField txtfldid;
 
     @FXML
-    private JFXComboBox cmbville;
+    private JFXComboBox<String> cmbville;
 
     @FXML
     private JFXTextField txtfldnom;
@@ -61,15 +64,6 @@ public class PtInteretController implements Initializable {
 
     @FXML
     private JFXTextField txtfldepoque;
-
-    @FXML
-    private JFXTextField txtfldphoto1;
-
-    @FXML
-    private JFXTextField txtfldphoto3;
-
-    @FXML
-    private JFXTextField txtfldphoto2;
 
     @FXML
     private JFXTextArea txtareadescription;
@@ -85,6 +79,12 @@ public class PtInteretController implements Initializable {
 
     @FXML
     private ImageView img1View;
+
+    @FXML
+    private ImageView img2View;
+
+    @FXML
+    private ImageView img3View;
 
     @FXML
     private TableView<PointsOfInterest> table_ptinteret;
@@ -121,22 +121,16 @@ public class PtInteretController implements Initializable {
         {
             System.out.println(table_ptinteret.getSelectionModel().getSelectedItem().getNom());
             txtfldid.setText(String.valueOf(table_ptinteret.getSelectionModel().getSelectedItem().getId()));
-            //villes.add(new Ville(table_ptinteret.getSelectionModel().getSelectedItem().getVille()));
-            //cmbville.setItems(villes);
-
             txtfldnom.setText(String.valueOf(table_ptinteret.getSelectionModel().getSelectedItem().getNom()));
             txtfldepoque.setText(String.valueOf(table_ptinteret.getSelectionModel().getSelectedItem().getEpoque()));
             txtfldcategorie.setText(String.valueOf(table_ptinteret.getSelectionModel().getSelectedItem().getCategorie()));
             txtfldarchitecte.setText(String.valueOf(table_ptinteret.getSelectionModel().getSelectedItem().getArchitecte()));
-            txtfldphoto1.setText(String.valueOf(table_ptinteret.getSelectionModel().getSelectedItem().getPhoto1()));
-            txtfldphoto2.setText(String.valueOf(table_ptinteret.getSelectionModel().getSelectedItem().getPhoto2()));
-            txtfldphoto3.setText(String.valueOf(table_ptinteret.getSelectionModel().getSelectedItem().getPhoto3()));
             txtareadescription.setText(String.valueOf(table_ptinteret.getSelectionModel().getSelectedItem().getDescription()));
         }
     }
 
     ObservableList<PointsOfInterest> listM;
-    final ObservableList options = FXCollections.observableArrayList();
+
 
     private PreparedStatement store, retrieve;
 
@@ -158,7 +152,6 @@ public class PtInteretController implements Initializable {
         table_ptinteret.setItems(listM);
 
         fillComboBox();
-        initCombo();
 
 
 
@@ -173,28 +166,35 @@ public class PtInteretController implements Initializable {
     }
 
     public void fillComboBox() {
-
-        BDDManager2 bdd = new BDDManager2();
-        bdd.start("jdbc:mysql://localhost:3306/voyage?characterEncoding=utf8", "root", "");
-        String queryCity = "SELECT nom_ville FROM ville";
-        options.add(queryCity);
-
-    }
-    private ArrayList<ArrayList<String>> listeVille;
-    public void initCombo() {
         BDDManager2 bdd = new BDDManager2();
         bdd.start("jdbc:mysql://localhost:3306/voyage?characterEncoding=utf8", "root", "");
 
 
-        listeVille = bdd.select("SELECT nom_ville FROM ville;");
+        listeVille = bdd.select("SELECT ID_ville, nom_ville FROM ville;");
         bdd.stop();
-        for (int i = 0; i < listeVille.size(); i++) {
-            cmbville.getItems().addAll(listeVille.get(i));
+        for (int i =0; i < listeVille.size(); i++) {
+            cmbville.getItems().addAll(listeVille.get(i).get(1));
 
 
         }
 
+
+
     }
+
+    public void citySelection() {
+        for (int i = 0; i < listeVille.size(); i++) {
+            if (listeVille.get(i).get(1) ==  cmbville.getValue()){
+
+                idVille = parseInt(listeVille.get(i).get(0));
+
+
+            }
+        }
+
+        System.out.println(cmbville.getValue() +" " + idVille);
+    }
+
 
     // get the list of data PointsOfInterest
     public ObservableList<PointsOfInterest> getDataPtInterest() {
@@ -310,19 +310,52 @@ public class PtInteretController implements Initializable {
     }
 
     public void choosePhoto2() {
+
         FileChooser fileChooser = new FileChooser();
-        File file = fileChooser.showOpenDialog(btnbrwseimg1.getScene().getWindow());
+        File file = fileChooser.showOpenDialog(btnbrwseimg2.getScene().getWindow());
+        try {
+            FileInputStream fileInputStream = new FileInputStream(file);
+            store.setBinaryStream(1, fileInputStream, fileInputStream.available());
+
+            //store.execute();
+
+            javafx.scene.image.Image image = new javafx.scene.image.Image(fileInputStream);
+            img2View.setImage(image);
+
+
+
+        } catch (IOException | SQLException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     public void choosePhoto3() {
+
         FileChooser fileChooser = new FileChooser();
-        File file = fileChooser.showOpenDialog(btnbrwseimg1.getScene().getWindow());
+        File file = fileChooser.showOpenDialog(btnbrwseimg3.getScene().getWindow());
+        try {
+            FileInputStream fileInputStream = new FileInputStream(file);
+            store.setBinaryStream(1, fileInputStream, fileInputStream.available());
+
+            //store.execute();
+
+            javafx.scene.image.Image image = new javafx.scene.image.Image(fileInputStream);
+            img3View.setImage(image);
+
+
+
+        } catch (IOException | SQLException e) {
+            System.out.println(e.getMessage());
+        }
     }
+
 
     /**
      * Quand cette méthode est appelé ont enregistre ou modifie un point d'intérêt et recharge la scene
      */
     public void saveScreenButtonPushed() throws SQLException {
+
+
 
         btnbrwseimg1.setOnAction(e ->{
             //Single File Selection
@@ -332,7 +365,7 @@ public class PtInteretController implements Initializable {
         BDDManager2 db = new BDDManager2();
 
         if ( txtfldid.getText().trim().isEmpty()) {
-            if (txtfldnom.getText().trim().isEmpty() || txtfldepoque.getText().trim().isEmpty() || txtfldcategorie.getText().trim().isEmpty() || txtfldarchitecte.getText().trim().isEmpty() || txtfldphoto1.getText().trim().isEmpty()) {
+            if (txtfldnom.getText().trim().isEmpty() || txtfldepoque.getText().trim().isEmpty() || txtfldcategorie.getText().trim().isEmpty() || txtfldarchitecte.getText().trim().isEmpty() ) {
                 /**
                  * TODO ajout d'un feedback visuel avec un message invitant l'utilisateur à remplir les champs requis
                  */
@@ -340,13 +373,13 @@ public class PtInteretController implements Initializable {
 
                 db.start("jdbc:mysql://localhost:3306/voyage?characterEncoding=utf8", "root", "");
                 String queryInterest = ("INSERT INTO `point_interet` (`ID_pt_interet`, `nom_pt_interet`, `epoque`, `categorie`, `description_pt_interet`, `nom_architecte`, `publier`, `chemin_photo1`, `chemin_photo2`, `chemin_photo3`, `ID_ville`) " +
-                        "VALUES (NULL, \"" + txtfldnom.getText() + "\", \"" + txtfldepoque.getText() + "\", \"" + txtfldcategorie.getText() + "\",\"" + txtareadescription.getText() + "\", \"" + txtfldarchitecte.getText() + "\", '0', \"" + img1View + "\", \"" + txtfldphoto2.getText() + "\", \"" + txtfldphoto3.getText() + "\", '6' )");
+                        "VALUES (NULL, \"" + txtfldnom.getText() + "\", \"" + txtfldepoque.getText() + "\", \"" + txtfldcategorie.getText() + "\",\"" + txtareadescription.getText() + "\", \"" + txtfldarchitecte.getText() + "\", '0', NULL, NULL, NULL, \"" +  idVille + "\")");
                 db.insert(queryInterest);
                 db.stop();
 
                 getLastIDPtInterest();
 
-                store.execute();
+                //store.execute();
                 txtfldid.setText(String.valueOf(list2.get(0).getId()));
                 //System.out.println(txtfldid.getText());
                 getDataPtInterest();
@@ -356,7 +389,7 @@ public class PtInteretController implements Initializable {
         } else {
 
             db.start("jdbc:mysql://localhost:3306/voyage?characterEncoding=utf8", "root", "");
-            String queryInterest = ("UPDATE `point_interet` SET `nom_pt_interet` = \"" + txtfldnom.getText() + "\", `epoque` = \"" + txtfldepoque.getText() + "\", `categorie` = \"" + txtfldcategorie.getText() + "\", `description_pt_interet` = \"" + txtareadescription.getText() + "\", `nom_architecte` = \"" + txtfldarchitecte.getText() + "\", `chemin_photo1` = \"" + txtfldphoto1.getText() + "\", `chemin_photo2` = \"" + txtfldphoto2.getText() + "\", `chemin_photo3` = \"" + txtfldphoto3.getText() + "\", `ID_ville` = 6 " +
+            String queryInterest = ("UPDATE `point_interet` SET `nom_pt_interet` = \"" + txtfldnom.getText() + "\", `epoque` = \"" + txtfldepoque.getText() + "\", `categorie` = \"" + txtfldcategorie.getText() + "\", `description_pt_interet` = \"" + txtareadescription.getText() + "\", `nom_architecte` = \"" + txtfldarchitecte.getText() + "\", `ID_ville` = 6 " +
                     "WHERE `point_interet`.`ID_pt_interet` = " + txtfldid.getText() + "");
             db.update(queryInterest);
             db.stop();

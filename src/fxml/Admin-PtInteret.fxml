@@ -94,7 +94,7 @@
             </Button>
          </children>
       </VBox>
-      <JFXComboBox fx:id="cmbville" layoutX="398.0" layoutY="362.0" promptText="Ville" />
+      <JFXComboBox fx:id="cmbville" layoutX="398.0" layoutY="362.0" onAction="#citySelection" promptText="Ville" />
       <JFXTextField fx:id="txtfldnom" layoutX="399.0" layoutY="81.0" promptText="Nom" />
       <JFXTextField fx:id="txtfldarchitecte" layoutX="398.0" layoutY="285.0" promptText="Architecte" />
       <JFXTextField fx:id="txtfldcategorie" layoutX="398.0" layoutY="210.0" promptText="Catégorie" />
@@ -126,8 +126,8 @@
       <JFXTextField fx:id="txtfldid" disable="true" layoutX="399.0" layoutY="28.0" promptText="ID" />
       <JFXButton layoutX="472.0" layoutY="428.0" onAction="#publishScreenButtonPushed" text="Publier" />
       <ImageView fx:id="img1View" fitHeight="150.0" fitWidth="200.0" layoutX="612.0" layoutY="80.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="838.0" layoutY="80.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="1061.0" layoutY="80.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="img2View" fitHeight="150.0" fitWidth="200.0" layoutX="838.0" layoutY="80.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="img3View" fitHeight="150.0" fitWidth="200.0" layoutX="1061.0" layoutY="80.0" pickOnBounds="true" preserveRatio="true" />
       <JFXButton fx:id="btnbrwseimg1" layoutX="614.0" layoutY="28.0" onAction="#choosePhoto1" text="Photo 1" />
       <JFXButton fx:id="btnbrwseimg2" layoutX="838.0" layoutY="28.0" onAction="#choosePhoto2" text="Photo 2" />
       <JFXButton fx:id="btnbrwseimg3" layoutX="1061.0" layoutY="28.0" onAction="#choosePhoto3" text="Photo 3" />
