@@ -166,18 +166,13 @@ public class PtInteretController implements Initializable {
         btnbrwseimg3.setDisable(true);
 
 
-        if ( txtfldid.getText().trim().isEmpty()) {
+        try {
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/voyage?characterEncoding=utf8", "root", "");
 
-        } else {
-
-            try {
-                Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/voyage?characterEncoding=utf8", "root", "");
-
-                store = connection.prepareStatement(storeStatement);
-                retrieve = connection.prepareStatement(retrieveStatement);
-            } catch (SQLException e) {
-                System.out.println(e.getMessage());
-            }
+            store = connection.prepareStatement(storeStatement);
+            retrieve = connection.prepareStatement(retrieveStatement);
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
         }
     }
 

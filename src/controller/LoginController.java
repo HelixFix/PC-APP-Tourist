@@ -101,7 +101,7 @@ public class LoginController {
                 usersParent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../fxml/Editor-PtInteret.fxml")));
             }
         } else if (tabUser.isSelected()) {
-            usersParent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../fxml/User-PtInteret.fxml")));
+            usersParent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../fxml/User-City.fxml")));
         }
 
         Scene usersScene = new Scene(usersParent);
