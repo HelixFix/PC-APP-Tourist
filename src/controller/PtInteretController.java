@@ -126,6 +126,13 @@ public class PtInteretController implements Initializable {
             txtfldcategorie.setText(String.valueOf(table_ptinteret.getSelectionModel().getSelectedItem().getCategorie()));
             txtfldarchitecte.setText(String.valueOf(table_ptinteret.getSelectionModel().getSelectedItem().getArchitecte()));
             txtareadescription.setText(String.valueOf(table_ptinteret.getSelectionModel().getSelectedItem().getDescription()));
+
+
+
+            btnbrwseimg1.setDisable(false);
+            btnbrwseimg2.setDisable(false);
+            btnbrwseimg3.setDisable(false);
+
         }
     }
 
@@ -154,14 +161,23 @@ public class PtInteretController implements Initializable {
         fillComboBox();
 
 
+        btnbrwseimg1.setDisable(true);
+        btnbrwseimg2.setDisable(true);
+        btnbrwseimg3.setDisable(true);
 
-        try {
-            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/voyage?characterEncoding=utf8", "root", "");
 
-            store = connection.prepareStatement(storeStatement);
-            retrieve = connection.prepareStatement(retrieveStatement);
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
+        if ( txtfldid.getText().trim().isEmpty()) {
+
+        } else {
+
+            try {
+                Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/voyage?characterEncoding=utf8", "root", "");
+
+                store = connection.prepareStatement(storeStatement);
+                retrieve = connection.prepareStatement(retrieveStatement);
+            } catch (SQLException e) {
+                System.out.println(e.getMessage());
+            }
         }
     }
 
@@ -175,11 +191,7 @@ public class PtInteretController implements Initializable {
         for (int i =0; i < listeVille.size(); i++) {
             cmbville.getItems().addAll(listeVille.get(i).get(1));
 
-
         }
-
-
-
     }
 
     public void citySelection() {
@@ -286,30 +298,42 @@ public class PtInteretController implements Initializable {
         window.show();
     }
 
-    private String storeStatement = "INSERT INTO `point_interet` (`chemin_photo1`) VALUES (?)";
-    private String retrieveStatement = "SELECT `chemin_photo1` FROM `point_interet` WHERE ID_pt_interet = ?";
+
+    public  String storeStatement = "";;
+    public  String retrieveStatement = "";
 
     public void choosePhoto1() {
+
+
 
         FileChooser fileChooser = new FileChooser();
         File file = fileChooser.showOpenDialog(btnbrwseimg1.getScene().getWindow());
         try {
+            storeStatement = "UPDATE `point_interet` SET `chemin_photo1` = ? WHERE `point_interet`.`ID_pt_interet` = " + txtfldid.getText() + "";
+            retrieveStatement = "SELECT `chemin_photo1` FROM `point_interet` WHERE ID_pt_interet = " + txtfldid.getText() + "";
+
             FileInputStream fileInputStream = new FileInputStream(file);
             store.setBinaryStream(1, fileInputStream, fileInputStream.available());
 
-            //store.execute();
+            store.execute();
 
-            javafx.scene.image.Image image = new javafx.scene.image.Image(fileInputStream);
-            img1View.setImage(image);
+            if ( txtfldid.getText().trim().isEmpty()) {
 
+            } else {
+
+                javafx.scene.image.Image image = new javafx.scene.image.Image(fileInputStream);
+                img1View.setImage(image);
+            }
 
 
         } catch (IOException | SQLException e) {
             System.out.println(e.getMessage());
         }
+
     }
 
     public void choosePhoto2() {
+
 
         FileChooser fileChooser = new FileChooser();
         File file = fileChooser.showOpenDialog(btnbrwseimg2.getScene().getWindow());
@@ -319,9 +343,12 @@ public class PtInteretController implements Initializable {
 
             //store.execute();
 
-            javafx.scene.image.Image image = new javafx.scene.image.Image(fileInputStream);
-            img2View.setImage(image);
+            if ( txtfldid.getText().trim().isEmpty()) {
 
+            } else {
+                javafx.scene.image.Image image = new javafx.scene.image.Image(fileInputStream);
+                img2View.setImage(image);
+            }
 
 
         } catch (IOException | SQLException e) {
@@ -339,9 +366,12 @@ public class PtInteretController implements Initializable {
 
             //store.execute();
 
-            javafx.scene.image.Image image = new javafx.scene.image.Image(fileInputStream);
-            img3View.setImage(image);
+            if ( txtfldid.getText().trim().isEmpty()) {
 
+            } else {
+                javafx.scene.image.Image image = new javafx.scene.image.Image(fileInputStream);
+                img3View.setImage(image);
+            }
 
 
         } catch (IOException | SQLException e) {
@@ -355,6 +385,9 @@ public class PtInteretController implements Initializable {
      */
     public void saveScreenButtonPushed() throws SQLException {
 
+        btnbrwseimg1.setDisable(false);
+        btnbrwseimg2.setDisable(false);
+        btnbrwseimg3.setDisable(false);
 
 
         btnbrwseimg1.setOnAction(e ->{
@@ -389,7 +422,7 @@ public class PtInteretController implements Initializable {
         } else {
 
             db.start("jdbc:mysql://localhost:3306/voyage?characterEncoding=utf8", "root", "");
-            String queryInterest = ("UPDATE `point_interet` SET `nom_pt_interet` = \"" + txtfldnom.getText() + "\", `epoque` = \"" + txtfldepoque.getText() + "\", `categorie` = \"" + txtfldcategorie.getText() + "\", `description_pt_interet` = \"" + txtareadescription.getText() + "\", `nom_architecte` = \"" + txtfldarchitecte.getText() + "\", `ID_ville` = 6 " +
+            String queryInterest = ("UPDATE `point_interet` SET `nom_pt_interet` = \"" + txtfldnom.getText() + "\", `epoque` = \"" + txtfldepoque.getText() + "\", `categorie` = \"" + txtfldcategorie.getText() + "\", `description_pt_interet` = \"" + txtareadescription.getText() + "\", `nom_architecte` = \"" + txtfldarchitecte.getText() + "\", `ID_ville` = " + idVille +" " +
                     "WHERE `point_interet`.`ID_pt_interet` = " + txtfldid.getText() + "");
             db.update(queryInterest);
             db.stop();
