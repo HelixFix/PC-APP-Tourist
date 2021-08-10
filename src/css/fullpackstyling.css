@@ -117,3 +117,10 @@
 .tab-pane .tab-header-area {
     visibility: hidden;
 }
+
+/* TableView City */
+
+.table-city .column-header {
+    -fx-background-color : #9013fb;
+    -fx-text-fill : white;
+}
