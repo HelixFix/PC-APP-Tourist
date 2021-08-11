@@ -14,7 +14,7 @@
 .table-view .column-header,
 .table-view .column-header-background .filler {
     -fx-cell-size       : 20;
-    -fx-background-color: #2D75E8;
+    -fx-background-color: #3F2B63;
 }
 .table-view .column-header .label{
 
@@ -27,6 +27,18 @@
    -fx-alignment: center-left;
    -fx-text-fill: #000000;
    -fx-alignment: CENTER_LEFT;
+}
+
+ //Style of each table cell
+.table-view .table-cell{
+    /* -fx-font-weight:bold; */
+    -fx-font-size:24px;           //the font size you asked in the comments below
+    -fx-text-fill:white;
+
+}
+
+.table-row-cell {
+    -fx-background-color: #3F2B63;
 }
 
 .table-row-cell:selected {
