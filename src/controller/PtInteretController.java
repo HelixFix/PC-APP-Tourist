@@ -13,6 +13,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -20,6 +21,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 import model.PointsOfInterest;
 
 
@@ -85,6 +87,9 @@ public class PtInteretController implements Initializable {
 
     @FXML
     private ImageView img3View;
+
+    @FXML
+    private JFXButton btnSave;
 
     @FXML
     private TableView<PointsOfInterest> table_ptinteret;
@@ -380,6 +385,8 @@ public class PtInteretController implements Initializable {
      */
     public void saveScreenButtonPushed() throws SQLException {
 
+        Window owner = btnSave.getScene().getWindow();
+
         btnbrwseimg1.setDisable(false);
         btnbrwseimg2.setDisable(false);
         btnbrwseimg3.setDisable(false);
@@ -393,11 +400,17 @@ public class PtInteretController implements Initializable {
         BDDManager2 db = new BDDManager2();
 
         if ( txtfldid.getText().trim().isEmpty()) {
-            if (txtfldnom.getText().trim().isEmpty() || txtfldepoque.getText().trim().isEmpty() || txtfldcategorie.getText().trim().isEmpty() || txtfldarchitecte.getText().trim().isEmpty() ) {
+            if (txtfldepoque.getText().trim().isEmpty() || txtfldcategorie.getText().trim().isEmpty() || txtfldarchitecte.getText().trim().isEmpty() ) {
                 /**
                  * TODO ajout d'un feedback visuel avec un message invitant l'utilisateur à remplir les champs requis
                  */
             } else {
+
+                if (txtfldnom.getText().isEmpty()) {
+                    showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
+                            "Veuillez entrer un nom");
+                    return;
+                }
 
                 db.start("jdbc:mysql://localhost:3306/voyage?characterEncoding=utf8", "root", "");
                 String queryInterest = ("INSERT INTO `point_interet` (`ID_pt_interet`, `nom_pt_interet`, `epoque`, `categorie`, `description_pt_interet`, `nom_architecte`, `publier`, `chemin_photo1`, `chemin_photo2`, `chemin_photo3`, `ID_ville`) " +
@@ -429,6 +442,15 @@ public class PtInteretController implements Initializable {
 
 
 
+    }
+
+    private static void showAlert(Alert.AlertType alertType, Window owner, String title, String message) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.initOwner(owner);
+        alert.show();
     }
 
     /*TODO

@@ -29,7 +29,7 @@ public class CityRomaController {
          for (int col = 0; col < listeVille.size(); col++) {
 
         JFXTextField txtfld = new JFXTextField();
-        grid.add(txtfld.setText(listeVille.get(row).get(1)), col, row);
+
         }
 
         }
