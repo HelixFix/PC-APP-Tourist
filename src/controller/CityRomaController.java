@@ -18,6 +18,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import model.City;
+import model.PointsOfInterest;
 import model.User;
 
 import java.io.IOException;
@@ -27,16 +28,16 @@ import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class CityRomaController implements Initializable {
-    ObservableList<City> list = FXCollections.observableArrayList();
+    ObservableList<PointsOfInterest> list = FXCollections.observableArrayList();
 
     @FXML
-    private TableView<City> table_city;
+    private TableView<PointsOfInterest> table_city;
 
     @FXML
-    private TableColumn<City, Integer> col_id;
+    private TableColumn<PointsOfInterest, Integer> col_id;
 
     @FXML
-    private TableColumn<City, String> col_ville;
+    private TableColumn<PointsOfInterest, String> col_ville;
 
     @FXML
     private GridPane grid;
@@ -47,42 +48,43 @@ public class CityRomaController implements Initializable {
     {
         if (event.getClickCount() == 2) //Checking double click
         {
-            System.out.println(table_city.getSelectionModel().getSelectedItem().getCity());
+            System.out.println(table_city.getSelectionModel().getSelectedItem().getNom());
             //txtfldid.setText(String.valueOf(table_users.getSelectionModel().getSelectedItem().getId()));
         }
     }
 
-    ObservableList<City> listM;
+    ObservableList<PointsOfInterest> listM;
 
     @Override
     // initializes list controller with given url
     public void initialize(URL url, ResourceBundle rb) {
 
         col_id.setCellValueFactory(new PropertyValueFactory<>("id"));
-        col_ville.setCellValueFactory(new PropertyValueFactory<>("city"));
+        col_ville.setCellValueFactory(new PropertyValueFactory<>("nom"));
 
 
-        listM = getDataCity();
+        listM = getDataPtInterest();
         table_city.setItems(listM);
     }
 
     // get the list of data city
-    public ObservableList<City> getDataCity() {
+    public ObservableList<PointsOfInterest> getDataPtInterest() {
 
         list.clear();
 
         BDDManager2 bdd = new BDDManager2();
         bdd.start("jdbc:mysql://localhost:3306/voyage?characterEncoding=utf8", "root", "");
 
-        String queryCity = ("SELECT `ID_ville`, `nom_ville` FROM `ville` ORDER BY nom_ville");
-        ArrayList<ArrayList<String>> resultatDeMaRequete = new ArrayList<>(bdd.select(queryCity));
+        String queryPointsOfInterest = ("SELECT `ID_pt_interet`,`nom_pt_interet`,`nom_ville`,`nom_architecte`,`publier`,`categorie`,`description_pt_interet`,`epoque`,`chemin_photo1`,`chemin_photo2`,`chemin_photo3` FROM `point_interet` INNER JOIN ville ON ville.id_ville = point_interet.id_ville WHERE `nom_ville` = 'Rome' AND `publier` = 1 ORDER BY nom_ville");
+        ArrayList<ArrayList<String>> resultatDeMaRequete = new ArrayList<>(bdd.select(queryPointsOfInterest));
 
         for (ArrayList<String> strings : resultatDeMaRequete) {
 
 
             System.out.println("test1" + strings);
 
-            list.add(new City(Integer.parseInt(strings.get(0)), strings.get(1)));
+            list.add(new PointsOfInterest(Integer.parseInt(strings.get(0)), strings.get(1), strings.get(2), strings.get(3), Integer.parseInt(strings.get(4)), strings.get(5), strings.get(6), strings.get(7), strings.get(8), strings.get(9), strings.get(10)));
+
 
         }
 

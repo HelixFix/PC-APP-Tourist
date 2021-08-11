@@ -56,10 +56,10 @@
             </Button>
             <Pane prefHeight="493.0" prefWidth="330.0">
                <children>
-                  <TableView fx:id="table_city" layoutX="10.0" onMouseClicked="#clickItem" prefHeight="493.0" prefWidth="313.0" style="-fx-background-color: #3F2B63;">
+                  <TableView fx:id="table_city" layoutX="46.0" onMouseClicked="#clickItem" prefHeight="493.0" prefWidth="246.0" style="-fx-background-color: #3F2B63;">
                     <columns>
                       <TableColumn fx:id="col_id" prefWidth="39.0" visible="false" />
-                        <TableColumn fx:id="col_ville" prefWidth="329.0" />
+                        <TableColumn fx:id="col_ville" prefWidth="240.0" text="Point d'intérêt :" />
                     </columns>
                      <cursor>
                         <Cursor fx:constant="HAND" />
