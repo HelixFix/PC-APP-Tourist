@@ -131,6 +131,7 @@ public class PtInteretController implements Initializable {
             txtfldcategorie.setText(String.valueOf(table_ptinteret.getSelectionModel().getSelectedItem().getCategorie()));
             txtfldarchitecte.setText(String.valueOf(table_ptinteret.getSelectionModel().getSelectedItem().getArchitecte()));
             txtareadescription.setText(String.valueOf(table_ptinteret.getSelectionModel().getSelectedItem().getDescription()));
+            cmbville.setValue(String.valueOf(table_ptinteret.getSelectionModel().getSelectedItem().getVille()));
 
 
 

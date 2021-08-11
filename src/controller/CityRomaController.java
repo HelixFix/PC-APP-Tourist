@@ -1,6 +1,7 @@
 package controller;
 
 import BDDManager.BDDManager2;
+import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -10,16 +11,15 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.CheckBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.GridPane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import model.City;
 import model.PointsOfInterest;
-import model.User;
+
 
 import java.io.IOException;
 import java.net.URL;
@@ -31,7 +31,7 @@ public class CityRomaController implements Initializable {
     ObservableList<PointsOfInterest> list = FXCollections.observableArrayList();
 
     @FXML
-    private TableView<PointsOfInterest> table_city;
+    private TableView<PointsOfInterest> table_ptinteret;
 
     @FXML
     private TableColumn<PointsOfInterest, Integer> col_id;
@@ -40,16 +40,37 @@ public class CityRomaController implements Initializable {
     private TableColumn<PointsOfInterest, String> col_ville;
 
     @FXML
-    private GridPane grid;
+    private JFXTextField title;
 
     @FXML
-    // mouse listener for table users
+    private JFXTextArea resume;
+
+    @FXML
+    private JFXTextField title2;
+
+    @FXML
+    private Label epoque;
+
+    @FXML
+    private Text categorie;
+
+    @FXML
+    private Text architecte;
+
+    @FXML
+    // mouse listener for table point d'intérêt
     public void clickItem(MouseEvent event)
     {
-        if (event.getClickCount() == 2) //Checking double click
+        if (event.getClickCount() == 1) //Checking double click
         {
-            System.out.println(table_city.getSelectionModel().getSelectedItem().getNom());
+            String strEpoque = table_ptinteret.getSelectionModel().getSelectedItem().getEpoque();
+            System.out.println(table_ptinteret.getSelectionModel().getSelectedItem().getNom());
             //txtfldid.setText(String.valueOf(table_users.getSelectionModel().getSelectedItem().getId()));
+            title.setText((String.valueOf(table_ptinteret.getSelectionModel().getSelectedItem().getNom())));
+            title2.setText((String.valueOf(table_ptinteret.getSelectionModel().getSelectedItem().getNom())));
+            resume.setText((String.valueOf(table_ptinteret.getSelectionModel().getSelectedItem().getDescription())));
+            epoque.setText(table_ptinteret.getSelectionModel().getSelectedItem().getEpoque());
+            categorie.setText(table_ptinteret.getSelectionModel().getSelectedItem().getCategorie());
         }
     }
 
@@ -64,7 +85,7 @@ public class CityRomaController implements Initializable {
 
 
         listM = getDataPtInterest();
-        table_city.setItems(listM);
+        table_ptinteret.setItems(listM);
     }
 
     // get the list of data city
