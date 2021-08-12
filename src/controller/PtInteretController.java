@@ -124,21 +124,22 @@ public class PtInteretController implements Initializable {
     {
         if (event.getClickCount() == 2) //Checking double click
         {
-            System.out.println(table_ptinteret.getSelectionModel().getSelectedItem().getNom());
-            txtfldid.setText(String.valueOf(table_ptinteret.getSelectionModel().getSelectedItem().getId()));
-            txtfldnom.setText(String.valueOf(table_ptinteret.getSelectionModel().getSelectedItem().getNom()));
-            txtfldepoque.setText(String.valueOf(table_ptinteret.getSelectionModel().getSelectedItem().getEpoque()));
-            txtfldcategorie.setText(String.valueOf(table_ptinteret.getSelectionModel().getSelectedItem().getCategorie()));
-            txtfldarchitecte.setText(String.valueOf(table_ptinteret.getSelectionModel().getSelectedItem().getArchitecte()));
-            txtareadescription.setText(String.valueOf(table_ptinteret.getSelectionModel().getSelectedItem().getDescription()));
-            cmbville.setValue(String.valueOf(table_ptinteret.getSelectionModel().getSelectedItem().getVille()));
+            PointsOfInterest dto = table_ptinteret.getSelectionModel().getSelectedItem();
+            if (dto != null) {
+                System.out.println(table_ptinteret.getSelectionModel().getSelectedItem().getNom());
+                txtfldid.setText(String.valueOf(table_ptinteret.getSelectionModel().getSelectedItem().getId()));
+                txtfldnom.setText(String.valueOf(table_ptinteret.getSelectionModel().getSelectedItem().getNom()));
+                txtfldepoque.setText(String.valueOf(table_ptinteret.getSelectionModel().getSelectedItem().getEpoque()));
+                txtfldcategorie.setText(String.valueOf(table_ptinteret.getSelectionModel().getSelectedItem().getCategorie()));
+                txtfldarchitecte.setText(String.valueOf(table_ptinteret.getSelectionModel().getSelectedItem().getArchitecte()));
+                txtareadescription.setText(String.valueOf(table_ptinteret.getSelectionModel().getSelectedItem().getDescription()));
+                cmbville.setValue(String.valueOf(table_ptinteret.getSelectionModel().getSelectedItem().getVille()));
 
 
-
-            btnbrwseimg1.setDisable(false);
-            btnbrwseimg2.setDisable(false);
-            btnbrwseimg3.setDisable(false);
-
+                btnbrwseimg1.setDisable(false);
+                btnbrwseimg2.setDisable(false);
+                btnbrwseimg3.setDisable(false);
+            }
         }
     }
 
