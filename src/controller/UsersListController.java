@@ -15,6 +15,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import model.PointsOfInterest;
 import model.User;
 import java.net.URL;
 import java.io.IOException;
@@ -55,8 +56,12 @@ public class UsersListController implements Initializable {
     {
         if (event.getClickCount() == 2) //Checking double click
         {
-            System.out.println(table_users.getSelectionModel().getSelectedItem().getId());
-            txtfldid.setText(String.valueOf(table_users.getSelectionModel().getSelectedItem().getId()));
+            User dto = table_users.getSelectionModel().getSelectedItem();
+            if (dto != null) {
+
+                System.out.println(table_users.getSelectionModel().getSelectedItem().getId());
+                txtfldid.setText(String.valueOf(table_users.getSelectionModel().getSelectedItem().getId()));
+            }
         }
     }
 
