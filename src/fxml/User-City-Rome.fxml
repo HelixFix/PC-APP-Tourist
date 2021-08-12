@@ -2,7 +2,6 @@
 
 <?import com.jfoenix.controls.JFXCheckBox?>
 <?import com.jfoenix.controls.JFXTextArea?>
-<?import com.jfoenix.controls.JFXTextField?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
@@ -17,6 +16,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
@@ -60,7 +60,7 @@
             </Button>
             <Pane prefHeight="493.0" prefWidth="330.0">
                <children>
-                  <TableView fx:id="table_ptinteret" layoutX="46.0" onMouseClicked="#clickItem" prefHeight="493.0" prefWidth="246.0" style="-fx-background-color: #3F2B63; -fx-border-color: #3F2B63;">
+                  <TableView fx:id="table_ptinteret" layoutX="46.0" onMouseClicked="#clickItem" prefHeight="493.0" prefWidth="246.0" style="-fx-background-color: #3F2B63;">
                     <columns>
                       <TableColumn fx:id="col_id" prefWidth="39.0" visible="false" />
                         <TableColumn fx:id="col_ville" prefWidth="240.0" text="Point d'intérêt :" />
@@ -87,19 +87,51 @@
             </Button>
          </children>
       </VBox>
-      <JFXTextField layoutX="10.0" layoutY="10.0" />
-      <JFXTextField fx:id="title" editable="false" layoutX="385.0" layoutY="39.0" />
-      <JFXTextArea fx:id="resume" editable="false" layoutX="385.0" layoutY="150.0" prefHeight="424.0" prefWidth="551.0" />
-      <Pane layoutX="1015.0" layoutY="68.0" prefHeight="749.0" prefWidth="231.0" style="-fx-border-color: black;">
+      <Pane layoutX="963.0" layoutY="88.0" prefHeight="729.0" prefWidth="304.0" style="-fx-border-color: black;">
          <children>
-            <JFXTextField fx:id="title2" editable="false" layoutX="52.0" layoutY="37.0" />
-            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="15.0" layoutY="107.0" pickOnBounds="true" preserveRatio="true" />
-            <Text fx:id="categorie" layoutX="107.0" layoutY="369.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-            <Label fx:id="epoque" layoutX="105.0" layoutY="313.0" text="Label" />
+            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="46.0" layoutY="95.0" pickOnBounds="true" preserveRatio="true" />
+            <Text fx:id="categorie" layoutX="52.0" layoutY="570.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+               <font>
+                  <Font size="19.0" />
+               </font></Text>
+            <Label layoutX="102.0" layoutY="505.0" text="Catégorie ">
+               <font>
+                  <Font name="System Bold" size="19.0" />
+               </font></Label>
+            <Text fx:id="epoque" layoutX="52.0" layoutY="474.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Text>
+            <Pane layoutX="7.0" layoutY="8.0" prefHeight="56.0" prefWidth="288.0" style="-fx-background-color: #D1CFAD;">
+               <children>
+                  <Text fx:id="title2" layoutX="-6.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="291.3333703982644">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Text>
+               </children>
+            </Pane>
+            <Label layoutX="110.0" layoutY="420.0" prefHeight="28.0" prefWidth="75.0" text="Époque">
+               <font>
+                  <Font name="System Bold" size="19.0" />
+               </font>
+            </Label>
          </children>
       </Pane>
-      <JFXCheckBox layoutX="758.0" layoutY="42.0" text="Favoris" />
+      <JFXCheckBox layoutX="1197.0" layoutY="34.0" text="Favoris" />
       <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="405.0" layoutY="644.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="692.0" layoutY="645.0" pickOnBounds="true" preserveRatio="true" />
+      <Text fx:id="title" layoutX="347.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+         <font>
+            <Font size="29.0" />
+         </font>
+      </Text>
+      <JFXTextArea fx:id="resume" layoutX="352.0" layoutY="90.0" prefHeight="723.0" prefWidth="520.0">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </JFXTextArea>
+      <Line endX="835.3333740234375" layoutX="429.0" layoutY="63.0" startX="-76.66665649414062" />
    </children>
 </AnchorPane>

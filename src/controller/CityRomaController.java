@@ -40,16 +40,16 @@ public class CityRomaController implements Initializable {
     private TableColumn<PointsOfInterest, String> col_ville;
 
     @FXML
-    private JFXTextField title;
+    private Text title;
 
     @FXML
     private JFXTextArea resume;
 
     @FXML
-    private JFXTextField title2;
+    private Text title2;
 
     @FXML
-    private Label epoque;
+    private Text epoque;
 
     @FXML
     private Text categorie;
@@ -68,11 +68,12 @@ public class CityRomaController implements Initializable {
                 //Do my processing
                 System.out.println(table_ptinteret.getSelectionModel().getSelectedItem().getNom());
                 //txtfldid.setText(String.valueOf(table_users.getSelectionModel().getSelectedItem().getId()));
-                title.setText((String.valueOf(table_ptinteret.getSelectionModel().getSelectedItem().getNom())));
-                title2.setText((String.valueOf(table_ptinteret.getSelectionModel().getSelectedItem().getNom())));
-                resume.setText((String.valueOf(table_ptinteret.getSelectionModel().getSelectedItem().getDescription())));
+                title.setText(table_ptinteret.getSelectionModel().getSelectedItem().getNom());
+                title2.setText(table_ptinteret.getSelectionModel().getSelectedItem().getNom());
+                resume.setText(String.valueOf(table_ptinteret.getSelectionModel().getSelectedItem().getDescription()));
                 epoque.setText(table_ptinteret.getSelectionModel().getSelectedItem().getEpoque());
                 categorie.setText(table_ptinteret.getSelectionModel().getSelectedItem().getCategorie());
+
             }
 
         }
