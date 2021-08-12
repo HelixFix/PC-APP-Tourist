@@ -63,14 +63,18 @@ public class CityRomaController implements Initializable {
     {
         if (event.getClickCount() == 1) //Checking double click
         {
-            String strEpoque = table_ptinteret.getSelectionModel().getSelectedItem().getEpoque();
-            System.out.println(table_ptinteret.getSelectionModel().getSelectedItem().getNom());
-            //txtfldid.setText(String.valueOf(table_users.getSelectionModel().getSelectedItem().getId()));
-            title.setText((String.valueOf(table_ptinteret.getSelectionModel().getSelectedItem().getNom())));
-            title2.setText((String.valueOf(table_ptinteret.getSelectionModel().getSelectedItem().getNom())));
-            resume.setText((String.valueOf(table_ptinteret.getSelectionModel().getSelectedItem().getDescription())));
-            epoque.setText(table_ptinteret.getSelectionModel().getSelectedItem().getEpoque());
-            categorie.setText(table_ptinteret.getSelectionModel().getSelectedItem().getCategorie());
+            PointsOfInterest dto = table_ptinteret.getSelectionModel().getSelectedItem();
+            if (dto != null) {
+                //Do my processing
+                System.out.println(table_ptinteret.getSelectionModel().getSelectedItem().getNom());
+                //txtfldid.setText(String.valueOf(table_users.getSelectionModel().getSelectedItem().getId()));
+                title.setText((String.valueOf(table_ptinteret.getSelectionModel().getSelectedItem().getNom())));
+                title2.setText((String.valueOf(table_ptinteret.getSelectionModel().getSelectedItem().getNom())));
+                resume.setText((String.valueOf(table_ptinteret.getSelectionModel().getSelectedItem().getDescription())));
+                epoque.setText(table_ptinteret.getSelectionModel().getSelectedItem().getEpoque());
+                categorie.setText(table_ptinteret.getSelectionModel().getSelectedItem().getCategorie());
+            }
+
         }
     }
 
