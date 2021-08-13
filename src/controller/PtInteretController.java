@@ -408,7 +408,7 @@ public class PtInteretController implements Initializable {
 
                 if (txtfldnom.getText().isEmpty()) {
                     showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
-                            "Veuillez entrer votre nom");
+                            "Veuillez entrer un nom");
                     return;
                 }
 

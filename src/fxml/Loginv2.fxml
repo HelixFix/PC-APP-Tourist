@@ -54,7 +54,7 @@
                                              <font>
                                                 <Font name="System Bold Italic" size="13.0" />
                                              </font></JFXTextField>
-                                          <JFXButton layoutX="120.0" layoutY="167.0" onAction="#loginScreenButtonPushed" prefHeight="35.0" prefWidth="111.0" styleClass="btn-login" text="CONNECTER" />
+                                          <JFXButton fx:id="btncnx" layoutX="120.0" layoutY="167.0" onAction="#loginScreenButtonPushed" prefHeight="35.0" prefWidth="111.0" styleClass="btn-login" text="CONNECTER" />
                                           <JFXCheckBox fx:id="chkboxeditor" layoutX="30.0" layoutY="176.0" text="Editeur" />
                                        </children>
                                     </AnchorPane>

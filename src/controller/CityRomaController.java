@@ -2,7 +2,6 @@ package controller;
 
 import BDDManager.BDDManager2;
 import com.jfoenix.controls.JFXTextArea;
-import com.jfoenix.controls.JFXTextField;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -11,7 +10,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -61,7 +59,7 @@ public class CityRomaController implements Initializable {
     // mouse listener for table point d'intérêt
     public void clickItem(MouseEvent event)
     {
-        if (event.getClickCount() == 1) //Checking double click
+        if (event.getClickCount() == 1) //Checking click
         {
             PointsOfInterest dto = table_ptinteret.getSelectionModel().getSelectedItem();
             if (dto != null) {
@@ -85,6 +83,7 @@ public class CityRomaController implements Initializable {
     // initializes list controller with given url
     public void initialize(URL url, ResourceBundle rb) {
 
+        // liaison entre la vue et le modele
         col_id.setCellValueFactory(new PropertyValueFactory<>("id"));
         col_ville.setCellValueFactory(new PropertyValueFactory<>("nom"));
 
