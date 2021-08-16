@@ -124,7 +124,7 @@ public class CityRomaController implements Initializable {
         return list;
     }
 
-    public void chkbox(javafx.event.ActionEvent actionEvent) throws IOException {
+    public void chkbox() {
         if (chkboxfav.isSelected()){
             BDDManager2 bdd = new BDDManager2();
             bdd.start("jdbc:mysql://localhost:3306/voyage?characterEncoding=utf8", "root", "");
