@@ -1,6 +1,5 @@
 package controller;
 
-import BDDManager.BDDManager2;
 import BDDManager.My_CNX;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
@@ -120,7 +119,7 @@ public class LoginController {
             String adminPassword = String.valueOf(txtfldadminpassword.getText());
 
             // Create a select query to check if the username and the password exist in the database
-            String query = "SELECT * FROM `utilisateur` WHERE `pseudo` = ? AND `mot_de_passe` = ? AND `droit_acces` = 0";
+            String query = "SELECT * FROM `utilisateur` WHERE BINARY `pseudo` = ? AND BINARY `mot_de_passe` = ? AND `droit_acces` = 0";
 
             try {
                 st = My_CNX.getConnection().prepareStatement(query);
