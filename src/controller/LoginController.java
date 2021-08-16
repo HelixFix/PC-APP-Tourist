@@ -113,47 +113,81 @@ public class LoginController {
         Parent usersParent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../fxml/Login.fxml")));
 
         if (tabAdmin.isSelected()) {
-
             // get the username & password
-            String adminUsername = txtfldadminusername.getText();
-            String adminPassword = String.valueOf(txtfldadminpassword.getText());
-
-            // Create a select query to check if the username and the password exist in the database
-            String query = "SELECT * FROM `utilisateur` WHERE BINARY `pseudo` = ? AND BINARY `mot_de_passe` = ? AND `droit_acces` = 0";
-
-            try {
-                st = My_CNX.getConnection().prepareStatement(query);
-
-                st.setString(1, adminUsername);
-                st.setString(2,adminPassword);
-                rs = st.executeQuery();
-
-                if (rs.next()) {
-                    // show a new form
-                    usersParent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../fxml/Admin-UsersList.fxml")));
-                } else {
-                    // error message
-                    if (txtfldadminusername.getText().isEmpty()) {
-                        showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
-                                "Veuillez entrer votre pseudo");
-                        return;
-                    } if (txtfldadminpassword.getText().isEmpty()) {
-                        showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
-                                "Veuillez entrer votre mot de passe");
-                        return;
-                    }
-                    showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
-                            "Pseudo ou mot de passe incorrect");
-                    return;
-                }
-            } catch (SQLException ex) {
-                Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE,null, ex);
-            }
-
+            String editorUsername = txtfldadminusername.getText();
+            String editorPassword = String.valueOf(txtfldadminpassword.getText());
 
             if (chkboxeditor.isSelected()){
-                usersParent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../fxml/Editor-PtInteret.fxml")));
+                // Create a select query to check if the username and the password exist in the database
+                String editorQuery = "SELECT * FROM `utilisateur` WHERE BINARY `pseudo` = ? AND BINARY `mot_de_passe` = ? AND `droit_acces` = 1";
+
+                try {
+                    st = My_CNX.getConnection().prepareStatement(editorQuery);
+
+                    st.setString(1, editorUsername);
+                    st.setString(2,editorPassword);
+                    rs = st.executeQuery();
+
+                    if (rs.next()) {
+                        // show a new form
+                        usersParent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../fxml/Editor-PtInteret.fxml")));
+                    } else {
+                        // error message
+                        if (txtfldadminusername.getText().isEmpty()) {
+                            showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
+                                    "Veuillez entrer votre pseudo");
+                            return;
+                        } if (txtfldadminpassword.getText().isEmpty()) {
+                            showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
+                                    "Veuillez entrer votre mot de passe");
+                            return;
+                        }
+                        showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
+                                "Pseudo ou mot de passe incorrect");
+                        return;
+                    }
+                } catch (SQLException ex) {
+                    Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE,null, ex);
+                }
+
+            } else {
+                // get the username & password
+                String adminUsername = txtfldadminusername.getText();
+                String adminPassword = String.valueOf(txtfldadminpassword.getText());
+
+                // Create a select query to check if the username and the password exist in the database
+                String query = "SELECT * FROM `utilisateur` WHERE BINARY `pseudo` = ? AND BINARY `mot_de_passe` = ? AND `droit_acces` = 0";
+
+                try {
+                    st = My_CNX.getConnection().prepareStatement(query);
+
+                    st.setString(1, adminUsername);
+                    st.setString(2,adminPassword);
+                    rs = st.executeQuery();
+
+                    if (rs.next()) {
+                        // show a new form
+                        usersParent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../fxml/Admin-UsersList.fxml")));
+                    } else {
+                        // error message
+                        if (txtfldadminusername.getText().isEmpty()) {
+                            showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
+                                    "Veuillez entrer votre pseudo");
+                            return;
+                        } if (txtfldadminpassword.getText().isEmpty()) {
+                            showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
+                                    "Veuillez entrer votre mot de passe");
+                            return;
+                        }
+                        showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
+                                "Pseudo ou mot de passe incorrect");
+                        return;
+                    }
+                } catch (SQLException ex) {
+                    Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE,null, ex);
+                }
             }
+
         } else if (tabUser.isSelected()) {
             usersParent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../fxml/User-City.fxml")));
         }
