@@ -119,7 +119,7 @@
             </Label>
          </children>
       </Pane>
-      <JFXCheckBox layoutX="1197.0" layoutY="34.0" text="Favoris" />
+      <JFXCheckBox fx:id="chkboxfav" layoutX="1197.0" layoutY="34.0" onAction="#chkbox" text="Favoris" />
       <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="405.0" layoutY="644.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="692.0" layoutY="645.0" pickOnBounds="true" preserveRatio="true" />
       <Text fx:id="title" layoutX="347.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
@@ -133,5 +133,6 @@
          </font>
       </JFXTextArea>
       <Line endX="835.3333740234375" layoutX="429.0" layoutY="63.0" startX="-76.66665649414062" />
+      <Text fx:id="id" layoutX="437.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" visible="false" />
    </children>
 </AnchorPane>

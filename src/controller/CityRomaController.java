@@ -1,6 +1,7 @@
 package controller;
 
 import BDDManager.BDDManager2;
+import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXTextArea;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -16,6 +17,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import model.Data;
 import model.PointsOfInterest;
 
 
@@ -56,6 +58,12 @@ public class CityRomaController implements Initializable {
     private Text architecte;
 
     @FXML
+    private JFXCheckBox chkboxfav;
+
+    @FXML
+    private Text id;
+
+    @FXML
     // mouse listener for table point d'intérêt
     public void clickItem(MouseEvent event)
     {
@@ -65,7 +73,7 @@ public class CityRomaController implements Initializable {
             if (dto != null) {
                 //Do my processing
                 System.out.println(table_ptinteret.getSelectionModel().getSelectedItem().getNom());
-                //txtfldid.setText(String.valueOf(table_users.getSelectionModel().getSelectedItem().getId()));
+                id.setText(String.valueOf(table_ptinteret.getSelectionModel().getSelectedItem().getId()));
                 title.setText(table_ptinteret.getSelectionModel().getSelectedItem().getNom());
                 title2.setText(table_ptinteret.getSelectionModel().getSelectedItem().getNom());
                 resume.setText(String.valueOf(table_ptinteret.getSelectionModel().getSelectedItem().getDescription()));
@@ -114,6 +122,24 @@ public class CityRomaController implements Initializable {
         }
 
         return list;
+    }
+
+    public void chkbox(javafx.event.ActionEvent actionEvent) throws IOException {
+        if (chkboxfav.isSelected()){
+            BDDManager2 bdd = new BDDManager2();
+            bdd.start("jdbc:mysql://localhost:3306/voyage?characterEncoding=utf8", "root", "");
+
+            String queryFav = ("INSERT INTO avoir (id_utilisateur, ID_pt_interet) SELECT id_utilisateur, ID_pt_interet FROM utilisateur, point_interet WHERE nom_utilisateur = \"" + Data.username + "\" AND ID_pt_interet = " + id.getText() + "");
+            bdd.insert(queryFav);
+            bdd.stop();
+        } else {
+            BDDManager2 bdd = new BDDManager2();
+            bdd.start("jdbc:mysql://localhost:3306/voyage?characterEncoding=utf8", "root", "");
+
+            String queryFav = ("DELETE avoir FROM avoir INNER JOIN utilisateur ON utilisateur.ID_utilisateur = avoir.ID_utilisateur WHERE `nom_utilisateur` = \"" + Data.username + "\"");
+            bdd.delete(queryFav);
+            bdd.stop();
+        }
     }
 
     /**

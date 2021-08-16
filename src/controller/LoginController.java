@@ -20,6 +20,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 import javafx.util.Duration;
+import model.Data;
 
 import java.io.IOException;
 import java.sql.PreparedStatement;
@@ -115,6 +116,7 @@ public class LoginController {
                     rs = st.executeQuery();
 
                     if (rs.next()) {
+                        Data.username = editorUsername;
                         // show a new form
                         usersParent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../fxml/Editor-PtInteret.fxml")));
                     } else {
@@ -152,6 +154,7 @@ public class LoginController {
                     rs = st.executeQuery();
 
                     if (rs.next()) {
+                        Data.username = adminUsername;
                         // show a new form
                         usersParent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../fxml/Admin-UsersList.fxml")));
                     } else {
@@ -190,6 +193,7 @@ public class LoginController {
                 rs = st.executeQuery();
 
                 if (rs.next()) {
+                    Data.username = userUsername;
                     // show a new form
                     usersParent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../fxml/User-City.fxml")));
                 } else {
