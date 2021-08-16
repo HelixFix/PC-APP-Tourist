@@ -189,7 +189,42 @@ public class LoginController {
             }
 
         } else if (tabUser.isSelected()) {
-            usersParent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../fxml/User-City.fxml")));
+            // get the username & password
+            String userUsername = txtflduserusername.getText();
+            String userPassword = String.valueOf(txtflduserpassword.getText());
+
+            // Create a select query to check if the username and the password exist in the database
+            String query = "SELECT * FROM `utilisateur` WHERE BINARY `pseudo` = ? AND BINARY `mot_de_passe` = ? AND `droit_acces` = 2 AND `activer` = 1";
+
+            try {
+                st = My_CNX.getConnection().prepareStatement(query);
+
+                st.setString(1, userUsername);
+                st.setString(2, userPassword);
+                rs = st.executeQuery();
+
+                if (rs.next()) {
+                    // show a new form
+                    usersParent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../fxml/User-City.fxml")));
+                } else {
+                    // error message
+                    if (txtfldadminusername.getText().isEmpty()) {
+                        showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
+                                "Veuillez entrer votre pseudo");
+                        return;
+                    } if (txtfldadminpassword.getText().isEmpty()) {
+                        showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
+                                "Veuillez entrer votre mot de passe");
+                        return;
+                    }
+                    showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
+                            "Pseudo ou mot de passe incorrect");
+                    return;
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE,null, ex);
+            }
+
         }
 
         Scene usersScene = new Scene(usersParent);
