@@ -109,7 +109,7 @@
             <RowConstraints maxHeight="523.0" minHeight="10.0" prefHeight="516.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <TableView fx:id="table_ptinteret" onMouseClicked="#clickItem" prefHeight="368.0" prefWidth="894.0" stylesheets="@../css/fullpackstyling.css">
+            <TableView fx:id="table_ptinteret" onMouseClicked="#clickItem" prefHeight="368.0" prefWidth="894.0" style="-fx-fixed-cell-size: 25;" stylesheets="@../css/fullpackstyling.css">
                <columns>
                   <TableColumn fx:id="col_id" prefWidth="75.0" text="ID" />
                   <TableColumn fx:id="col_nom" prefWidth="75.0" text="Nom" />
