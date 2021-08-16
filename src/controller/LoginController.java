@@ -16,7 +16,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.stage.Window;
@@ -57,16 +56,7 @@ public class LoginController {
     private JFXTextField txtflduserusername;
 
     @FXML
-    private Label lblCreateAccount;
-
-    @FXML
     private Pane slidingPane;
-
-    @FXML
-    private Label lblAdmin;
-
-    @FXML
-    private Label lblUser;
 
     @FXML
     private Label lblStatus;
@@ -76,28 +66,24 @@ public class LoginController {
     private JFXButton btncnx;
 
     @FXML
-    void openAdminTab(MouseEvent event) {
+    void openAdminTab() {
         // Open admin tab when admin label is clicked
         TranslateTransition toLeftTransition = new TranslateTransition(new Duration(500), lblStatus);
         toLeftTransition.setToX(slidingPane.getTranslateX());
         toLeftTransition.play();
-        toLeftTransition.setOnFinished((ActionEvent event2)->{
-            lblStatus.setText("ADMINISTRATEUR");
-        });
+        toLeftTransition.setOnFinished((ActionEvent event2)-> lblStatus.setText("ADMINISTRATEUR"));
         tabPaneLogin.getSelectionModel().select(tabAdmin);
 
     }
 
     @FXML
-    void openUserTab(MouseEvent event) {
+    void openUserTab() {
         // Using translation animation to slide label left and right
         TranslateTransition toRightAnimation = new TranslateTransition(new Duration(500), lblStatus);
         // ugly fix
         toRightAnimation.setToX(slidingPane.getTranslateX()+(slidingPane.getPrefWidth()-lblStatus.getPrefWidth()));
         toRightAnimation.play();
-        toRightAnimation.setOnFinished((ActionEvent event1) -> {
-            lblStatus.setText("UTILISATEUR");
-        });
+        toRightAnimation.setOnFinished((ActionEvent event1) -> lblStatus.setText("UTILISATEUR"));
         // Set selected tab as Utilisateur
         tabPaneLogin.getSelectionModel().select(tabUser);
 
@@ -134,15 +120,15 @@ public class LoginController {
                     } else {
                         // error message
                         if (txtfldadminusername.getText().isEmpty()) {
-                            showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
+                            showAlert(owner,
                                     "Veuillez entrer votre pseudo");
                             return;
                         } if (txtfldadminpassword.getText().isEmpty()) {
-                            showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
+                            showAlert(owner,
                                     "Veuillez entrer votre mot de passe");
                             return;
                         }
-                        showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
+                        showAlert(owner,
                                 "Pseudo ou mot de passe incorrect");
                         return;
                     }
@@ -171,15 +157,15 @@ public class LoginController {
                     } else {
                         // error message
                         if (txtfldadminusername.getText().isEmpty()) {
-                            showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
+                            showAlert(owner,
                                     "Veuillez entrer votre pseudo");
                             return;
                         } if (txtfldadminpassword.getText().isEmpty()) {
-                            showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
+                            showAlert(owner,
                                     "Veuillez entrer votre mot de passe");
                             return;
                         }
-                        showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
+                        showAlert(owner,
                                 "Pseudo ou mot de passe incorrect");
                         return;
                     }
@@ -208,16 +194,16 @@ public class LoginController {
                     usersParent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../fxml/User-City.fxml")));
                 } else {
                     // error message
-                    if (txtfldadminusername.getText().isEmpty()) {
-                        showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
+                    if (txtflduserusername.getText().isEmpty()) {
+                        showAlert(owner,
                                 "Veuillez entrer votre pseudo");
                         return;
-                    } if (txtfldadminpassword.getText().isEmpty()) {
-                        showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
+                    } if (txtflduserpassword.getText().isEmpty()) {
+                        showAlert(owner,
                                 "Veuillez entrer votre mot de passe");
                         return;
                     }
-                    showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
+                    showAlert(owner,
                             "Pseudo ou mot de passe incorrect");
                     return;
                 }
@@ -235,9 +221,9 @@ public class LoginController {
         window.setScene(usersScene);
         window.show();
     }
-    private static void showAlert(Alert.AlertType alertType, Window owner, String title, String message) {
-        Alert alert = new Alert(alertType);
-        alert.setTitle(title);
+    private static void showAlert(Window owner, String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Form Error!");
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.initOwner(owner);
