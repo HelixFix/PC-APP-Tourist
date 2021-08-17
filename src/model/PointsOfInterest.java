@@ -110,4 +110,10 @@ public class PointsOfInterest {
         this.photo3      = photo3;
 
     }
+
+    public PointsOfInterest(Integer id, String ville, String nom) {
+        this.id = id;
+        this.ville = ville;
+        this.nom = nom;
+    }
 }
