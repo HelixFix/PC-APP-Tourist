@@ -87,6 +87,7 @@ public class CityRomaController implements Initializable {
     {
         if (event.getClickCount() == 1) //Checking click
         {
+            chkboxfav.setSelected(false);
             PointsOfInterest dto = table_ptinteret.getSelectionModel().getSelectedItem();
             if (dto != null) {
                 //Do my processing
@@ -225,7 +226,7 @@ public class CityRomaController implements Initializable {
             BDDManager2 bdd = new BDDManager2();
             bdd.start("jdbc:mysql://localhost:3306/voyage?characterEncoding=utf8", "root", "");
 
-            String queryFav = ("DELETE avoir FROM avoir INNER JOIN utilisateur ON utilisateur.ID_utilisateur = avoir.ID_utilisateur WHERE `nom_utilisateur` = \"" + Data.username + "\"");
+            String queryFav = ("DELETE avoir FROM avoir INNER JOIN utilisateur ON utilisateur.ID_utilisateur = avoir.ID_utilisateur WHERE `nom_utilisateur` = \"" + Data.username + "\" AND  Id_pt_interet = "+ id.getText() +"");
             bdd.delete(queryFav);
             bdd.stop();
         }
