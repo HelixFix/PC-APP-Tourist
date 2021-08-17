@@ -1,6 +1,7 @@
 package controller;
 
 import BDDManager.BDDManager2;
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -51,6 +52,9 @@ public class UsersListController implements Initializable {
     private JFXTextField txtfldid;
 
     @FXML
+    private JFXButton btnactive;
+
+    @FXML
     // mouse listener for table users
     public void clickItem(MouseEvent event)
     {
@@ -58,6 +62,7 @@ public class UsersListController implements Initializable {
         {
             User dto = table_users.getSelectionModel().getSelectedItem();
             if (dto != null) {
+                btnactive.setDisable(false);
 
                 System.out.println(table_users.getSelectionModel().getSelectedItem().getId());
                 txtfldid.setText(String.valueOf(table_users.getSelectionModel().getSelectedItem().getId()));

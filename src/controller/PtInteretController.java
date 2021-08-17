@@ -22,6 +22,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.Window;
+import model.Data;
 import model.PointsOfInterest;
 
 

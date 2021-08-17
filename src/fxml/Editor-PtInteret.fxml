@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTextArea?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
 <?import javafx.geometry.Insets?>
@@ -18,7 +20,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="853.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.UsersListController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="853.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.PtInteretController">
    <children>
       <VBox layoutX="-5.0" layoutY="-4.0" prefHeight="863.0" prefWidth="330.0" style="-fx-background-color: #3F2B63;" stylesheets="@../css/fullpackstyling.css">
          <children>
@@ -31,18 +33,7 @@
                   </ImageView>
                </children>
             </Pane>
-            <Button alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="330.0" stylesheets="@../css/fullpackstyling.css" text="Villes" textFill="WHITE">
-               <graphic>
-                  <FontAwesomeIcon fill="WHITE" glyphName="BUILDING" />
-               </graphic>
-               <padding>
-                  <Insets left="50.0" />
-               </padding>
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Button>
-            <Button alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="330.0" stylesheets="@../css/fullpackstyling.css" text="Points d'intérêt" textFill="WHITE">
+            <Button alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" onAction="#ptInteretEditorMenuButtonPushed" prefHeight="59.0" prefWidth="330.0" stylesheets="@../css/fullpackstyling.css" text="Points d'intérêt" textFill="WHITE">
                <graphic>
                   <FontAwesomeIcon fill="WHITE" glyphName="UNIVERSITY" />
                </graphic>
@@ -56,8 +47,8 @@
                   <Glow />
                </effect>
             </Button>
-            <Pane prefHeight="428.0" prefWidth="330.0" />
-            <Button alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="330.0" stylesheets="@../css/fullpackstyling.css" text="Déconnexion" textFill="WHITE">
+            <Pane prefHeight="546.0" prefWidth="330.0" visible="false" />
+            <Button alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" onAction="#disconnectMenuButtonPushed" prefHeight="59.0" prefWidth="330.0" stylesheets="@../css/fullpackstyling.css" text="Déconnexion" textFill="WHITE">
                <graphic>
                   <FontAwesomeIcon fill="WHITE" glyphName="SIGN_OUT" />
                </graphic>
@@ -70,28 +61,43 @@
             </Button>
          </children>
       </VBox>
-      <GridPane layoutX="342.0" layoutY="285.0" prefHeight="563.0" prefWidth="932.0">
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints maxHeight="523.0" minHeight="10.0" prefHeight="516.0" vgrow="SOMETIMES" />
-        </rowConstraints>
+      <JFXComboBox fx:id="cmbville" layoutX="398.0" layoutY="362.0" onAction="#citySelection" promptText="Ville" />
+      <JFXTextField fx:id="txtfldnom" layoutX="399.0" layoutY="81.0" promptText="Nom" />
+      <JFXTextField fx:id="txtfldarchitecte" layoutX="398.0" layoutY="285.0" promptText="Architecte" />
+      <JFXTextField fx:id="txtfldcategorie" layoutX="398.0" layoutY="210.0" promptText="Catégorie" />
+      <JFXTextField fx:id="txtfldepoque" layoutX="398.0" layoutY="142.0" promptText="Epoque" />
+      <JFXTextArea fx:id="txtareadescription" layoutX="699.0" layoutY="270.0" prefHeight="185.0" prefWidth="494.0" promptText="Description" />
+      <JFXButton fx:id="btnSave" layoutX="463.0" layoutY="428.0" onAction="#saveScreenButtonPushed" text="Enregistrer" />
+      <GridPane layoutX="352.0" layoutY="490.0" prefHeight="356.0" prefWidth="920.0">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints maxHeight="523.0" minHeight="10.0" prefHeight="516.0" vgrow="SOMETIMES" />
+         </rowConstraints>
          <children>
-            <TableView fx:id="table_users" prefHeight="200.0" prefWidth="200.0" stylesheets="@../css/fullpackstyling.css">
-              <columns>
-                <TableColumn fx:id="col_id" prefWidth="75.0" text="ID" />
+            <TableView fx:id="table_ptinteret" onMouseClicked="#clickItem" prefHeight="368.0" prefWidth="894.0" style="-fx-fixed-cell-size: 25;" stylesheets="@../css/fullpackstyling.css">
+               <columns>
+                  <TableColumn fx:id="col_id" prefWidth="75.0" text="ID" />
                   <TableColumn fx:id="col_nom" prefWidth="75.0" text="Nom" />
-                <TableColumn fx:id="col_prenom" prefWidth="75.0" text="Epoque" />
-                  <TableColumn fx:id="col_pseudo" prefWidth="75.0" text="Catégorie" />
-                  <TableColumn fx:id="col_autorisation" prefWidth="109.0" text="Description" />
-                  <TableColumn fx:id="col_activer" prefWidth="75.0" text="Architecte" />
-                  <TableColumn fx:id="col_activer1" prefWidth="75.0" text="Publier" />
-              </columns>
+                  <TableColumn fx:id="col_epoque" prefWidth="75.0" text="Epoque" />
+                  <TableColumn fx:id="col_categorie" prefWidth="75.0" text="Catégorie" />
+                  <TableColumn fx:id="col_description" prefWidth="109.0" text="Description" />
+                  <TableColumn fx:id="col_architecte" prefWidth="75.0" text="Architecte" />
+                  <TableColumn fx:id="col_publier" prefWidth="75.0" text="Publier" />
+                  <TableColumn fx:id="col_ville" prefWidth="75.0" text="Ville" />
+               </columns>
             </TableView>
          </children>
       </GridPane>
-      <JFXTextField disable="true" layoutX="412.0" layoutY="100.0" promptText="ID" />
-      <JFXButton layoutX="587.0" layoutY="100.0" text="Modifier" />
+      <JFXTextField fx:id="txtfldid" disable="true" layoutX="399.0" layoutY="28.0" promptText="ID" />
+      <JFXButton fx:id="btnpublish" disable="true" layoutX="537.0" layoutY="428.0" onAction="#publishScreenButtonPushed" text="Publier" visible="false" />
+      <ImageView fx:id="img1View" fitHeight="150.0" fitWidth="200.0" layoutX="612.0" layoutY="80.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="img2View" fitHeight="150.0" fitWidth="200.0" layoutX="838.0" layoutY="80.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="img3View" fitHeight="150.0" fitWidth="200.0" layoutX="1061.0" layoutY="80.0" pickOnBounds="true" preserveRatio="true" />
+      <JFXButton fx:id="btnbrwseimg1" layoutX="614.0" layoutY="28.0" onAction="#choosePhoto1" text="Photo 1" />
+      <JFXButton fx:id="btnbrwseimg2" layoutX="838.0" layoutY="28.0" onAction="#choosePhoto2" text="Photo 2" />
+      <JFXButton fx:id="btnbrwseimg3" layoutX="1061.0" layoutY="28.0" onAction="#choosePhoto3" text="Photo 3" />
+      <JFXButton fx:id="btnNew" layoutX="394.0" layoutY="428.0" onAction="#newScreenButtonPushed" text="Nouveau" />
    </children>
 </AnchorPane>
