@@ -124,7 +124,7 @@
          </children>
       </GridPane>
       <JFXTextField fx:id="txtfldid" disable="true" layoutX="399.0" layoutY="28.0" promptText="ID" />
-      <JFXButton layoutX="537.0" layoutY="428.0" onAction="#publishScreenButtonPushed" text="Publier" />
+      <JFXButton fx:id="btnpublish" disable="true" layoutX="537.0" layoutY="428.0" onAction="#publishScreenButtonPushed" text="Publier" />
       <ImageView fx:id="img1View" fitHeight="150.0" fitWidth="200.0" layoutX="612.0" layoutY="80.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="img2View" fitHeight="150.0" fitWidth="200.0" layoutX="838.0" layoutY="80.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="img3View" fitHeight="150.0" fitWidth="200.0" layoutX="1061.0" layoutY="80.0" pickOnBounds="true" preserveRatio="true" />

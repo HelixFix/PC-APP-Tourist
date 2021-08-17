@@ -92,6 +92,9 @@ public class PtInteretController implements Initializable {
     private JFXButton btnSave;
 
     @FXML
+    private JFXButton btnpublish;
+
+    @FXML
     private TableView<PointsOfInterest> table_ptinteret;
 
     @FXML
@@ -139,6 +142,8 @@ public class PtInteretController implements Initializable {
                 btnbrwseimg1.setDisable(false);
                 btnbrwseimg2.setDisable(false);
                 btnbrwseimg3.setDisable(false);
+
+                btnpublish.setDisable(false);
             }
         }
     }
@@ -190,18 +195,17 @@ public class PtInteretController implements Initializable {
 
         listeVille = bdd.select("SELECT ID_ville, nom_ville FROM ville;");
         bdd.stop();
-        for (int i =0; i < listeVille.size(); i++) {
-            cmbville.getItems().addAll(listeVille.get(i).get(1));
+        for (ArrayList<String> strings : listeVille) {
+            cmbville.getItems().addAll(strings.get(1));
 
         }
     }
 
     public void citySelection() {
-        for (int i = 0; i < listeVille.size(); i++) {
-            if (listeVille.get(i).get(1) ==  cmbville.getValue()){
+        for (ArrayList<String> strings : listeVille) {
+            if (Objects.equals(strings.get(1), cmbville.getValue())) {
 
-                idVille = parseInt(listeVille.get(i).get(0));
-
+                idVille = parseInt(strings.get(0));
 
             }
         }
@@ -235,7 +239,7 @@ public class PtInteretController implements Initializable {
 
     }
 
-    public ObservableList<PointsOfInterest> getLastIDPtInterest() {
+    public void getLastIDPtInterest() {
 
         list.clear();
 
@@ -254,7 +258,6 @@ public class PtInteretController implements Initializable {
 
         }
 
-        return list;
     }
 
 
@@ -286,22 +289,9 @@ public class PtInteretController implements Initializable {
         window.show();
     }
 
-    /**
-     * Quand cette méthode est appelé ont change de scene vers Points d'intérêt - Admin
-     */
-    public void ptInteretAdminMenuButtonPushed(javafx.event.ActionEvent actionEvent) throws IOException {
-        Parent usersParent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../fxml/Admin-PtInteret.fxml")));
-        Scene usersScene = new Scene(usersParent);
-
-        // Cette ligne récupère l'information du Stage
-        Stage window = (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
-
-        window.setScene(usersScene);
-        window.show();
-    }
 
 
-    public  String storeStatement = "";;
+    public  String storeStatement = "";
     public  String retrieveStatement = "";
 
 
@@ -318,14 +308,10 @@ public class PtInteretController implements Initializable {
 
             store.execute();
 
-            if ( txtfldid.getText().trim().isEmpty()) {
-
-            } else {
-
+            if ( !txtfldid.getText().trim().isEmpty()) {
                 javafx.scene.image.Image image = new javafx.scene.image.Image(fileInputStream);
                 img1View.setImage(image);
             }
-
 
         } catch (IOException | SQLException e) {
             System.out.println(e.getMessage());
@@ -344,9 +330,7 @@ public class PtInteretController implements Initializable {
 
             //store.execute();
 
-            if ( txtfldid.getText().trim().isEmpty()) {
-
-            } else {
+            if ( !txtfldid.getText().trim().isEmpty()) {
                 javafx.scene.image.Image image = new javafx.scene.image.Image(fileInputStream);
                 img2View.setImage(image);
             }
@@ -367,13 +351,10 @@ public class PtInteretController implements Initializable {
 
             //store.execute();
 
-            if ( txtfldid.getText().trim().isEmpty()) {
-
-            } else {
+            if ( !txtfldid.getText().trim().isEmpty()) {
                 javafx.scene.image.Image image = new javafx.scene.image.Image(fileInputStream);
                 img3View.setImage(image);
             }
-
 
         } catch (IOException | SQLException e) {
             System.out.println(e.getMessage());
@@ -391,6 +372,12 @@ public class PtInteretController implements Initializable {
         txtfldepoque.clear();
         txtareadescription.clear();
         cmbville.setValue(null);
+
+        btnbrwseimg1.setDisable(true);
+        btnbrwseimg2.setDisable(true);
+        btnbrwseimg3.setDisable(true);
+
+        btnpublish.setDisable(true);
     }
 
     /**
@@ -403,6 +390,8 @@ public class PtInteretController implements Initializable {
         btnbrwseimg1.setDisable(false);
         btnbrwseimg2.setDisable(false);
         btnbrwseimg3.setDisable(false);
+
+        btnpublish.setDisable(false);
 
 
         btnbrwseimg1.setOnAction(e ->{
@@ -419,9 +408,8 @@ public class PtInteretController implements Initializable {
                  */
 
                 if (txtfldnom.getText().isEmpty()) {
-                    showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
-                            "Veuillez entrer un nom");
-                    return;
+                    showAlert(owner
+                    );
                 }
 
 
@@ -461,31 +449,20 @@ public class PtInteretController implements Initializable {
 
     }
 
-    private static void showAlert(Alert.AlertType alertType, Window owner, String title, String message) {
-        Alert alert = new Alert(alertType);
-        alert.setTitle(title);
+    private static void showAlert(Window owner) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Form Error!");
         alert.setHeaderText(null);
-        alert.setContentText(message);
+        alert.setContentText("Veuillez entrer un nom");
         alert.initOwner(owner);
         alert.show();
     }
 
-    /*TODO
-    Créer un bouton Nouveau
-     */
 
     /**
      * Quand cette méthode est appelé ont publie un point d'intérêt
      */
     public void publishScreenButtonPushed() {
-
-        if (txtfldid.getText().trim().isEmpty() ) {
-
-            /**
-             * TODO ajout d'un feedback visuel avec un message invitant l'utilisateur à selectionner une ligne du tableau
-             */
-
-        } else {
 
             BDDManager2 insert = new BDDManager2();
             insert.start("jdbc:mysql://localhost:3306/voyage?characterEncoding=utf8", "root", "");
@@ -495,7 +472,7 @@ public class PtInteretController implements Initializable {
 
             getDataPtInterest();
             table_ptinteret.refresh();
-        }
+
     }
 
     /**

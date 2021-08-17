@@ -11,10 +11,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
+import javafx.scene.shape.Line;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.Data;
@@ -64,6 +67,21 @@ public class CityRomaController implements Initializable {
     private Text id;
 
     @FXML
+    private Label lblcategorie;
+
+    @FXML
+    private Label lblepoque;
+
+    @FXML
+    private Pane rightsidepane;
+
+    @FXML
+    private Pane titlepane;
+
+    @FXML
+    private Line line;
+
+    @FXML
     // mouse listener for table point d'intérêt
     public void clickItem(MouseEvent event)
     {
@@ -79,6 +97,21 @@ public class CityRomaController implements Initializable {
                 resume.setText(String.valueOf(table_ptinteret.getSelectionModel().getSelectedItem().getDescription()));
                 epoque.setText(table_ptinteret.getSelectionModel().getSelectedItem().getEpoque());
                 categorie.setText(table_ptinteret.getSelectionModel().getSelectedItem().getCategorie());
+
+
+                title.setVisible(true);
+                title2.setVisible(true);
+                resume.setVisible(true);
+                epoque.setVisible(true);
+                categorie.setVisible(true);
+                chkboxfav.setVisible(true);
+
+                lblcategorie.setVisible(true);
+                lblepoque.setVisible(true);
+
+                line.setVisible(true);
+                titlepane.setVisible(true);
+                rightsidepane.setVisible(true);
 
             }
 
