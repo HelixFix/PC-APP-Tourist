@@ -100,7 +100,7 @@
       <JFXTextField fx:id="txtfldcategorie" layoutX="398.0" layoutY="210.0" promptText="Catégorie" />
       <JFXTextField fx:id="txtfldepoque" layoutX="398.0" layoutY="142.0" promptText="Epoque" />
       <JFXTextArea fx:id="txtareadescription" layoutX="699.0" layoutY="270.0" prefHeight="185.0" prefWidth="494.0" promptText="Description" />
-      <JFXButton fx:id="btnSave" layoutX="398.0" layoutY="428.0" onAction="#saveScreenButtonPushed" text="Enregistrer" />
+      <JFXButton fx:id="btnSave" layoutX="463.0" layoutY="428.0" onAction="#saveScreenButtonPushed" text="Enregistrer" />
       <GridPane layoutX="352.0" layoutY="490.0" prefHeight="356.0" prefWidth="920.0">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -124,12 +124,13 @@
          </children>
       </GridPane>
       <JFXTextField fx:id="txtfldid" disable="true" layoutX="399.0" layoutY="28.0" promptText="ID" />
-      <JFXButton layoutX="472.0" layoutY="428.0" onAction="#publishScreenButtonPushed" text="Publier" />
+      <JFXButton layoutX="537.0" layoutY="428.0" onAction="#publishScreenButtonPushed" text="Publier" />
       <ImageView fx:id="img1View" fitHeight="150.0" fitWidth="200.0" layoutX="612.0" layoutY="80.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="img2View" fitHeight="150.0" fitWidth="200.0" layoutX="838.0" layoutY="80.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="img3View" fitHeight="150.0" fitWidth="200.0" layoutX="1061.0" layoutY="80.0" pickOnBounds="true" preserveRatio="true" />
       <JFXButton fx:id="btnbrwseimg1" layoutX="614.0" layoutY="28.0" onAction="#choosePhoto1" text="Photo 1" />
       <JFXButton fx:id="btnbrwseimg2" layoutX="838.0" layoutY="28.0" onAction="#choosePhoto2" text="Photo 2" />
       <JFXButton fx:id="btnbrwseimg3" layoutX="1061.0" layoutY="28.0" onAction="#choosePhoto3" text="Photo 3" />
+      <JFXButton fx:id="btnNew" layoutX="394.0" layoutY="428.0" onAction="#newScreenButtonPushed" text="Nouveau" />
    </children>
 </AnchorPane>

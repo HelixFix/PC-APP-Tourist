@@ -380,11 +380,23 @@ public class PtInteretController implements Initializable {
         }
     }
 
+    /**
+     * Quand cette méthode est appelé ont vide les champs de saisi
+     */
+    public void newScreenButtonPushed() {
+        txtfldnom.clear();
+        txtfldid.clear();
+        txtfldarchitecte.clear();
+        txtfldcategorie.clear();
+        txtfldepoque.clear();
+        txtareadescription.clear();
+        cmbville.setValue(null);
+    }
 
     /**
      * Quand cette méthode est appelé ont enregistre ou modifie un point d'intérêt et recharge la scene
      */
-    public void saveScreenButtonPushed() throws SQLException {
+    public void saveScreenButtonPushed() {
 
         Window owner = btnSave.getScene().getWindow();
 

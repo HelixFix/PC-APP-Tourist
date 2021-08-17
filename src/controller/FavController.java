@@ -39,7 +39,7 @@ public class FavController implements Initializable {
     }
 
 /**
- * TODO table with with action buttons and query group by city
+ * TODO table with action buttons and query group by city
  */
 
 }
