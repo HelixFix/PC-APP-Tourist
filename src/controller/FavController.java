@@ -7,6 +7,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.Data;
@@ -21,11 +23,27 @@ public class FavController implements Initializable {
     @FXML
     private Text name;
 
+    @FXML
+    private TableView<?> table_fav;
+
+    @FXML
+    private TableColumn<?, ?> col_city;
+
+    @FXML
+    private TableColumn<?, ?> col_name;
+
+    @FXML
+    private TableColumn<?, ?> col_manage;
+
+    @FXML
+    private TableColumn<?, ?> col_link;
+
+    @FXML
+    private TableColumn<?, ?> col_id;
+
     @Override
     public void initialize (URL url, ResourceBundle rb) {
-        if (Data.username.equals("")) {
-
-        } else {
+        if (!Data.username.equals("")) {
             name.setText(Data.username);
         }
     }

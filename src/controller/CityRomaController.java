@@ -129,7 +129,39 @@ public class CityRomaController implements Initializable {
         col_ville.setCellValueFactory(new PropertyValueFactory<>("nom"));
 
 
-        listM = getDataPtInterest();
+
+
+
+        if (Data.idPtInterest > 0) {
+            listM = getOnePtInterest();
+
+            listM.get(0).getId();
+            id.setText(String.valueOf(listM.get(0).getId()));
+            title.setText(listM.get(0).getNom());
+            title2.setText(listM.get(0).getNom());
+            resume.setText(listM.get(0).getDescription());
+            epoque.setText(listM.get(0).getEpoque());
+            categorie.setText(listM.get(0).getCategorie());
+
+
+            title.setVisible(true);
+            title2.setVisible(true);
+            resume.setVisible(true);
+            epoque.setVisible(true);
+            categorie.setVisible(true);
+            chkboxfav.setVisible(true);
+            chkboxfav.setSelected(true);
+
+            lblcategorie.setVisible(true);
+            lblepoque.setVisible(true);
+
+            line.setVisible(true);
+            titlepane.setVisible(true);
+            rightsidepane.setVisible(true);
+        } else {
+            listM = getDataPtInterest();
+        }
+
         table_ptinteret.setItems(listM);
     }
 
@@ -142,6 +174,30 @@ public class CityRomaController implements Initializable {
         bdd.start("jdbc:mysql://localhost:3306/voyage?characterEncoding=utf8", "root", "");
 
         String queryPointsOfInterest = ("SELECT `ID_pt_interet`,`nom_pt_interet`,`nom_ville`,`nom_architecte`,`publier`,`categorie`,`description_pt_interet`,`epoque`,`chemin_photo1`,`chemin_photo2`,`chemin_photo3` FROM `point_interet` INNER JOIN ville ON ville.id_ville = point_interet.id_ville WHERE `nom_ville` = 'Rome' AND `publier` = 1 ORDER BY nom_ville");
+        ArrayList<ArrayList<String>> resultatDeMaRequete = new ArrayList<>(bdd.select(queryPointsOfInterest));
+
+        for (ArrayList<String> strings : resultatDeMaRequete) {
+
+
+            System.out.println("test1" + strings);
+
+            list.add(new PointsOfInterest(Integer.parseInt(strings.get(0)), strings.get(1), strings.get(2), strings.get(3), Integer.parseInt(strings.get(4)), strings.get(5), strings.get(6), strings.get(7), strings.get(8), strings.get(9), strings.get(10)));
+
+
+        }
+
+        return list;
+    }
+
+    // get the list of data city
+    public ObservableList<PointsOfInterest> getOnePtInterest() {
+
+        list.clear();
+
+        BDDManager2 bdd = new BDDManager2();
+        bdd.start("jdbc:mysql://localhost:3306/voyage?characterEncoding=utf8", "root", "");
+
+        String queryPointsOfInterest = ("SELECT `ID_pt_interet`,`nom_pt_interet`,`nom_ville`,`nom_architecte`,`publier`,`categorie`,`description_pt_interet`,`epoque`,`chemin_photo1`,`chemin_photo2`,`chemin_photo3` FROM `point_interet` INNER JOIN ville ON ville.id_ville = point_interet.id_ville WHERE ID_pt_interet = " + Data.idPtInterest + "");
         ArrayList<ArrayList<String>> resultatDeMaRequete = new ArrayList<>(bdd.select(queryPointsOfInterest));
 
         for (ArrayList<String> strings : resultatDeMaRequete) {

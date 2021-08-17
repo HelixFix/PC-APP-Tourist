@@ -3,6 +3,8 @@
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.effect.Glow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -64,6 +66,16 @@
             </Button>
          </children>
       </VBox>
-      <Text fx:id="name" layoutX="570.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+      <Text fx:id="name" layoutX="420.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+      <TableView fx:id="table_fav" layoutX="349.0" layoutY="158.0" prefHeight="685.0" prefWidth="922.0">
+        <columns>
+            <TableColumn fx:id="col_id" prefWidth="75.0" text="ID" visible="false" />
+          <TableColumn fx:id="col_city" prefWidth="75.0" text="Ville" />
+          <TableColumn fx:id="col_name" prefWidth="100.0" text="Point d'intérêt" />
+            <TableColumn fx:id="col_manage" prefWidth="100.0" text="Gestion" />
+            <TableColumn fx:id="col_link" prefWidth="100.0" text="Lien" />
+        </columns>
+      </TableView>
+      <Text layoutX="357.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Favoris de" />
    </children>
 </AnchorPane>
