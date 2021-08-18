@@ -1,7 +1,7 @@
 package controller;
 
 import BDDManager.BDDManager2;
-import com.jfoenix.controls.JFXCheckBox;
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextArea;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -61,9 +61,6 @@ public class CityRomaController implements Initializable {
     private Text architecte;
 
     @FXML
-    private JFXCheckBox chkboxfav;
-
-    @FXML
     private Text id;
 
     @FXML
@@ -82,12 +79,15 @@ public class CityRomaController implements Initializable {
     private Line line;
 
     @FXML
+    private JFXButton btnfav;
+
+    @FXML
     // mouse listener for table point d'intérêt
     public void clickItem(MouseEvent event)
     {
         if (event.getClickCount() == 1) //Checking click
         {
-            chkboxfav.setSelected(false);
+
             PointsOfInterest dto = table_ptinteret.getSelectionModel().getSelectedItem();
             if (dto != null) {
                 //Do my processing
@@ -105,7 +105,7 @@ public class CityRomaController implements Initializable {
                 resume.setVisible(true);
                 epoque.setVisible(true);
                 categorie.setVisible(true);
-                chkboxfav.setVisible(true);
+                btnfav.setVisible(true);
 
                 lblcategorie.setVisible(true);
                 lblepoque.setVisible(true);
@@ -150,8 +150,7 @@ public class CityRomaController implements Initializable {
             resume.setVisible(true);
             epoque.setVisible(true);
             categorie.setVisible(true);
-            chkboxfav.setVisible(true);
-            chkboxfav.setSelected(true);
+            btnfav.setVisible(true);
 
             lblcategorie.setVisible(true);
             lblepoque.setVisible(true);
@@ -214,23 +213,15 @@ public class CityRomaController implements Initializable {
         return list;
     }
 
-    public void chkbox() {
-        if (chkboxfav.isSelected()){
-            BDDManager2 bdd = new BDDManager2();
-            bdd.start("jdbc:mysql://localhost:3306/voyage?characterEncoding=utf8", "root", "");
+    public void favScreenButtonPushed(){
+        BDDManager2 bdd = new BDDManager2();
+        bdd.start("jdbc:mysql://localhost:3306/voyage?characterEncoding=utf8", "root", "");
 
-            String queryFav = ("INSERT INTO avoir (id_utilisateur, ID_pt_interet) SELECT id_utilisateur, ID_pt_interet FROM utilisateur, point_interet WHERE nom_utilisateur = \"" + Data.username + "\" AND ID_pt_interet = " + id.getText() + "");
-            bdd.insert(queryFav);
-            bdd.stop();
-        } else {
-            BDDManager2 bdd = new BDDManager2();
-            bdd.start("jdbc:mysql://localhost:3306/voyage?characterEncoding=utf8", "root", "");
-
-            String queryFav = ("DELETE avoir FROM avoir INNER JOIN utilisateur ON utilisateur.ID_utilisateur = avoir.ID_utilisateur WHERE `nom_utilisateur` = \"" + Data.username + "\" AND  Id_pt_interet = "+ id.getText() +"");
-            bdd.delete(queryFav);
-            bdd.stop();
-        }
+        String queryFav = ("INSERT INTO avoir (id_utilisateur, ID_pt_interet) SELECT id_utilisateur, ID_pt_interet FROM utilisateur, point_interet WHERE nom_utilisateur = \"" + Data.username + "\" AND ID_pt_interet = " + id.getText() + "");
+        bdd.insert(queryFav);
+        bdd.stop();
     }
+
 
     /**
      * Quand cette méthode est appelé ont change de scene vers Villes
