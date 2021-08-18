@@ -1,5 +1,7 @@
 package model;
 
+import com.jfoenix.controls.JFXButton;
+
 public class PointsOfInterest {
     Integer id, publier;
     String ville, nom, architecte, categorie, epoque, photo1, photo2, photo3, description;
@@ -96,6 +98,9 @@ public class PointsOfInterest {
         this.id = id;
     }
 
+    private JFXButton btnmanage;
+    private JFXButton btnlink;
+
     public PointsOfInterest(Integer id, String nom, String ville, String architecte, Integer publier, String categorie, String description, String epoque, String photo1, String photo2, String photo3) {
         this.id          = id;
         this.ville       = ville;
@@ -111,9 +116,19 @@ public class PointsOfInterest {
 
     }
 
+    public JFXButton getBtnmanage() {
+        return btnmanage;
+    }
+
+    public void setBtnmanage(JFXButton btnmanage) {
+        this.btnmanage = btnmanage;
+    }
+
     public PointsOfInterest(Integer id, String ville, String nom) {
         this.id = id;
         this.ville = ville;
         this.nom = nom;
+        this.btnmanage = new JFXButton("Supprimer");
+        this.btnlink = new JFXButton("Voir");
     }
 }
