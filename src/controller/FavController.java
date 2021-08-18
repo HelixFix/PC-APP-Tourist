@@ -64,7 +64,7 @@ public class FavController implements Initializable {
         col_city.setCellValueFactory(new PropertyValueFactory<>("ville"));
         col_name.setCellValueFactory(new PropertyValueFactory<>("nom"));
         col_manage.setCellValueFactory(new PropertyValueFactory<>("btnmanage"));
-
+        col_link.setCellValueFactory(new PropertyValueFactory<>("btnlink"));
 
 
         // rune the method
@@ -74,7 +74,7 @@ public class FavController implements Initializable {
         table_fav.setItems(listM);
 
     }
-    ObservableList<PointsOfInterest> listM;
+    public static ObservableList<PointsOfInterest> listM;
 /**
  * TODO table with action buttons and query group by city
  */
@@ -88,7 +88,7 @@ public ObservableList<PointsOfInterest> getDataPtInterest() {
     bdd.start("jdbc:mysql://localhost:3306/voyage?characterEncoding=utf8", "root", "");
 
     // Select query string
-    String queryPointsOfInterest = ("SELECT DISTINCT point_interet.id_pt_interet, ville.nom_ville, point_interet.nom_pt_interet FROM `avoir` INNER JOIN point_interet ON point_interet.id_pt_interet = avoir.id_pt_interet INNER JOIN ville ON ville.id_ville = point_interet.id_ville INNER JOIN utilisateur ON utilisateur.ID_utilisateur = avoir.ID_utilisateur WHERE utilisateur.nom_utilisateur = \"" + Data.username +"\"");
+    String queryPointsOfInterest = ("SELECT DISTINCT id, point_interet.id_pt_interet, ville.nom_ville, point_interet.nom_pt_interet FROM `avoir` INNER JOIN point_interet ON point_interet.id_pt_interet = avoir.id_pt_interet INNER JOIN ville ON ville.id_ville = point_interet.id_ville INNER JOIN utilisateur ON utilisateur.ID_utilisateur = avoir.ID_utilisateur WHERE utilisateur.nom_utilisateur = \"" + Data.username +"\"");
     ArrayList<ArrayList<String>> resultatDeMaRequete = new ArrayList<>(bdd.select(queryPointsOfInterest));
 
     for (ArrayList<String> strings : resultatDeMaRequete) {
@@ -96,7 +96,7 @@ public ObservableList<PointsOfInterest> getDataPtInterest() {
 
         System.out.println("test1" + strings);
 
-        list.add(new PointsOfInterest(Integer.parseInt(strings.get(0)), strings.get(1), strings.get(2)));
+        list.add(new PointsOfInterest(Integer.parseInt(strings.get(0)),Integer.parseInt(strings.get(1)), strings.get(2), strings.get(3), new JFXButton("Supprimer")));
 
     }
 
@@ -104,6 +104,7 @@ public ObservableList<PointsOfInterest> getDataPtInterest() {
 
 
 }
+
 
 
     /**

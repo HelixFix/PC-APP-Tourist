@@ -92,7 +92,7 @@ public class CityRomaController implements Initializable {
             if (dto != null) {
                 //Do my processing
                 System.out.println(table_ptinteret.getSelectionModel().getSelectedItem().getNom());
-                id.setText(String.valueOf(table_ptinteret.getSelectionModel().getSelectedItem().getId()));
+                id.setText(String.valueOf(table_ptinteret.getSelectionModel().getSelectedItem().getIdptinteret()));
                 title.setText(table_ptinteret.getSelectionModel().getSelectedItem().getNom());
                 title2.setText(table_ptinteret.getSelectionModel().getSelectedItem().getNom());
                 resume.setText(String.valueOf(table_ptinteret.getSelectionModel().getSelectedItem().getDescription()));
@@ -136,8 +136,8 @@ public class CityRomaController implements Initializable {
         if (Data.idPtInterest > 0) {
             listM = getOnePtInterest();
 
-            listM.get(0).getId();
-            id.setText(String.valueOf(listM.get(0).getId()));
+            listM.get(0).getIdptinteret();
+            id.setText(String.valueOf(listM.get(0).getIdptinteret()));
             title.setText(listM.get(0).getNom());
             title2.setText(listM.get(0).getNom());
             resume.setText(listM.get(0).getDescription());

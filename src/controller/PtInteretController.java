@@ -130,7 +130,7 @@ public class PtInteretController implements Initializable {
             PointsOfInterest dto = table_ptinteret.getSelectionModel().getSelectedItem();
             if (dto != null) {
                 System.out.println(table_ptinteret.getSelectionModel().getSelectedItem().getNom());
-                txtfldid.setText(String.valueOf(table_ptinteret.getSelectionModel().getSelectedItem().getId()));
+                txtfldid.setText(String.valueOf(table_ptinteret.getSelectionModel().getSelectedItem().getIdptinteret()));
                 txtfldnom.setText(String.valueOf(table_ptinteret.getSelectionModel().getSelectedItem().getNom()));
                 txtfldepoque.setText(String.valueOf(table_ptinteret.getSelectionModel().getSelectedItem().getEpoque()));
                 txtfldcategorie.setText(String.valueOf(table_ptinteret.getSelectionModel().getSelectedItem().getCategorie()));
@@ -426,7 +426,7 @@ public class PtInteretController implements Initializable {
                 getLastIDPtInterest();
 
                 //store.execute();
-                txtfldid.setText(String.valueOf(list2.get(0).getId()));
+                txtfldid.setText(String.valueOf(list2.get(0).getIdptinteret()));
                 //System.out.println(txtfldid.getText());
                 getDataPtInterest();
                 table_ptinteret.refresh();
