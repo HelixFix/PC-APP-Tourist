@@ -75,7 +75,7 @@ public ObservableList<PointsOfInterest> getDataPtInterest() {
     BDDManager2 bdd = new BDDManager2();
     bdd.start("jdbc:mysql://localhost:3306/voyage?characterEncoding=utf8", "root", "");
 
-    String queryPointsOfInterest = ("SELECT point_interet.id_pt_interet, ville.nom_ville, point_interet.nom_pt_interet FROM `avoir` INNER JOIN point_interet ON point_interet.id_pt_interet = avoir.id_pt_interet INNER JOIN ville ON ville.id_ville = point_interet.id_ville INNER JOIN utilisateur ON utilisateur.ID_utilisateur = avoir.ID_utilisateur WHERE utilisateur.nom_utilisateur = \"" + Data.username +"\"");
+    String queryPointsOfInterest = ("SELECT DISTINCT point_interet.id_pt_interet, ville.nom_ville, point_interet.nom_pt_interet FROM `avoir` INNER JOIN point_interet ON point_interet.id_pt_interet = avoir.id_pt_interet INNER JOIN ville ON ville.id_ville = point_interet.id_ville INNER JOIN utilisateur ON utilisateur.ID_utilisateur = avoir.ID_utilisateur WHERE utilisateur.nom_utilisateur = \"" + Data.username +"\"");
     ArrayList<ArrayList<String>> resultatDeMaRequete = new ArrayList<>(bdd.select(queryPointsOfInterest));
 
     for (ArrayList<String> strings : resultatDeMaRequete) {
