@@ -71,5 +71,21 @@ public class CityController {
         window.show();
     }
 
+    /**
+     * Quand cette méthode est appelé ont change de scene vers Pékin
+     */
+    public void beijingScreenButtonPushed(javafx.event.ActionEvent actionEvent) throws IOException {
+        Data.idPtInterest = 0;
+
+        Parent usersParent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../fxml/User-City-Pekin.fxml")));
+        Scene usersScene = new Scene(usersParent);
+
+        // Cette ligne récupère l'information du Stage
+        Stage window = (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
+
+        window.setScene(usersScene);
+        window.show();
+    }
+
 
 }

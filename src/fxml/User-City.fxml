@@ -71,8 +71,12 @@
             <Image url="@../Asset/Images/roma.jpg" />
          </image>
       </ImageView>
-      <ImageView fitHeight="226.0" fitWidth="350.0" layoutX="855.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fitHeight="197.0" fitWidth="338.0" layoutX="867.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Asset/Images/beijing.jpg" />
+         </image></ImageView>
       <ImageView fitHeight="226.0" fitWidth="350.0" layoutX="387.0" layoutY="409.0" pickOnBounds="true" preserveRatio="true" />
       <JFXButton layoutX="371.0" layoutY="50.0" onAction="#romaScreenButtonPushed" prefHeight="197.0" prefWidth="350.0" text=" " />
+      <JFXButton layoutX="867.0" layoutY="50.0" onAction="#beijingScreenButtonPushed" prefHeight="197.0" prefWidth="337.0" text=" " />
    </children>
 </AnchorPane>

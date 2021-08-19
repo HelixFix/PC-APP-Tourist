@@ -92,15 +92,16 @@ public class PointsOfInterest {
         return publier;
     }
 
-    public void setPublier(Integer publier) {
-        this.publier = publier;
-    }
-
     public PointsOfInterest(Integer idptinteret) {
         this.idptinteret = idptinteret;
     }
 
     private JFXButton btnmanage;
+
+    public JFXButton getBtnlink() {
+        return btnlink;
+    }
+
     private JFXButton btnlink;
 
     public PointsOfInterest(Integer idptinteret, String nom, String ville, String architecte, Integer publier, String categorie, String description, String epoque, String photo1, String photo2, String photo3) {

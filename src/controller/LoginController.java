@@ -97,7 +97,7 @@ public class LoginController {
         PreparedStatement st;
         ResultSet rs;
 
-        Parent usersParent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../fxml/Login.fxml")));
+        Parent usersParent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../fxml/Loginv2.fxml")));
 
         if (tabAdmin.isSelected()) {
             // get the username & password
