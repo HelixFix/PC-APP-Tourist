@@ -1,7 +1,20 @@
 package model;
 
+import BDDManager.BDDManager2;
+import com.jfoenix.controls.JFXButton;
+import controller.FavController;
+import javafx.collections.transformation.TransformationList;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+
+import java.io.IOException;
+import java.util.Objects;
+
 public class PointsOfInterest {
-    Integer id, publier;
+    Integer id, idptinteret, publier;
     String ville, nom, architecte, categorie, epoque, photo1, photo2, photo3, description;
 
     public String getVille() {
@@ -76,12 +89,12 @@ public class PointsOfInterest {
         this.description = description;
     }
 
-    public Integer getId() {
-        return id;
+    public Integer getIdptinteret() {
+        return idptinteret;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setIdptinteret(Integer idptinteret) {
+        this.idptinteret = idptinteret;
     }
 
     public Integer getPublier() {
@@ -92,12 +105,15 @@ public class PointsOfInterest {
         this.publier = publier;
     }
 
-    public PointsOfInterest(Integer id) {
-        this.id = id;
+    public PointsOfInterest(Integer idptinteret) {
+        this.idptinteret = idptinteret;
     }
 
-    public PointsOfInterest(Integer id, String nom, String ville, String architecte, Integer publier, String categorie, String description, String epoque, String photo1, String photo2, String photo3) {
-        this.id          = id;
+    private JFXButton btnmanage;
+    private JFXButton btnlink;
+
+    public PointsOfInterest(Integer idptinteret, String nom, String ville, String architecte, Integer publier, String categorie, String description, String epoque, String photo1, String photo2, String photo3) {
+        this.idptinteret = idptinteret;
         this.ville       = ville;
         this.nom         = nom;
         this.architecte  = architecte;
@@ -110,4 +126,57 @@ public class PointsOfInterest {
         this.photo3      = photo3;
 
     }
+
+    public JFXButton getBtnmanage() {
+        return btnmanage;
+    }
+
+    public void setBtnmanage(JFXButton btnmanage) {
+        this.btnmanage = btnmanage;
+    }
+
+    public JFXButton getBtnlink() {
+        return btnlink;
+    }
+
+    public void setBtnlink(JFXButton btnlink) {
+        this.btnlink = btnlink;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public PointsOfInterest(Integer id, Integer idptinteret, String ville, String nom, JFXButton manage) {
+        this.id = id;
+        this.idptinteret = idptinteret;
+        this.ville = ville;
+        this.nom = nom;
+        this.btnmanage = manage;
+        this.btnlink = new JFXButton("Voir");
+
+        btnmanage.setOnAction(e -> {
+
+            for (PointsOfInterest pointsOfInterest: FavController.listM) {
+                if (pointsOfInterest.getBtnmanage() == manage) {
+                    System.out.println(""+pointsOfInterest.getIdptinteret());
+
+                    BDDManager2 bdd = new BDDManager2();
+                    bdd.start("jdbc:mysql://localhost:3306/voyage?characterEncoding=utf8", "root", "");
+
+                    bdd.delete("DELETE FROM `avoir` WHERE `id`= " + pointsOfInterest.getId() +"");
+                    bdd.stop();
+
+
+                }
+            }
+        });
+    }
+
+
+
 }
