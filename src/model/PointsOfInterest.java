@@ -183,7 +183,7 @@ public class PointsOfInterest {
 
                     Parent usersParent = null;
                     try {
-                        usersParent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../fxml/User-City-Rome.fxml")));
+                        usersParent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../fxml/User-City-Details.fxml")));
                     } catch (IOException ex) {
                         ex.printStackTrace();
                     }

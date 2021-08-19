@@ -6,11 +6,7 @@ import com.jfoenix.controls.JFXTextArea;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -19,7 +15,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Line;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 import model.Data;
 import model.PointsOfInterest;
 
@@ -30,7 +25,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
-public class CityRomaController implements Initializable {
+public class CityDetailsController implements Initializable {
     ObservableList<PointsOfInterest> list = FXCollections.observableArrayList();
 
     @FXML
@@ -173,23 +168,42 @@ public class CityRomaController implements Initializable {
         BDDManager2 bdd = new BDDManager2();
         bdd.start("jdbc:mysql://localhost:3306/voyage?characterEncoding=utf8", "root", "");
 
-        String queryPointsOfInterest = ("SELECT `ID_pt_interet`,`nom_pt_interet`,`nom_ville`,`nom_architecte`,`publier`,`categorie`,`description_pt_interet`,`epoque`,`chemin_photo1`,`chemin_photo2`,`chemin_photo3` FROM `point_interet` INNER JOIN ville ON ville.id_ville = point_interet.id_ville WHERE `nom_ville` = 'Rome' AND `publier` = 1 ORDER BY nom_ville");
-        ArrayList<ArrayList<String>> resultatDeMaRequete = new ArrayList<>(bdd.select(queryPointsOfInterest));
+        // If user choose Roma city show the list of activated point of interest
+        if (Objects.equals(Data.cityName, "Roma")) {
+            String queryPointsOfInterest = ("SELECT `ID_pt_interet`,`nom_pt_interet`,`nom_ville`,`nom_architecte`,`publier`,`categorie`,`description_pt_interet`,`epoque`,`chemin_photo1`,`chemin_photo2`,`chemin_photo3` FROM `point_interet` INNER JOIN ville ON ville.id_ville = point_interet.id_ville WHERE `nom_ville` = 'Rome' AND `publier` = 1 ORDER BY nom_ville");
 
-        for (ArrayList<String> strings : resultatDeMaRequete) {
+            ArrayList<ArrayList<String>> resultatDeMaRequete = new ArrayList<>(bdd.select(queryPointsOfInterest));
 
-
-            System.out.println("test1" + strings);
-
-            list.add(new PointsOfInterest(Integer.parseInt(strings.get(0)), strings.get(1), strings.get(2), strings.get(3), Integer.parseInt(strings.get(4)), strings.get(5), strings.get(6), strings.get(7), strings.get(8), strings.get(9), strings.get(10)));
+            for (ArrayList<String> strings : resultatDeMaRequete) {
 
 
+                System.out.println("test1" + strings);
+
+                list.add(new PointsOfInterest(Integer.parseInt(strings.get(0)), strings.get(1), strings.get(2), strings.get(3), Integer.parseInt(strings.get(4)), strings.get(5), strings.get(6), strings.get(7), strings.get(8), strings.get(9), strings.get(10)));
+
+            }
         }
+        // If user choose Beijing city show the list of activated point of interest
+        if (Objects.equals(Data.cityName, "Beijing")) {
+            String queryPointsOfInterest = ("SELECT `ID_pt_interet`,`nom_pt_interet`,`nom_ville`,`nom_architecte`,`publier`,`categorie`,`description_pt_interet`,`epoque`,`chemin_photo1`,`chemin_photo2`,`chemin_photo3` FROM `point_interet` INNER JOIN ville ON ville.id_ville = point_interet.id_ville WHERE `nom_ville` = 'Pékin' AND `publier` = 1 ORDER BY nom_ville");
+
+            ArrayList<ArrayList<String>> resultatDeMaRequete = new ArrayList<>(bdd.select(queryPointsOfInterest));
+
+            for (ArrayList<String> strings : resultatDeMaRequete) {
+
+
+                System.out.println("test1" + strings);
+
+                list.add(new PointsOfInterest(Integer.parseInt(strings.get(0)), strings.get(1), strings.get(2), strings.get(3), Integer.parseInt(strings.get(4)), strings.get(5), strings.get(6), strings.get(7), strings.get(8), strings.get(9), strings.get(10)));
+
+            }
+        }
+
 
         return list;
     }
 
-    // get the list of data city
+    // get the data of one point of interest
     public ObservableList<PointsOfInterest> getOnePtInterest() {
 
         list.clear();

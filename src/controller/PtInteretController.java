@@ -279,7 +279,7 @@ public class PtInteretController implements Initializable {
      * Quand cette méthode est appelé ont change de scene vers Points d'intérêt - Editor
      */
     public void ptInteretEditorMenuButtonPushed(javafx.event.ActionEvent actionEvent) throws IOException {
-        Parent usersParent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../fxml/Admin-PtInteret.fxml")));
+        Parent usersParent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../fxml/Editor-PtInteret.fxml")));
         Scene usersScene = new Scene(usersParent);
 
         // Cette ligne récupère l'information du Stage

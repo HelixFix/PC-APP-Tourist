@@ -195,7 +195,7 @@ public class LoginController {
                 if (rs.next()) {
                     Data.username = userUsername;
                     // show a new form
-                    usersParent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../fxml/User-City.fxml")));
+                    usersParent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../fxml/User-City-Cards.fxml")));
                 } else {
                     // error message
                     if (txtflduserusername.getText().isEmpty()) {

@@ -10,7 +10,7 @@ import model.Data;
 import java.io.IOException;
 import java.util.Objects;
 
-public class CityController {
+public class CityCardsController {
 
     /**
      * Quand cette méthode est appelé ont change de scene vers Villes
@@ -42,8 +42,9 @@ public class CityController {
      */
     public void romaScreenButtonPushed(javafx.event.ActionEvent actionEvent) throws IOException {
         Data.idPtInterest = 0;
+        Data.cityName = "Roma";
 
-        Parent usersParent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../fxml/User-City-Rome.fxml")));
+        Parent usersParent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../fxml/User-City-Details.fxml")));
         Scene usersScene = new Scene(usersParent);
 
         // Cette ligne récupère l'information du Stage
@@ -58,8 +59,9 @@ public class CityController {
      */
     public void beijingScreenButtonPushed(javafx.event.ActionEvent actionEvent) throws IOException {
         Data.idPtInterest = 0;
+        Data.cityName = "Beijing";
 
-        Parent usersParent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../fxml/User-City-Pekin.fxml")));
+        Parent usersParent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../fxml/User-City-Details.fxml")));
         Scene usersScene = new Scene(usersParent);
 
         // Cette ligne récupère l'information du Stage
