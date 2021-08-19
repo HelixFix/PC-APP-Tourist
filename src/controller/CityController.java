@@ -16,42 +16,24 @@ public class CityController {
      * Quand cette méthode est appelé ont change de scene vers Villes
      */
     public void cityMenuButtonPushed(javafx.event.ActionEvent actionEvent) throws IOException {
-        Parent usersParent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../fxml/User-City.fxml")));
-        Scene usersScene = new Scene(usersParent);
 
-        // Cette ligne récupère l'information du Stage
-        Stage window = (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
-
-        window.setScene(usersScene);
-        window.show();
+        NavController.cityMenuButtonPushed(actionEvent);
     }
 
     /**
      * Quand cette méthode est appelé ont change de scene vers Favoris
      */
     public void favMenuButtonPushed(javafx.event.ActionEvent actionEvent) throws IOException {
-        Parent usersParent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../fxml/User-Fav.fxml")));
-        Scene usersScene = new Scene(usersParent);
 
-        // Cette ligne récupère l'information du Stage
-        Stage window = (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
-
-        window.setScene(usersScene);
-        window.show();
+        NavController.favMenuButtonPushed(actionEvent);
     }
 
     /**
      * Quand cette méthode est appelé ont change de scene vers Connexion
      */
     public void disconnectMenuButtonPushed(javafx.event.ActionEvent actionEvent) throws IOException {
-        Parent usersParent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../fxml/loginv2.fxml")));
-        Scene usersScene = new Scene(usersParent);
 
-        // Cette ligne récupère l'information du Stage
-        Stage window = (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
-
-        window.setScene(usersScene);
-        window.show();
+        NavController.disconnectMenuButtonPushed(actionEvent);
     }
 
 

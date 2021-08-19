@@ -128,13 +128,8 @@ public class UsersListController implements Initializable {
      */
     public void activateScreenButtonPushed() {
 
-        if ( txtfldid.getText().trim().isEmpty()) {
+        if ( !txtfldid.getText().trim().isEmpty()) {
 
-            /**
-             * TODO ajout d'un feedback visuel avec un message invitant l'utilisateur à selectionner une ligne du tableau
-             */
-
-        } else {
             BDDManager2 insert = new BDDManager2();
             insert.start("jdbc:mysql://localhost:3306/voyage?characterEncoding=utf8", "root", "");
             String queryClient = ("UPDATE `utilisateur` SET `activer` = NOT `activer` WHERE `utilisateur`.`ID_utilisateur` = " + txtfldid.getText() + "");
@@ -150,14 +145,8 @@ public class UsersListController implements Initializable {
      * Quand cette méthode est appelé ont change de scene vers Connexion
      */
     public void disconnectMenuButtonPushed(javafx.event.ActionEvent actionEvent) throws IOException {
-        Parent usersParent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../fxml/loginv2.fxml")));
-        Scene usersScene = new Scene(usersParent);
 
-        // Cette ligne récupère l'information du Stage
-        Stage window = (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
-
-        window.setScene(usersScene);
-        window.show();
+        NavController.disconnectMenuButtonPushed(actionEvent);
     }
 
 }
