@@ -157,7 +157,7 @@ public class PtInteretController implements Initializable {
     // initializes list controller with given url
     public void initialize (URL url, ResourceBundle rb) {
 
-        col_id.setCellValueFactory(new PropertyValueFactory<>("id"));
+        col_id.setCellValueFactory(new PropertyValueFactory<>("idptinteret"));
         col_nom.setCellValueFactory(new PropertyValueFactory<>("nom"));
         col_ville.setCellValueFactory(new PropertyValueFactory<>("ville"));
         col_epoque.setCellValueFactory(new PropertyValueFactory<>("epoque"));

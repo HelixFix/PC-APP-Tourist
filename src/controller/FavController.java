@@ -4,14 +4,12 @@ import BDDManager.BDDManager2;
 import com.jfoenix.controls.JFXButton;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -20,7 +18,6 @@ import javafx.stage.Stage;
 import model.Data;
 import model.PointsOfInterest;
 
-import javax.security.auth.callback.Callback;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -96,7 +93,7 @@ public ObservableList<PointsOfInterest> getDataPtInterest() {
 
         System.out.println("test1" + strings);
 
-        list.add(new PointsOfInterest(Integer.parseInt(strings.get(0)),Integer.parseInt(strings.get(1)), strings.get(2), strings.get(3), new JFXButton("Supprimer")));
+        list.add(new PointsOfInterest(Integer.parseInt(strings.get(0)),Integer.parseInt(strings.get(1)), strings.get(2), strings.get(3), new JFXButton("Supprimer"), new JFXButton("Voir")));
 
     }
 

@@ -3,7 +3,6 @@ package model;
 import BDDManager.BDDManager2;
 import com.jfoenix.controls.JFXButton;
 import controller.FavController;
-import javafx.collections.transformation.TransformationList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -85,16 +84,8 @@ public class PointsOfInterest {
         return description;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     public Integer getIdptinteret() {
         return idptinteret;
-    }
-
-    public void setIdptinteret(Integer idptinteret) {
-        this.idptinteret = idptinteret;
     }
 
     public Integer getPublier() {
@@ -131,18 +122,6 @@ public class PointsOfInterest {
         return btnmanage;
     }
 
-    public void setBtnmanage(JFXButton btnmanage) {
-        this.btnmanage = btnmanage;
-    }
-
-    public JFXButton getBtnlink() {
-        return btnlink;
-    }
-
-    public void setBtnlink(JFXButton btnlink) {
-        this.btnlink = btnlink;
-    }
-
     public Integer getId() {
         return id;
     }
@@ -151,13 +130,13 @@ public class PointsOfInterest {
         this.id = id;
     }
 
-    public PointsOfInterest(Integer id, Integer idptinteret, String ville, String nom, JFXButton manage) {
+    public PointsOfInterest(Integer id, Integer idptinteret, String ville, String nom, JFXButton manage, JFXButton link) {
         this.id = id;
         this.idptinteret = idptinteret;
         this.ville = ville;
         this.nom = nom;
         this.btnmanage = manage;
-        this.btnlink = new JFXButton("Voir");
+        this.btnlink = link;
 
         btnmanage.setOnAction(e -> {
 
@@ -171,6 +150,50 @@ public class PointsOfInterest {
                     bdd.delete("DELETE FROM `avoir` WHERE `id`= " + pointsOfInterest.getId() +"");
                     bdd.stop();
 
+
+                    Parent usersParent = null;
+                    try {
+                        usersParent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../fxml/User-Fav.fxml")));
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                    assert usersParent != null;
+                    Scene usersScene = new Scene(usersParent);
+
+                    // Cette ligne récupère l'information du Stage
+                    Stage window = (Stage) ((Node)e.getSource()).getScene().getWindow();
+
+                    window.setScene(usersScene);
+                    window.show();
+
+                }
+            }
+        });
+
+        link.setOnAction(e -> {
+
+            for (PointsOfInterest pointsOfInterest: FavController.listM) {
+                if (pointsOfInterest.getBtnmanage() == manage) {
+                    System.out.println(""+pointsOfInterest.getIdptinteret());
+
+
+                    Data.idPtInterest = pointsOfInterest.getIdptinteret();
+
+
+                    Parent usersParent = null;
+                    try {
+                        usersParent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../fxml/User-City-Rome.fxml")));
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                    assert usersParent != null;
+                    Scene usersScene = new Scene(usersParent);
+
+                    // Cette ligne récupère l'information du Stage
+                    Stage window = (Stage) ((Node)e.getSource()).getScene().getWindow();
+
+                    window.setScene(usersScene);
+                    window.show();
 
                 }
             }
