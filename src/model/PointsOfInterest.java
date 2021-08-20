@@ -20,40 +20,20 @@ public class PointsOfInterest {
         return ville;
     }
 
-    public void setVille(String ville) {
-        this.ville = ville;
-    }
-
     public String getNom() {
         return nom;
-    }
-
-    public void setNom(String nom) {
-        this.nom = nom;
     }
 
     public String getArchitecte() {
         return architecte;
     }
 
-    public void setArchitecte(String architecte) {
-        this.architecte = architecte;
-    }
-
     public String getCategorie() {
         return categorie;
     }
 
-    public void setCategorie(String categorie) {
-        this.categorie = categorie;
-    }
-
     public String getEpoque() {
         return epoque;
-    }
-
-    public void setEpoque(String epoque) {
-        this.epoque = epoque;
     }
 
     public String getPhoto1() {

@@ -125,13 +125,9 @@ public class CityDetailsController implements Initializable {
         col_ville.setCellValueFactory(new PropertyValueFactory<>("nom"));
 
 
-
-
-
         if (Data.idPtInterest > 0) {
             listM = getOnePtInterest();
 
-            listM.get(0).getIdptinteret();
             id.setText(String.valueOf(listM.get(0).getIdptinteret()));
             title.setText(listM.get(0).getNom());
             title2.setText(listM.get(0).getNom());
