@@ -95,6 +95,7 @@ public class CityDetailsController implements Initializable {
                 categorie.setText(table_ptinteret.getSelectionModel().getSelectedItem().getCategorie());
 
 
+                // When point of interest selected show text
                 title.setVisible(true);
                 title2.setVisible(true);
                 resume.setVisible(true);
@@ -182,6 +183,21 @@ public class CityDetailsController implements Initializable {
         // If user choose Beijing city show the list of activated point of interest
         if (Objects.equals(Data.cityName, "Beijing")) {
             String queryPointsOfInterest = ("SELECT `ID_pt_interet`,`nom_pt_interet`,`nom_ville`,`nom_architecte`,`publier`,`categorie`,`description_pt_interet`,`epoque`,`chemin_photo1`,`chemin_photo2`,`chemin_photo3` FROM `point_interet` INNER JOIN ville ON ville.id_ville = point_interet.id_ville WHERE `nom_ville` = 'Pékin' AND `publier` = 1 ORDER BY nom_ville");
+
+            ArrayList<ArrayList<String>> resultatDeMaRequete = new ArrayList<>(bdd.select(queryPointsOfInterest));
+
+            for (ArrayList<String> strings : resultatDeMaRequete) {
+
+
+                System.out.println("test1" + strings);
+
+                list.add(new PointsOfInterest(Integer.parseInt(strings.get(0)), strings.get(1), strings.get(2), strings.get(3), Integer.parseInt(strings.get(4)), strings.get(5), strings.get(6), strings.get(7), strings.get(8), strings.get(9), strings.get(10)));
+
+            }
+        }
+        // If user choose grenada city show the list of activated point of interest
+        if (Objects.equals(Data.cityName, "Granada")) {
+            String queryPointsOfInterest = ("SELECT `ID_pt_interet`,`nom_pt_interet`,`nom_ville`,`nom_architecte`,`publier`,`categorie`,`description_pt_interet`,`epoque`,`chemin_photo1`,`chemin_photo2`,`chemin_photo3` FROM `point_interet` INNER JOIN ville ON ville.id_ville = point_interet.id_ville WHERE `nom_ville` = 'Grenade' AND `publier` = 1 ORDER BY nom_ville");
 
             ArrayList<ArrayList<String>> resultatDeMaRequete = new ArrayList<>(bdd.select(queryPointsOfInterest));
 

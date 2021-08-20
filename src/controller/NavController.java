@@ -44,7 +44,7 @@ public class NavController {
      * Quand cette méthode est appelé ont change de scene vers Connexion
      */
     public static void disconnectMenuButtonPushed(javafx.event.ActionEvent actionEvent) throws IOException {
-        Parent usersParent = FXMLLoader.load(Objects.requireNonNull(NavController.class.getResource("../fxml/loginv2.fxml")));
+        Parent usersParent = FXMLLoader.load(Objects.requireNonNull(NavController.class.getResource("../fxml/login.fxml")));
         Scene usersScene = new Scene(usersParent);
 
         // Cette ligne récupère l'information du Stage
