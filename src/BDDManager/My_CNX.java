@@ -9,22 +9,21 @@ import java.util.logging.Logger;
 
 public class My_CNX {
 
-    private static String servername = "localhost";
-    private static String username = "root";
-    private static String dbname = "voyage?characterEncoding=utf8";
-    private static Integer portnumber = 3306;
-    private static String password = "";
-
     public  static Connection getConnection() throws SQLException {
 
         Connection cnx = null;
 
         MysqlDataSource dataSource = new MysqlDataSource();
 
+        String servername = "localhost";
         dataSource.setServerName(servername);
+        String username = "root";
         dataSource.setUser(username);
+        String password = "";
         dataSource.setPassword(password);
+        String dbname = "voyage?characterEncoding=utf8";
         dataSource.setDatabaseName(dbname);
+        int portnumber = 3306;
         dataSource.setPortNumber(portnumber);
 
         try {

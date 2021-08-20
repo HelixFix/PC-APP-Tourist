@@ -93,7 +93,7 @@ public class FavController implements Initializable {
 
     }
 
-    
+
     /**
      * Quand cette méthode est appelé ont change de scene vers Villes
      */

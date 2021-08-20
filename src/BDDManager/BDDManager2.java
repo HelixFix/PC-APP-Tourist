@@ -1,9 +1,5 @@
 package BDDManager;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import model.PointsOfInterest;
-import model.User;
 import java.io.*;
 import java.sql.*;
 import java.util.ArrayList;
@@ -14,7 +10,7 @@ import java.util.ArrayList;
 
 public class BDDManager2 {
 
-    //private final String BDD_URL = "jdbc:mysql://localhost:3306/dvdtheque";
+    //private final String BDD_URL = "jdbc:mysql://localhost:3306/dvdtheque/?characterEncoding=utf8";
     //private final String BDD_USER = "root";
     //private final String BDD_PASSWORD =  "";
     private Connection connection;
@@ -65,7 +61,8 @@ public class BDDManager2 {
     public void lire(String adressSQLFile)
     {
         BufferedReader lecture;
-        String fichier = "", fichierTemp;
+        StringBuilder fichier = new StringBuilder();
+        String fichierTemp;
         String[] requete;
         try
         {
@@ -74,10 +71,10 @@ public class BDDManager2 {
             {
                 while ((fichierTemp = lecture.readLine()) != null)
                 {
-                    fichier += fichierTemp;
-                    fichier += " ";
+                    fichier.append(fichierTemp);
+                    fichier.append(" ");
                 }
-                requete = fichier.split(";");
+                requete = fichier.toString().split(";");
                 for (int i = 0; i<requete.length; i++) {
                     requete[i] += ";";
                     System.out.println(i);
@@ -124,13 +121,13 @@ public class BDDManager2 {
 
 
 
-    public boolean autreRequete(String maRequete) {
-        return executeMaRequete(maRequete);
+    public void autreRequete(String maRequete) {
+        executeMaRequete(maRequete);
     }
 
-    public boolean insert(String maRequete) {
+    public void insert(String maRequete) {
 
-        return executeMaRequete(maRequete);
+        executeMaRequete(maRequete);
     }
 
     public ArrayList<ArrayList<String>> select(String maRequete) {
@@ -160,27 +157,25 @@ public class BDDManager2 {
         return resultatDeLaRequete;
     }
 
-    public boolean update(String maRequete) {
-        return executeMaRequete(maRequete);
+    public void update(String maRequete) {
+        executeMaRequete(maRequete);
     }
 
-    public boolean delete(String maRequete) {
+    public void delete(String maRequete) {
 
-        return executeMaRequete(maRequete);
+        executeMaRequete(maRequete);
     }
 
-    public boolean executeMaRequete(String maRequete){
+    public void executeMaRequete(String maRequete){
 
         System.out.println(maRequete);
         try
         {
             statement.executeUpdate(maRequete);
-            return true;
         }
         catch (SQLException e)
         {
             e.printStackTrace();
-            return false;
         }
     }
 
