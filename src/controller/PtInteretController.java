@@ -17,6 +17,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
@@ -25,8 +26,11 @@ import javafx.stage.Window;
 import model.PointsOfInterest;
 
 
+import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -269,50 +273,42 @@ public class PtInteretController implements Initializable {
     public  String retrieveStatement = "";
 
 
-    public void choosePhoto1() {
+    public void choosePhoto1() throws IOException, SQLException {
 
-        FileChooser fileChooser = new FileChooser();
-        File file = fileChooser.showOpenDialog(btnbrwseimg1.getScene().getWindow());
-        try {
-            storeStatement = "UPDATE `point_interet` SET `chemin_photo1` = ? WHERE `point_interet`.`ID_pt_interet` = " + txtfldid.getText() + "";
-            retrieveStatement = "SELECT `chemin_photo1` FROM `point_interet` WHERE ID_pt_interet = " + txtfldid.getText() + "";
+        // Select an image and set the image
+        JFileChooser chooser = new JFileChooser();
 
-            FileInputStream fileInputStream = new FileInputStream(file);
-            store.setBinaryStream(1, fileInputStream, fileInputStream.available());
+        chooser.setCurrentDirectory(new File((System.getProperty("user.home"))));
 
-            store.execute();
+        // file extension
+        FileNameExtensionFilter extension = new FileNameExtensionFilter("Images",".jpg",".png",".jpeg");
+        chooser.addChoosableFileFilter(extension);
 
-            if ( !txtfldid.getText().trim().isEmpty()) {
-                javafx.scene.image.Image image = new javafx.scene.image.Image(fileInputStream);
-                img1View.setImage(image);
-            }
+        int filestate = chooser.showSaveDialog(null);
 
-        } catch (IOException | SQLException e) {
-            System.out.println(e.getMessage());
+        // check if the user select an image
+        if (filestate == JFileChooser.APPROVE_OPTION) {
+            File selectedImage1 = chooser.getSelectedFile();
+
+            // preview of the selected image
+            FileInputStream fis = new FileInputStream(selectedImage1);
+
+            javafx.scene.image.Image image2 = new javafx.scene.image.Image(fis);
+            img1View.setImage(image2);
+
         }
+
 
     }
 
     public void choosePhoto2() {
 
 
-        FileChooser fileChooser = new FileChooser();
-        File file = fileChooser.showOpenDialog(btnbrwseimg2.getScene().getWindow());
-        try {
-            FileInputStream fileInputStream = new FileInputStream(file);
-            store.setBinaryStream(1, fileInputStream, fileInputStream.available());
-
-            //store.execute();
-
-            if ( !txtfldid.getText().trim().isEmpty()) {
-                javafx.scene.image.Image image = new javafx.scene.image.Image(fileInputStream);
-                img2View.setImage(image);
-            }
 
 
-        } catch (IOException | SQLException e) {
-            System.out.println(e.getMessage());
-        }
+
+
+
     }
 
     public void choosePhoto3() {
