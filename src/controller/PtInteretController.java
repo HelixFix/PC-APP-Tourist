@@ -1,6 +1,7 @@
 package controller;
 
 import BDDManager.BDDManager2;
+import BDDManager.My_CNX;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextArea;
@@ -17,10 +18,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 import model.PointsOfInterest;
@@ -28,15 +27,9 @@ import model.PointsOfInterest;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.*;
 
 import static java.lang.Integer.parseInt;
@@ -46,6 +39,9 @@ public class PtInteretController implements Initializable {
     ObservableList<PointsOfInterest> list2 = FXCollections.observableArrayList();
     private ArrayList<ArrayList<String>> listeVille;
     private int idVille;
+
+    // Create a variable to set the image path in it
+    String imagePath1 = null;
 
 
 
@@ -155,7 +151,6 @@ public class PtInteretController implements Initializable {
     ObservableList<PointsOfInterest> listM;
 
 
-    private PreparedStatement store, retrieve;
 
     @Override
     // initializes list controller with given url
@@ -181,15 +176,6 @@ public class PtInteretController implements Initializable {
         btnbrwseimg2.setDisable(true);
         btnbrwseimg3.setDisable(true);
 
-
-        try {
-            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/voyage?characterEncoding=utf8", "root", "");
-
-            store = connection.prepareStatement(storeStatement);
-            retrieve = connection.prepareStatement(retrieveStatement);
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
     }
 
     public void fillComboBox() {
@@ -264,16 +250,12 @@ public class PtInteretController implements Initializable {
 
     }
 
-
-
-
-
-
-    public  String storeStatement = "";
-    public  String retrieveStatement = "";
+    PreparedStatement ps;
 
 
     public void choosePhoto1() throws IOException, SQLException {
+        String queryInterest = ("UPDATE `point_interet` SET `chemin_photo1` = ? WHERE `point_interet`.`ID_pt_interet` = " + txtfldid.getText() + "");
+        ps = My_CNX.getConnection().prepareStatement(queryInterest);
 
         // Select an image and set the image
         JFileChooser chooser = new JFileChooser();
@@ -289,6 +271,7 @@ public class PtInteretController implements Initializable {
         // check if the user select an image
         if (filestate == JFileChooser.APPROVE_OPTION) {
             File selectedImage1 = chooser.getSelectedFile();
+            imagePath1 = selectedImage1.getAbsolutePath();
 
             // preview of the selected image
             FileInputStream fis = new FileInputStream(selectedImage1);
@@ -297,8 +280,23 @@ public class PtInteretController implements Initializable {
             img1View.setImage(image2);
 
         }
+        try {
+            // Save images as blob in the database
+            if (imagePath1 != null) {
+                InputStream image1 = new FileInputStream(imagePath1);
+                ps.setBlob(1, image1);
+            } else {
+                ps.setNull(1, Types.NULL);
+            }
+
+            if(ps.executeUpdate() != 0) {
+                JOptionPane.showMessageDialog(null, "Photo 1 ajouter");
+            }
 
 
+        } catch (FileNotFoundException ignored){
+
+        }
     }
 
     public void choosePhoto2() {
@@ -313,22 +311,7 @@ public class PtInteretController implements Initializable {
 
     public void choosePhoto3() {
 
-        FileChooser fileChooser = new FileChooser();
-        File file = fileChooser.showOpenDialog(btnbrwseimg3.getScene().getWindow());
-        try {
-            FileInputStream fileInputStream = new FileInputStream(file);
-            store.setBinaryStream(1, fileInputStream, fileInputStream.available());
 
-            //store.execute();
-
-            if ( !txtfldid.getText().trim().isEmpty()) {
-                javafx.scene.image.Image image = new javafx.scene.image.Image(fileInputStream);
-                img3View.setImage(image);
-            }
-
-        } catch (IOException | SQLException e) {
-            System.out.println(e.getMessage());
-        }
     }
 
     /**
@@ -347,13 +330,17 @@ public class PtInteretController implements Initializable {
         btnbrwseimg2.setDisable(true);
         btnbrwseimg3.setDisable(true);
 
+        img1View.setImage(null);
+        img2View.setImage(null);
+        img3View.setImage(null);
+
         btnpublish.setDisable(true);
     }
 
     /**
      * Quand cette méthode est appelé ont enregistre ou modifie un point d'intérêt et recharge la scene
      */
-    public void saveScreenButtonPushed() {
+    public void saveScreenButtonPushed() throws FileNotFoundException {
 
         Window owner = btnSave.getScene().getWindow();
 
@@ -385,19 +372,22 @@ public class PtInteretController implements Initializable {
 
             } else {
 
-
+                // Save images as blob in the database
+                InputStream image1 = new FileInputStream(imagePath1);
 
                 db.start("jdbc:mysql://localhost:3306/voyage?characterEncoding=utf8", "root", "");
                 String queryInterest = ("INSERT INTO `point_interet` (`ID_pt_interet`, `nom_pt_interet`, `epoque`, `categorie`, `description_pt_interet`, `nom_architecte`, `publier`, `chemin_photo1`, `chemin_photo2`, `chemin_photo3`, `ID_ville`) " +
-                        "VALUES (NULL, \"" + txtfldnom.getText() + "\", \"" + txtfldepoque.getText() + "\", \"" + txtfldcategorie.getText() + "\",\"" + txtareadescription.getText() + "\", \"" + txtfldarchitecte.getText() + "\", '0', NULL, NULL, NULL, \"" +  idVille + "\")");
+                        "VALUES (NULL, \"" + txtfldnom.getText() + "\", \"" + txtfldepoque.getText() + "\", \"" + txtfldcategorie.getText() + "\",\"" + txtareadescription.getText() + "\", \"" + txtfldarchitecte.getText() + "\", '0', "+ image1 +", NULL, NULL, \"" +  idVille + "\")");
                 db.insert(queryInterest);
                 db.stop();
+
+
 
                 // clear first the list to avoid mistakes
                 list2.clear();
                 getLastIDPtInterest();
 
-                //store.execute();
+
                 txtfldid.setText(String.valueOf(list2.get(0).getIdptinteret()));
                 //System.out.println(txtfldid.getText());
                 getDataPtInterest();
