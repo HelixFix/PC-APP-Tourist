@@ -246,7 +246,7 @@ public class PtInteretController implements Initializable {
         BDDManager2 bdd = new BDDManager2();
         bdd.start("jdbc:mysql://localhost:3306/voyage?characterEncoding=utf8", "root", "");
 
-        String queryPointsOfInterest = ("SELECT `ID_pt_interet` FROM `point_interet` ORDER BY ID_pt_interet DESC LIMIT 1\n");
+        String queryPointsOfInterest = ("SELECT `ID_pt_interet` FROM `point_interet` ORDER BY ID_pt_interet DESC LIMIT 1");
         ArrayList<ArrayList<String>> resultatDeMaRequete = new ArrayList<>(bdd.select(queryPointsOfInterest));
 
         for (ArrayList<String> strings : resultatDeMaRequete) {
@@ -261,33 +261,7 @@ public class PtInteretController implements Initializable {
     }
 
 
-    /**
-     * Quand cette méthode est appelé ont change de scene vers Utilisateurs
-     */
-    public void usersMenuButtonPushed(javafx.event.ActionEvent actionEvent) throws IOException {
-        Parent usersParent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../fxml/Admin-UsersList.fxml")));
-        Scene usersScene = new Scene(usersParent);
 
-        // Cette ligne récupère l'information du Stage
-        Stage window = (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
-
-        window.setScene(usersScene);
-        window.show();
-    }
-
-    /**
-     * Quand cette méthode est appelé ont change de scene vers Points d'intérêt - Editor
-     */
-    public void ptInteretEditorMenuButtonPushed(javafx.event.ActionEvent actionEvent) throws IOException {
-        Parent usersParent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../fxml/Editor-PtInteret.fxml")));
-        Scene usersScene = new Scene(usersParent);
-
-        // Cette ligne récupère l'information du Stage
-        Stage window = (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
-
-        window.setScene(usersScene);
-        window.show();
-    }
 
 
 
@@ -401,7 +375,7 @@ public class PtInteretController implements Initializable {
 
         BDDManager2 db = new BDDManager2();
 
-        if ( txtfldid.getText().trim().isEmpty()) {
+        if ( txtfldid.getText().trim().isEmpty() ) {
             if (txtfldnom.getText().trim().isEmpty() || txtfldepoque.getText().trim().isEmpty() || txtfldcategorie.getText().trim().isEmpty() || txtfldarchitecte.getText().trim().isEmpty() ) {
                 /**
                  * TODO ajout d'un feedback visuel avec un message invitant l'utilisateur à remplir les champs requis
@@ -423,6 +397,8 @@ public class PtInteretController implements Initializable {
                 db.insert(queryInterest);
                 db.stop();
 
+                // clear first the list to avoid mistakes
+                list2.clear();
                 getLastIDPtInterest();
 
                 //store.execute();
@@ -473,6 +449,48 @@ public class PtInteretController implements Initializable {
             getDataPtInterest();
             table_ptinteret.refresh();
 
+    }
+
+    /**
+     * Quand cette méthode est appelé ont change de scene vers Utilisateurs
+     */
+    public void usersMenuButtonPushed(javafx.event.ActionEvent actionEvent) throws IOException {
+        Parent usersParent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../fxml/Admin-UsersList.fxml")));
+        Scene usersScene = new Scene(usersParent);
+
+        // Cette ligne récupère l'information du Stage
+        Stage window = (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
+
+        window.setScene(usersScene);
+        window.show();
+    }
+
+    /**
+     * Quand cette méthode est appelé ont change de scene vers Points d'intérêt - Admin
+     */
+    public void ptInteretAdminMenuButtonPushed(javafx.event.ActionEvent actionEvent) throws IOException {
+        Parent usersParent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../fxml/Admin-PtInteret.fxml")));
+        Scene usersScene = new Scene(usersParent);
+
+        // Cette ligne récupère l'information du Stage
+        Stage window = (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
+
+        window.setScene(usersScene);
+        window.show();
+    }
+
+    /**
+     * Quand cette méthode est appelé ont change de scene vers Points d'intérêt - Editor
+     */
+    public void ptInteretEditorMenuButtonPushed(javafx.event.ActionEvent actionEvent) throws IOException {
+        Parent usersParent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../fxml/Editor-PtInteret.fxml")));
+        Scene usersScene = new Scene(usersParent);
+
+        // Cette ligne récupère l'information du Stage
+        Stage window = (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
+
+        window.setScene(usersScene);
+        window.show();
     }
 
     /**

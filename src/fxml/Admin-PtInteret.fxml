@@ -66,7 +66,7 @@
                   <Font size="24.0" />
                </font>
             </Button>
-            <Button alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" onAction="#ptInteretEditorMenuButtonPushed" prefHeight="59.0" prefWidth="330.0" stylesheets="@../css/fullpackstyling.css" text="Points d'intérêt" textFill="WHITE">
+            <Button alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" onAction="#ptInteretAdminMenuButtonPushed" prefHeight="59.0" prefWidth="330.0" stylesheets="@../css/fullpackstyling.css" text="Points d'intérêt" textFill="WHITE">
                <graphic>
                   <FontAwesomeIcon fill="WHITE" glyphName="UNIVERSITY" />
                </graphic>
@@ -111,14 +111,14 @@
          <children>
             <TableView fx:id="table_ptinteret" onMouseClicked="#clickItem" prefHeight="368.0" prefWidth="894.0" style="-fx-fixed-cell-size: 25;" stylesheets="@../css/fullpackstyling.css">
                <columns>
-                  <TableColumn fx:id="col_id" prefWidth="75.0" text="ID" />
-                  <TableColumn fx:id="col_nom" prefWidth="75.0" text="Nom" />
-                  <TableColumn fx:id="col_epoque" prefWidth="75.0" text="Epoque" />
-                  <TableColumn fx:id="col_categorie" prefWidth="75.0" text="Catégorie" />
-                  <TableColumn fx:id="col_description" prefWidth="109.0" text="Description" />
-                  <TableColumn fx:id="col_architecte" prefWidth="75.0" text="Architecte" />
-                  <TableColumn fx:id="col_publier" prefWidth="75.0" text="Publier" />
-                  <TableColumn fx:id="col_ville" prefWidth="75.0" text="Ville" />
+                  <TableColumn fx:id="col_id" prefWidth="37.0" text="ID" />
+                  <TableColumn fx:id="col_nom" prefWidth="122.0" text="Nom" />
+                  <TableColumn fx:id="col_epoque" prefWidth="113.0" text="Epoque" />
+                  <TableColumn fx:id="col_categorie" prefWidth="110.0" text="Catégorie" />
+                  <TableColumn fx:id="col_description" prefWidth="225.0" text="Description" />
+                  <TableColumn fx:id="col_architecte" minWidth="0.0" prefWidth="157.0" text="Architecte" />
+                  <TableColumn fx:id="col_publier" minWidth="0.0" prefWidth="73.0" text="Publier" />
+                  <TableColumn fx:id="col_ville" prefWidth="79.0" text="Ville" />
                </columns>
             </TableView>
          </children>

@@ -78,12 +78,12 @@
          <children>
             <TableView fx:id="table_ptinteret" onMouseClicked="#clickItem" prefHeight="368.0" prefWidth="894.0" style="-fx-fixed-cell-size: 25;" stylesheets="@../css/fullpackstyling.css">
                <columns>
-                  <TableColumn fx:id="col_id" prefWidth="75.0" text="ID" />
-                  <TableColumn fx:id="col_nom" prefWidth="75.0" text="Nom" />
-                  <TableColumn fx:id="col_epoque" prefWidth="75.0" text="Epoque" />
-                  <TableColumn fx:id="col_categorie" prefWidth="75.0" text="Catégorie" />
-                  <TableColumn fx:id="col_description" prefWidth="109.0" text="Description" />
-                  <TableColumn fx:id="col_architecte" prefWidth="75.0" text="Architecte" />
+                  <TableColumn fx:id="col_id" prefWidth="39.0" text="ID" />
+                  <TableColumn fx:id="col_nom" prefWidth="122.0" text="Nom" />
+                  <TableColumn fx:id="col_epoque" prefWidth="114.0" text="Epoque" />
+                  <TableColumn fx:id="col_categorie" prefWidth="112.0" text="Catégorie" />
+                  <TableColumn fx:id="col_description" prefWidth="227.0" text="Description" />
+                  <TableColumn fx:id="col_architecte" prefWidth="150.0" text="Architecte" />
                   <TableColumn fx:id="col_publier" prefWidth="75.0" text="Publier" />
                   <TableColumn fx:id="col_ville" prefWidth="75.0" text="Ville" />
                </columns>
