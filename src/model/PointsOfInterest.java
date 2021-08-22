@@ -112,12 +112,12 @@ public class PointsOfInterest {
     }
 
     public PointsOfInterest(Integer id, Integer idptinteret, String ville, String nom, JFXButton manage, JFXButton link) {
-        this.id = id;
+        this.id          = id;
         this.idptinteret = idptinteret;
-        this.ville = ville;
-        this.nom = nom;
-        this.btnmanage = manage;
-        this.btnlink = link;
+        this.ville       = ville;
+        this.nom         = nom;
+        this.btnmanage   = manage;
+        this.btnlink     = link;
 
         btnmanage.setOnAction(e -> {
 

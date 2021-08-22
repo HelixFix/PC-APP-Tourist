@@ -275,7 +275,6 @@ public class PtInteretController implements Initializable {
 
             // preview of the selected image
             FileInputStream fis = new FileInputStream(selectedImage1);
-
             javafx.scene.image.Image image2 = new javafx.scene.image.Image(fis);
             img1View.setImage(image2);
 
