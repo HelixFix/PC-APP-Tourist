@@ -86,7 +86,7 @@ public class CityDetailsController implements Initializable {
             PointsOfInterest dto = table_ptinteret.getSelectionModel().getSelectedItem();
             if (dto != null) {
                 //Do my processing
-                System.out.println(table_ptinteret.getSelectionModel().getSelectedItem().getNom());
+                
                 id.setText(String.valueOf(table_ptinteret.getSelectionModel().getSelectedItem().getIdptinteret()));
                 title.setText(table_ptinteret.getSelectionModel().getSelectedItem().getNom());
                 title2.setText(table_ptinteret.getSelectionModel().getSelectedItem().getNom());
@@ -174,7 +174,7 @@ public class CityDetailsController implements Initializable {
             for (ArrayList<String> strings : resultatDeMaRequete) {
 
 
-                System.out.println("test1" + strings);
+                
 
                 list.add(new PointsOfInterest(Integer.parseInt(strings.get(0)), strings.get(1), strings.get(2), strings.get(3), Integer.parseInt(strings.get(4)), strings.get(5), strings.get(6), strings.get(7), strings.get(8), strings.get(9), strings.get(10)));
 
@@ -189,7 +189,7 @@ public class CityDetailsController implements Initializable {
             for (ArrayList<String> strings : resultatDeMaRequete) {
 
 
-                System.out.println("test1" + strings);
+                
 
                 list.add(new PointsOfInterest(Integer.parseInt(strings.get(0)), strings.get(1), strings.get(2), strings.get(3), Integer.parseInt(strings.get(4)), strings.get(5), strings.get(6), strings.get(7), strings.get(8), strings.get(9), strings.get(10)));
 
@@ -204,7 +204,7 @@ public class CityDetailsController implements Initializable {
             for (ArrayList<String> strings : resultatDeMaRequete) {
 
 
-                System.out.println("test1" + strings);
+                
 
                 list.add(new PointsOfInterest(Integer.parseInt(strings.get(0)), strings.get(1), strings.get(2), strings.get(3), Integer.parseInt(strings.get(4)), strings.get(5), strings.get(6), strings.get(7), strings.get(8), strings.get(9), strings.get(10)));
 
@@ -229,7 +229,7 @@ public class CityDetailsController implements Initializable {
         for (ArrayList<String> strings : resultatDeMaRequete) {
 
 
-            System.out.println("test1" + strings);
+            
 
             list.add(new PointsOfInterest(Integer.parseInt(strings.get(0)), strings.get(1), strings.get(2), strings.get(3), Integer.parseInt(strings.get(4)), strings.get(5), strings.get(6), strings.get(7), strings.get(8), strings.get(9), strings.get(10)));
 

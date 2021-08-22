@@ -129,7 +129,7 @@ public class PtInteretController implements Initializable {
         {
             PointsOfInterest dto = table_ptinteret.getSelectionModel().getSelectedItem();
             if (dto != null) {
-                System.out.println(table_ptinteret.getSelectionModel().getSelectedItem().getNom());
+                
                 txtfldid.setText(String.valueOf(table_ptinteret.getSelectionModel().getSelectedItem().getIdptinteret()));
                 txtfldnom.setText(String.valueOf(table_ptinteret.getSelectionModel().getSelectedItem().getNom()));
                 txtfldepoque.setText(String.valueOf(table_ptinteret.getSelectionModel().getSelectedItem().getEpoque()));
@@ -200,7 +200,7 @@ public class PtInteretController implements Initializable {
             }
         }
 
-        System.out.println(cmbville.getValue() +" " + idVille);
+        
     }
 
 
@@ -218,7 +218,7 @@ public class PtInteretController implements Initializable {
         for (ArrayList<String> strings : resultatDeMaRequete) {
 
 
-            System.out.println("test1" + strings);
+            
 
             list.add(new PointsOfInterest(Integer.parseInt(strings.get(0)), strings.get(1), strings.get(2), strings.get(3), Integer.parseInt(strings.get(4)), strings.get(5), strings.get(6), strings.get(7), strings.get(8), strings.get(9), strings.get(10)));
 
@@ -242,7 +242,7 @@ public class PtInteretController implements Initializable {
         for (ArrayList<String> strings : resultatDeMaRequete) {
 
 
-            System.out.println("test1" + strings);
+            
 
             list2.add(new PointsOfInterest(Integer.parseInt(strings.get(0))));
 
@@ -388,7 +388,7 @@ public class PtInteretController implements Initializable {
 
 
                 txtfldid.setText(String.valueOf(list2.get(0).getIdptinteret()));
-                //System.out.println(txtfldid.getText());
+                //
                 getDataPtInterest();
                 table_ptinteret.refresh();
             }
@@ -400,7 +400,7 @@ public class PtInteretController implements Initializable {
                     "WHERE `point_interet`.`ID_pt_interet` = " + txtfldid.getText() + "");
             db.update(queryInterest);
             db.stop();
-            System.out.println("secnd else");
+            
 
             getDataPtInterest();
             table_ptinteret.refresh();

@@ -77,8 +77,8 @@ public class BDDManager2 {
                 requete = fichier.toString().split(";");
                 for (int i = 0; i<requete.length; i++) {
                     requete[i] += ";";
-                    System.out.println(i);
-                    System.out.println(requete[i]);
+                    
+                    
                     if (requete[i].contains("SELECT")) {
                         select(requete[i]);
                     } else if (requete[i].contains("INSERT")) {
@@ -131,7 +131,7 @@ public class BDDManager2 {
     }
 
     public ArrayList<ArrayList<String>> select(String maRequete) {
-        System.out.println(maRequete);
+        
         ArrayList<ArrayList<String>> resultatDeLaRequete = new ArrayList<>();
 
         try
@@ -168,7 +168,7 @@ public class BDDManager2 {
 
     public void executeMaRequete(String maRequete){
 
-        System.out.println(maRequete);
+        
         try
         {
             statement.executeUpdate(maRequete);

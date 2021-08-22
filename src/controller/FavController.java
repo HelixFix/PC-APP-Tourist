@@ -83,7 +83,7 @@ public class FavController implements Initializable {
         for (ArrayList<String> strings : resultatDeMaRequete) {
 
 
-            System.out.println("test1" + strings);
+            
 
             list.add(new PointsOfInterest(Integer.parseInt(strings.get(0)),Integer.parseInt(strings.get(1)), strings.get(2), strings.get(3), new JFXButton("Supprimer"), new JFXButton("Voir")));
 

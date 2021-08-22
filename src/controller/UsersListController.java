@@ -63,7 +63,7 @@ public class UsersListController implements Initializable {
             if (dto != null) {
                 btnactive.setDisable(false);
 
-                System.out.println(table_users.getSelectionModel().getSelectedItem().getId());
+                
                 txtfldid.setText(String.valueOf(table_users.getSelectionModel().getSelectedItem().getId()));
             }
         }
@@ -100,7 +100,7 @@ public class UsersListController implements Initializable {
         for (ArrayList<String> strings : resultatDeMaRequete) {
 
 
-            System.out.println("test1" + strings);
+            
 
             list.add(new User(Integer.parseInt(strings.get(0)), strings.get(1), strings.get(2), strings.get(3), Integer.parseInt(strings.get(4)), Integer.parseInt(strings.get(5))));
 

@@ -123,7 +123,7 @@ public class PointsOfInterest {
 
             for (PointsOfInterest pointsOfInterest: FavController.listM) {
                 if (pointsOfInterest.getBtnmanage() == manage) {
-                    System.out.println(""+pointsOfInterest.getIdptinteret());
+                    
 
                     BDDManager2 bdd = new BDDManager2();
                     bdd.start("jdbc:mysql://localhost:3306/voyage?characterEncoding=utf8", "root", "");
@@ -155,7 +155,7 @@ public class PointsOfInterest {
 
             for (PointsOfInterest pointsOfInterest: FavController.listM) {
                 if (pointsOfInterest.getBtnmanage() == manage) {
-                    System.out.println(""+pointsOfInterest.getIdptinteret());
+                    
 
 
                     Data.idPtInterest = pointsOfInterest.getIdptinteret();
