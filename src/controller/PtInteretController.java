@@ -517,7 +517,7 @@ public class PtInteretController implements Initializable {
     /**
      * Quand cette méthode est appelé ont enregistre ou modifie un point d'intérêt et recharge la scene
      */
-    public void saveScreenButtonPushed() throws FileNotFoundException {
+    public void saveScreenButtonPushed() {
 
         Window owner = btnSave.getScene().getWindow();
 
@@ -528,37 +528,21 @@ public class PtInteretController implements Initializable {
         btnpublish.setDisable(false);
 
 
-        btnbrwseimg1.setOnAction(e ->{
-            //Single File Selection
-
-        });
-
         BDDManager2 db = new BDDManager2();
 
         if ( txtfldid.getText().trim().isEmpty() ) {
-            if (txtfldnom.getText().trim().isEmpty() || txtfldepoque.getText().trim().isEmpty() || txtfldcategorie.getText().trim().isEmpty() || txtfldarchitecte.getText().trim().isEmpty() ) {
-                /**
-                 * TODO ajout d'un feedback visuel avec un message invitant l'utilisateur à remplir les champs requis
-                 */
 
-                if (txtfldnom.getText().isEmpty()) {
-                    showAlert(owner
-                    );
-                }
 
+            if (txtfldnom.getText().isEmpty()  || cmbville.getValue() == null) {
+                    showAlert(owner);
 
             } else {
 
-                // Save images as blob in the database
-                InputStream image1 = new FileInputStream(imagePath1);
-
                 db.start("jdbc:mysql://localhost:3306/voyage?characterEncoding=utf8", "root", "");
                 String queryInterest = ("INSERT INTO `point_interet` (`ID_pt_interet`, `nom_pt_interet`, `epoque`, `categorie`, `description_pt_interet`, `nom_architecte`, `publier`, `chemin_photo1`, `chemin_photo2`, `chemin_photo3`, `ID_ville`) " +
-                        "VALUES (NULL, \"" + txtfldnom.getText() + "\", \"" + txtfldepoque.getText() + "\", \"" + txtfldcategorie.getText() + "\",\"" + txtareadescription.getText() + "\", \"" + txtfldarchitecte.getText() + "\", '0', "+ image1 +", NULL, NULL, \"" +  idVille + "\")");
+                        "VALUES (NULL, \"" + txtfldnom.getText() + "\", \"" + txtfldepoque.getText() + "\", \"" + txtfldcategorie.getText() + "\",\"" + txtareadescription.getText() + "\", \"" + txtfldarchitecte.getText() + "\", '0', NULL, NULL, NULL, \"" +  idVille + "\")");
                 db.insert(queryInterest);
                 db.stop();
-
-
 
                 // clear first the list to avoid mistakes
                 list2.clear();
@@ -583,16 +567,13 @@ public class PtInteretController implements Initializable {
             getDataPtInterest();
             table_ptinteret.refresh();
         }
-
-
-
     }
 
     private static void showAlert(Window owner) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Form Error!");
         alert.setHeaderText(null);
-        alert.setContentText("Veuillez entrer un nom");
+        alert.setContentText("Veuillez saisir un nom et choisir une ville");
         alert.initOwner(owner);
         alert.show();
     }
