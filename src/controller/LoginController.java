@@ -120,7 +120,7 @@ public class LoginController {
                         // show a new form
                         usersParent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../fxml/Editor-PtInteret.fxml")));
                     } else {
-                        // error message
+                        // show a message if the username or the password fields are empty
                         if (txtfldadminusername.getText().isEmpty()) {
                             showAlert(owner,
                                     "Veuillez entrer votre pseudo");

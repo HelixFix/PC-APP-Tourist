@@ -42,6 +42,8 @@ public class PtInteretController implements Initializable {
 
     // Create a variable to set the image path in it
     String imagePath1 = null;
+    String imagePath2 = null;
+    String imagePath3 = null;
 
 
 
@@ -298,14 +300,49 @@ public class PtInteretController implements Initializable {
         }
     }
 
-    public void choosePhoto2() {
+    public void choosePhoto2() throws IOException, SQLException {
+        String queryInterest = ("UPDATE `point_interet` SET `chemin_photo2` = ? WHERE `point_interet`.`ID_pt_interet` = " + txtfldid.getText() + "");
+        ps = My_CNX.getConnection().prepareStatement(queryInterest);
+
+        // Select an image and set the image
+        JFileChooser chooser = new JFileChooser();
+
+        chooser.setCurrentDirectory(new File((System.getProperty("user.home"))));
+
+        // file extension
+        FileNameExtensionFilter extension = new FileNameExtensionFilter("Images",".jpg",".png",".jpeg");
+        chooser.addChoosableFileFilter(extension);
+
+        int filestate = chooser.showSaveDialog(null);
+
+        // check if the user select an image
+        if (filestate == JFileChooser.APPROVE_OPTION) {
+            File selectedImage1 = chooser.getSelectedFile();
+            imagePath2 = selectedImage1.getAbsolutePath();
+
+            // preview of the selected image
+            FileInputStream fis = new FileInputStream(selectedImage1);
+            javafx.scene.image.Image image2 = new javafx.scene.image.Image(fis);
+            img2View.setImage(image2);
+
+        }
+        try {
+            // Save images as blob in the database
+            if (imagePath2 != null) {
+                InputStream image1 = new FileInputStream(imagePath2);
+                ps.setBlob(1, image1);
+            } else {
+                ps.setNull(1, Types.NULL);
+            }
+
+            if(ps.executeUpdate() != 0) {
+                JOptionPane.showMessageDialog(null, "Photo 2 ajouter");
+            }
 
 
+        } catch (FileNotFoundException ignored){
 
-
-
-
-
+        }
     }
 
     public void choosePhoto3() {
