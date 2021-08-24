@@ -89,7 +89,7 @@
       </VBox>
       <Pane fx:id="rightsidepane" layoutX="963.0" layoutY="88.0" prefHeight="729.0" prefWidth="304.0" style="-fx-border-color: black;" visible="false">
          <children>
-            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="46.0" layoutY="95.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="img1View" fitHeight="150.0" fitWidth="200.0" layoutX="46.0" layoutY="95.0" pickOnBounds="true" preserveRatio="true" />
             <Text fx:id="categorie" layoutX="52.0" layoutY="570.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" visible="false">
                <font>
                   <Font size="19.0" />
@@ -119,14 +119,14 @@
             </Label>
          </children>
       </Pane>
-      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="405.0" layoutY="644.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="692.0" layoutY="645.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="img2View" fitHeight="150.0" fitWidth="200.0" layoutX="405.0" layoutY="644.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="img3View" fitHeight="150.0" fitWidth="200.0" layoutX="692.0" layoutY="645.0" pickOnBounds="true" preserveRatio="true" />
       <Text fx:id="title" layoutX="347.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" visible="false">
          <font>
             <Font size="29.0" />
          </font>
       </Text>
-      <JFXTextArea fx:id="resume" layoutX="352.0" layoutY="90.0" prefHeight="723.0" prefWidth="520.0" visible="false">
+      <JFXTextArea fx:id="resume" layoutX="352.0" layoutY="90.0" prefHeight="533.0" prefWidth="520.0" visible="false">
          <font>
             <Font size="19.0" />
          </font>

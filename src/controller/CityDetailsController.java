@@ -1,6 +1,7 @@
 package controller;
 
 import BDDManager.BDDManager2;
+import BDDManager.My_CNX;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextArea;
 import javafx.collections.FXCollections;
@@ -11,6 +12,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Line;
@@ -19,11 +22,16 @@ import model.Data;
 import model.PointsOfInterest;
 
 
-import java.io.IOException;
+import java.io.*;
 import java.net.URL;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class CityDetailsController implements Initializable {
     ObservableList<PointsOfInterest> list = FXCollections.observableArrayList();
@@ -77,6 +85,15 @@ public class CityDetailsController implements Initializable {
     private JFXButton btnfav;
 
     @FXML
+    private ImageView img1View;
+
+    @FXML
+    private ImageView img2View;
+
+    @FXML
+    private ImageView img3View;
+
+    @FXML
     // mouse listener for table point d'intérêt
     public void clickItem(MouseEvent event)
     {
@@ -109,6 +126,8 @@ public class CityDetailsController implements Initializable {
                 line.setVisible(true);
                 titlepane.setVisible(true);
                 rightsidepane.setVisible(true);
+
+                showImage1(table_ptinteret.getSelectionModel().getSelectedItem().getIdptinteret());
 
             }
 
@@ -150,6 +169,8 @@ public class CityDetailsController implements Initializable {
             line.setVisible(true);
             titlepane.setVisible(true);
             rightsidepane.setVisible(true);
+
+            showImage1(Data.idPtInterest);
         } else {
             listM = getDataPtInterest();
         }
@@ -237,6 +258,41 @@ public class CityDetailsController implements Initializable {
         }
 
         return list;
+    }
+
+    PreparedStatement ps;
+    ResultSet rs;
+
+    private void showImage1(Integer idptinterest) {
+        try {
+
+            ps= My_CNX.getConnection().prepareStatement("SELECT `chemin_photo1` FROM `point_interet` WHERE `ID_pt_interet` = "+idptinterest+"");
+            System.out.println(ps);
+
+            rs = ps.executeQuery();
+            if (rs.next()){
+                InputStream is = rs.getBinaryStream(1);
+                OutputStream os = new FileOutputStream(new File("photo1.jpg"));
+
+
+                byte[]contents = new byte[1024];
+                int size;
+                if (is != null && is.available() > 1) {
+                    while ((size = is.read(contents)) != -1) {
+                        os.write(contents, 0, size);
+                    }
+                    os.close();
+                    is.close();
+                    Image image = new Image("file:photo1.jpg");
+
+                    img1View.setImage(image);
+                }
+            }
+            ps.close();
+            rs.close();
+        } catch (SQLException | IOException ex) {
+            Logger.getLogger(PtInteretController.class.getName()).log(Level.SEVERE,null,ex);
+        }
     }
 
     public void favScreenButtonPushed(){

@@ -30,10 +30,10 @@ import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.io.*;
 import java.net.URL;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.sql.*;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import static java.lang.Integer.parseInt;
 
@@ -407,23 +407,23 @@ public class PtInteretController implements Initializable {
             rs = ps.executeQuery();
             if (rs.next()){
                 InputStream is = rs.getBinaryStream(1);
-                OutputStream os = new FileOutputStream(new File("photo1.jpg"));
-                final Path path = Files.createTempFile("photo1", ".jpg");
-                if (Files.exists(path)) {
-                    byte[]contents = new byte[1024];
-                    int size = 0;
-                    while ((size = is.read(contents)) !=-1) {
+                OutputStream os = new FileOutputStream(("photo1.jpg"));
+
+
+                byte[]contents = new byte[1024];
+                int size;
+
+                if (is != null && is.available() > 1) {
+                    while ((size = is.read(contents)) != -1) {
                         os.write(contents, 0, size);
                     }
                     Image image = new Image("file:photo1.jpg");
 
-
-                        img1View.setImage(image);
+                    img1View.setImage(image);
                 }
-
             }
-        } catch (SQLException | IOException throwables) {
-            throwables.printStackTrace();
+        } catch (SQLException | IOException ex) {
+            Logger.getLogger(PtInteretController.class.getName()).log(Level.SEVERE,null,ex);
         }
     }
 
