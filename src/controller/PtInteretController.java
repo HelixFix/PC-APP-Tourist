@@ -152,9 +152,11 @@ public class PtInteretController implements Initializable {
 
                 img1View.setImage(null);
                 img2View.setImage(null);
+                img3View.setImage(null);
 
                 showImage1(table_ptinteret.getSelectionModel().getSelectedItem().getIdptinteret());
                 showImage2(table_ptinteret.getSelectionModel().getSelectedItem().getIdptinteret());
+                showImage3(table_ptinteret.getSelectionModel().getSelectedItem().getIdptinteret());
             }
         }
     }
@@ -453,6 +455,35 @@ public class PtInteretController implements Initializable {
                     Image image = new Image("file:photo2.jpg");
 
                     img2View.setImage(image);
+                }
+            }
+        } catch (SQLException | IOException ex) {
+            Logger.getLogger(PtInteretController.class.getName()).log(Level.SEVERE,null,ex);
+        }
+    }
+
+    private void showImage3(Integer idptinterest) {
+        try {
+
+            ps=My_CNX.getConnection().prepareStatement("SELECT `chemin_photo3` FROM `point_interet` WHERE `ID_pt_interet` = "+idptinterest+"");
+            System.out.println(ps);
+
+            rs = ps.executeQuery();
+            if (rs.next()){
+                InputStream is = rs.getBinaryStream(1);
+                OutputStream os = new FileOutputStream(("photo3.jpg"));
+
+
+                byte[]contents = new byte[1024];
+                int size;
+
+                if (is != null && is.available() > 1) {
+                    while ((size = is.read(contents)) != -1) {
+                        os.write(contents, 0, size);
+                    }
+                    Image image = new Image("file:photo3.jpg");
+
+                    img3View.setImage(image);
                 }
             }
         } catch (SQLException | IOException ex) {
