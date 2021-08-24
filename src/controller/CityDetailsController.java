@@ -22,6 +22,7 @@ import model.Data;
 import model.PointsOfInterest;
 
 
+import javax.management.Query;
 import java.io.*;
 import java.net.URL;
 import java.sql.PreparedStatement;
@@ -202,11 +203,7 @@ public class CityDetailsController implements Initializable {
 
             for (ArrayList<String> strings : resultatDeMaRequete) {
 
-
-                
-
                 list.add(new PointsOfInterest(Integer.parseInt(strings.get(0)), strings.get(1), strings.get(2), strings.get(3), Integer.parseInt(strings.get(4)), strings.get(5), strings.get(6), strings.get(7), strings.get(8), strings.get(9), strings.get(10)));
-
             }
         }
         // If user choose Beijing city show the list of activated point of interest
@@ -217,11 +214,7 @@ public class CityDetailsController implements Initializable {
 
             for (ArrayList<String> strings : resultatDeMaRequete) {
 
-
-                
-
                 list.add(new PointsOfInterest(Integer.parseInt(strings.get(0)), strings.get(1), strings.get(2), strings.get(3), Integer.parseInt(strings.get(4)), strings.get(5), strings.get(6), strings.get(7), strings.get(8), strings.get(9), strings.get(10)));
-
             }
         }
         // If user choose grenada city show the list of activated point of interest
@@ -232,14 +225,9 @@ public class CityDetailsController implements Initializable {
 
             for (ArrayList<String> strings : resultatDeMaRequete) {
 
-
-                
-
                 list.add(new PointsOfInterest(Integer.parseInt(strings.get(0)), strings.get(1), strings.get(2), strings.get(3), Integer.parseInt(strings.get(4)), strings.get(5), strings.get(6), strings.get(7), strings.get(8), strings.get(9), strings.get(10)));
-
             }
         }
-
 
         return list;
     }
@@ -257,12 +245,7 @@ public class CityDetailsController implements Initializable {
 
         for (ArrayList<String> strings : resultatDeMaRequete) {
 
-
-            
-
             list.add(new PointsOfInterest(Integer.parseInt(strings.get(0)), strings.get(1), strings.get(2), strings.get(3), Integer.parseInt(strings.get(4)), strings.get(5), strings.get(6), strings.get(7), strings.get(8), strings.get(9), strings.get(10)));
-
-
         }
 
         return list;
@@ -273,9 +256,9 @@ public class CityDetailsController implements Initializable {
 
     private void showImage1(Integer idptinterest) {
         try {
-
-            ps= My_CNX.getConnection().prepareStatement("SELECT `chemin_photo1` FROM `point_interet` WHERE `ID_pt_interet` = "+idptinterest+"");
-            System.out.println(ps);
+            String imageQuery = ("SELECT `chemin_photo1` FROM `point_interet` WHERE `ID_pt_interet` = "+idptinterest+"");
+            ps= My_CNX.getConnection().prepareStatement(imageQuery);
+            System.out.println(imageQuery);
 
             rs = ps.executeQuery();
             if (rs.next()){
@@ -305,9 +288,9 @@ public class CityDetailsController implements Initializable {
 
     private void showImage2(Integer idptinterest) {
         try {
-
-            ps=My_CNX.getConnection().prepareStatement("SELECT `chemin_photo2` FROM `point_interet` WHERE `ID_pt_interet` = "+idptinterest+"");
-            System.out.println(ps);
+            String imageQuery = ("SELECT `chemin_photo2` FROM `point_interet` WHERE `ID_pt_interet` = "+idptinterest+"");
+            ps=My_CNX.getConnection().prepareStatement(imageQuery);
+            System.out.println(imageQuery);
 
             rs = ps.executeQuery();
             if (rs.next()){
@@ -322,11 +305,15 @@ public class CityDetailsController implements Initializable {
                     while ((size = is.read(contents)) != -1) {
                         os.write(contents, 0, size);
                     }
+                    os.close();
+                    is.close();
                     Image image = new Image("file:photo2.jpg");
 
                     img2View.setImage(image);
                 }
             }
+            ps.close();
+            rs.close();
         } catch (SQLException | IOException ex) {
             Logger.getLogger(PtInteretController.class.getName()).log(Level.SEVERE,null,ex);
         }
@@ -334,9 +321,9 @@ public class CityDetailsController implements Initializable {
 
     private void showImage3(Integer idptinterest) {
         try {
-
-            ps=My_CNX.getConnection().prepareStatement("SELECT `chemin_photo3` FROM `point_interet` WHERE `ID_pt_interet` = "+idptinterest+"");
-            System.out.println(ps);
+            String imageQuery = ("SELECT `chemin_photo3` FROM `point_interet` WHERE `ID_pt_interet` = "+idptinterest+"");
+            ps=My_CNX.getConnection().prepareStatement(imageQuery);
+            System.out.println(imageQuery);
 
             rs = ps.executeQuery();
             if (rs.next()){
@@ -351,11 +338,15 @@ public class CityDetailsController implements Initializable {
                     while ((size = is.read(contents)) != -1) {
                         os.write(contents, 0, size);
                     }
+                    os.close();
+                    is.close();
                     Image image = new Image("file:photo3.jpg");
 
                     img3View.setImage(image);
                 }
             }
+            ps.close();
+            rs.close();
         } catch (SQLException | IOException ex) {
             Logger.getLogger(PtInteretController.class.getName()).log(Level.SEVERE,null,ex);
         }

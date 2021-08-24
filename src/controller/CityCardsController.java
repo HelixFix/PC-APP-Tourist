@@ -59,7 +59,7 @@ public class CityCardsController {
      */
     public void beijingScreenButtonPushed(javafx.event.ActionEvent actionEvent) throws IOException {
         Data.idPtInterest = 0;
-        Data.cityName = "Beijing";
+        Data.cityName     = "Beijing";
 
         Parent usersParent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../fxml/User-City-Details.fxml")));
         Scene usersScene = new Scene(usersParent);

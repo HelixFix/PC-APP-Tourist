@@ -214,8 +214,6 @@ public class PtInteretController implements Initializable {
 
             }
         }
-
-        
     }
 
 
@@ -232,16 +230,10 @@ public class PtInteretController implements Initializable {
 
         for (ArrayList<String> strings : resultatDeMaRequete) {
 
-
-            
-
             list.add(new PointsOfInterest(Integer.parseInt(strings.get(0)), strings.get(1), strings.get(2), strings.get(3), Integer.parseInt(strings.get(4)), strings.get(5), strings.get(6), strings.get(7), strings.get(8), strings.get(9), strings.get(10)));
-
         }
 
         return list;
-
-
     }
 
     public void getLastIDPtInterest() {
@@ -256,13 +248,8 @@ public class PtInteretController implements Initializable {
 
         for (ArrayList<String> strings : resultatDeMaRequete) {
 
-
-            
-
             list2.add(new PointsOfInterest(Integer.parseInt(strings.get(0))));
-
         }
-
     }
 
     PreparedStatement ps;
