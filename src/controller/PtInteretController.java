@@ -18,6 +18,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -29,6 +30,8 @@ import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.io.*;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.sql.*;
 import java.util.*;
 
@@ -146,6 +149,8 @@ public class PtInteretController implements Initializable {
                 btnbrwseimg3.setDisable(false);
 
                 btnpublish.setDisable(false);
+
+                showImage1(table_ptinteret.getSelectionModel().getSelectedItem().getIdptinteret());
             }
         }
     }
@@ -177,6 +182,8 @@ public class PtInteretController implements Initializable {
         btnbrwseimg1.setDisable(true);
         btnbrwseimg2.setDisable(true);
         btnbrwseimg3.setDisable(true);
+
+
 
     }
 
@@ -253,6 +260,7 @@ public class PtInteretController implements Initializable {
     }
 
     PreparedStatement ps;
+    ResultSet rs;
 
 
     public void choosePhoto1() throws IOException, SQLException {
@@ -345,9 +353,78 @@ public class PtInteretController implements Initializable {
         }
     }
 
-    public void choosePhoto3() {
+    public void choosePhoto3() throws IOException, SQLException {
+        String queryInterest = ("UPDATE `point_interet` SET `chemin_photo3` = ? WHERE `point_interet`.`ID_pt_interet` = " + txtfldid.getText() + "");
+        ps = My_CNX.getConnection().prepareStatement(queryInterest);
+
+        // Select an image and set the image
+        JFileChooser chooser = new JFileChooser();
+
+        chooser.setCurrentDirectory(new File((System.getProperty("user.home"))));
+
+        // file extension
+        FileNameExtensionFilter extension = new FileNameExtensionFilter("Images",".jpg",".png",".jpeg");
+        chooser.addChoosableFileFilter(extension);
+
+        int filestate = chooser.showSaveDialog(null);
+
+        // check if the user select an image
+        if (filestate == JFileChooser.APPROVE_OPTION) {
+            File selectedImage1 = chooser.getSelectedFile();
+            imagePath3 = selectedImage1.getAbsolutePath();
+
+            // preview of the selected image
+            FileInputStream fis = new FileInputStream(selectedImage1);
+            javafx.scene.image.Image image2 = new javafx.scene.image.Image(fis);
+            img3View.setImage(image2);
+
+        }
+        try {
+            // Save images as blob in the database
+            if (imagePath3 != null) {
+                InputStream image1 = new FileInputStream(imagePath3);
+                ps.setBlob(1, image1);
+            } else {
+                ps.setNull(1, Types.NULL);
+            }
+
+            if(ps.executeUpdate() != 0) {
+                JOptionPane.showMessageDialog(null, "Photo 3 ajouter");
+            }
 
 
+        } catch (FileNotFoundException ignored){
+
+        }
+    }
+
+    private void showImage1(Integer idptinterest) {
+        try {
+
+            ps=My_CNX.getConnection().prepareStatement("SELECT `chemin_photo1` FROM `point_interet` WHERE `ID_pt_interet` = "+idptinterest+"");
+            System.out.println(ps);
+
+            rs = ps.executeQuery();
+            if (rs.next()){
+                InputStream is = rs.getBinaryStream(1);
+                OutputStream os = new FileOutputStream(new File("photo1.jpg"));
+                final Path path = Files.createTempFile("photo1", ".jpg");
+                if (Files.exists(path)) {
+                    byte[]contents = new byte[1024];
+                    int size = 0;
+                    while ((size = is.read(contents)) !=-1) {
+                        os.write(contents, 0, size);
+                    }
+                    Image image = new Image("file:photo1.jpg");
+
+
+                        img1View.setImage(image);
+                }
+
+            }
+        } catch (SQLException | IOException throwables) {
+            throwables.printStackTrace();
+        }
     }
 
     /**
