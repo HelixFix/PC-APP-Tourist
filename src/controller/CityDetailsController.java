@@ -177,6 +177,8 @@ public class CityDetailsController implements Initializable {
             rightsidepane.setVisible(true);
 
             showImage1(Data.idPtInterest);
+            showImage2(Data.idPtInterest);
+            showImage3(Data.idPtInterest);
         } else {
             listM = getDataPtInterest();
         }
