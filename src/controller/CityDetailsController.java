@@ -127,7 +127,11 @@ public class CityDetailsController implements Initializable {
                 titlepane.setVisible(true);
                 rightsidepane.setVisible(true);
 
+                img1View.setImage(null);
+                img2View.setImage(null);
+
                 showImage1(table_ptinteret.getSelectionModel().getSelectedItem().getIdptinteret());
+                showImage2(table_ptinteret.getSelectionModel().getSelectedItem().getIdptinteret());
 
             }
 
@@ -272,7 +276,7 @@ public class CityDetailsController implements Initializable {
             rs = ps.executeQuery();
             if (rs.next()){
                 InputStream is = rs.getBinaryStream(1);
-                OutputStream os = new FileOutputStream(new File("photo1.jpg"));
+                OutputStream os = new FileOutputStream(("photo1.jpg"));
 
 
                 byte[]contents = new byte[1024];
@@ -290,6 +294,35 @@ public class CityDetailsController implements Initializable {
             }
             ps.close();
             rs.close();
+        } catch (SQLException | IOException ex) {
+            Logger.getLogger(PtInteretController.class.getName()).log(Level.SEVERE,null,ex);
+        }
+    }
+
+    private void showImage2(Integer idptinterest) {
+        try {
+
+            ps=My_CNX.getConnection().prepareStatement("SELECT `chemin_photo2` FROM `point_interet` WHERE `ID_pt_interet` = "+idptinterest+"");
+            System.out.println(ps);
+
+            rs = ps.executeQuery();
+            if (rs.next()){
+                InputStream is = rs.getBinaryStream(1);
+                OutputStream os = new FileOutputStream(("photo2.jpg"));
+
+
+                byte[]contents = new byte[1024];
+                int size;
+
+                if (is != null && is.available() > 1) {
+                    while ((size = is.read(contents)) != -1) {
+                        os.write(contents, 0, size);
+                    }
+                    Image image = new Image("file:photo2.jpg");
+
+                    img2View.setImage(image);
+                }
+            }
         } catch (SQLException | IOException ex) {
             Logger.getLogger(PtInteretController.class.getName()).log(Level.SEVERE,null,ex);
         }
