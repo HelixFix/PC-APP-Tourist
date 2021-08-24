@@ -16,6 +16,14 @@ public class PointsOfInterest {
     Integer id, idptinteret, publier;
     String ville, nom, architecte, categorie, epoque, photo1, photo2, photo3, description;
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     public String getVille() {
         return ville;
     }
@@ -36,30 +44,6 @@ public class PointsOfInterest {
         return epoque;
     }
 
-    public String getPhoto1() {
-        return photo1;
-    }
-
-    public void setPhoto1(String photo1) {
-        this.photo1 = photo1;
-    }
-
-    public String getPhoto2() {
-        return photo2;
-    }
-
-    public void setPhoto2(String photo2) {
-        this.photo2 = photo2;
-    }
-
-    public String getPhoto3() {
-        return photo3;
-    }
-
-    public void setPhoto3(String photo3) {
-        this.photo3 = photo3;
-    }
-
     public String getDescription() {
         return description;
     }
@@ -74,6 +58,10 @@ public class PointsOfInterest {
 
     public PointsOfInterest(Integer idptinteret) {
         this.idptinteret = idptinteret;
+    }
+
+    public JFXButton getBtnmanage() {
+        return btnmanage;
     }
 
     private JFXButton btnmanage;
@@ -99,17 +87,6 @@ public class PointsOfInterest {
 
     }
 
-    public JFXButton getBtnmanage() {
-        return btnmanage;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public PointsOfInterest(Integer id, Integer idptinteret, String ville, String nom, JFXButton manage, JFXButton link) {
         this.id          = id;
@@ -154,7 +131,7 @@ public class PointsOfInterest {
         link.setOnAction(e -> {
 
             for (PointsOfInterest pointsOfInterest: FavController.listM) {
-                if (pointsOfInterest.getBtnmanage() == manage) {
+                if (pointsOfInterest.getBtnlink() == link) {
                     
 
 
