@@ -22,7 +22,6 @@ import model.Data;
 import model.PointsOfInterest;
 
 
-import javax.management.Query;
 import java.io.*;
 import java.net.URL;
 import java.sql.PreparedStatement;

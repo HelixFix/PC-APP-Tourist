@@ -544,15 +544,21 @@ public class PtInteretController implements Initializable {
 
         } else {
 
-            db.start("jdbc:mysql://localhost:3306/voyage?characterEncoding=utf8", "root", "");
-            String queryInterest = ("UPDATE `point_interet` SET `nom_pt_interet` = \"" + txtfldnom.getText() + "\", `epoque` = \"" + txtfldepoque.getText() + "\", `categorie` = \"" + txtfldcategorie.getText() + "\", `description_pt_interet` = \"" + txtareadescription.getText() + "\", `nom_architecte` = \"" + txtfldarchitecte.getText() + "\", `ID_ville` = " + idVille +" " +
-                    "WHERE `point_interet`.`ID_pt_interet` = " + txtfldid.getText() + "");
-            db.update(queryInterest);
-            db.stop();
-            
+            if (txtfldnom.getText().isEmpty()) {
+                showAlert(owner);
 
-            getDataPtInterest();
-            table_ptinteret.refresh();
+            } else {
+
+                db.start("jdbc:mysql://localhost:3306/voyage?characterEncoding=utf8", "root", "");
+                String queryInterest = ("UPDATE `point_interet` SET `nom_pt_interet` = \"" + txtfldnom.getText() + "\", `epoque` = \"" + txtfldepoque.getText() + "\", `categorie` = \"" + txtfldcategorie.getText() + "\", `description_pt_interet` = \"" + txtareadescription.getText() + "\", `nom_architecte` = \"" + txtfldarchitecte.getText() + "\", `ID_ville` = " + idVille + " " +
+                        "WHERE `point_interet`.`ID_pt_interet` = " + txtfldid.getText() + "");
+                db.update(queryInterest);
+                db.stop();
+
+
+                getDataPtInterest();
+                table_ptinteret.refresh();
+            }
         }
     }
 
