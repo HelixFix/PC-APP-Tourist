@@ -88,5 +88,22 @@ public class CityCardsController {
         window.show();
     }
 
+    /**
+     * Quand cette méthode est appelé ont change de scene vers Grenade
+     */
+    public void berlinScreenButtonPushed(javafx.event.ActionEvent actionEvent) throws IOException {
+        Data.idPtInterest = 0;
+        Data.cityName     = "Berlin";
+
+        Parent usersParent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../fxml/User-City-Details.fxml")));
+        Scene usersScene = new Scene(usersParent);
+
+        // Cette ligne récupère l'information du Stage
+        Stage window = (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
+
+        window.setScene(usersScene);
+        window.show();
+    }
+
 
 }
