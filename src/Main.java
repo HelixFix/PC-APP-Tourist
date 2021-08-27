@@ -18,6 +18,7 @@ public class Main extends Application{
         Scene scene = new Scene(root, 1280, 853);
         primaryStage.setTitle("Application touristique - Stage Two");
         primaryStage.setScene(scene);
+        primaryStage.setResizable(false);
         primaryStage.show();
     }
 }
