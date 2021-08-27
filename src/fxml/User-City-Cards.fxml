@@ -98,6 +98,9 @@
             <Image url="@../Asset/Images/berlin.jpg" />
          </image>
       </ImageView>
-      <JFXButton layoutX="867.0" layoutY="409.0" onAction="#berlinScreenButtonPushed" prefHeight="226.0" prefWidth="321.0" text=" " />
+      <JFXButton layoutX="867.0" layoutY="409.0" onAction="#berlinScreenButtonPushed" prefHeight="226.0" prefWidth="321.0" text=" ">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></JFXButton>
    </children>
 </AnchorPane>

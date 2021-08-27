@@ -393,9 +393,9 @@ public class PtInteretController implements Initializable {
 
     private void showImage1(Integer idptinterest) {
         try {
-
-            ps=My_CNX.getConnection().prepareStatement("SELECT `chemin_photo1` FROM `point_interet` WHERE `ID_pt_interet` = "+idptinterest+"");
-            System.out.println(ps);
+            String imageQuery = ("SELECT `chemin_photo1` FROM `point_interet` WHERE `ID_pt_interet` = "+idptinterest+"");
+            ps=My_CNX.getConnection().prepareStatement(imageQuery);
+            System.out.println(imageQuery);
 
             rs = ps.executeQuery();
             if (rs.next()){
@@ -422,9 +422,9 @@ public class PtInteretController implements Initializable {
 
     private void showImage2(Integer idptinterest) {
         try {
-
-            ps=My_CNX.getConnection().prepareStatement("SELECT `chemin_photo2` FROM `point_interet` WHERE `ID_pt_interet` = "+idptinterest+"");
-            System.out.println(ps);
+            String imageQuery = ("SELECT `chemin_photo2` FROM `point_interet` WHERE `ID_pt_interet` = "+idptinterest+"");
+            ps=My_CNX.getConnection().prepareStatement(imageQuery);
+            System.out.println(imageQuery);
 
             rs = ps.executeQuery();
             if (rs.next()){
@@ -451,9 +451,9 @@ public class PtInteretController implements Initializable {
 
     private void showImage3(Integer idptinterest) {
         try {
-
-            ps=My_CNX.getConnection().prepareStatement("SELECT `chemin_photo3` FROM `point_interet` WHERE `ID_pt_interet` = "+idptinterest+"");
-            System.out.println(ps);
+            String imageQuery = ("SELECT `chemin_photo3` FROM `point_interet` WHERE `ID_pt_interet` = "+idptinterest+"");
+            ps=My_CNX.getConnection().prepareStatement(imageQuery);
+            System.out.println(imageQuery);
 
             rs = ps.executeQuery();
             if (rs.next()){
