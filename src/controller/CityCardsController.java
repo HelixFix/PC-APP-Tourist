@@ -89,7 +89,7 @@ public class CityCardsController {
     }
 
     /**
-     * Quand cette méthode est appelé ont change de scene vers Grenade
+     * Quand cette méthode est appelé ont change de scene vers Berlin
      */
     public void berlinScreenButtonPushed(javafx.event.ActionEvent actionEvent) throws IOException {
         Data.idPtInterest = 0;
@@ -104,6 +104,4 @@ public class CityCardsController {
         window.setScene(usersScene);
         window.show();
     }
-
-
 }

@@ -16,6 +16,11 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="853.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FavController">
    <children>
+      <ImageView fitHeight="853.0" fitWidth="958.0" layoutX="325.0" layoutY="-3.0" opacity="0.52" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Asset/Images/fav_background.jpg" />
+         </image>
+      </ImageView>
       <VBox layoutX="-5.0" layoutY="-4.0" prefHeight="863.0" prefWidth="330.0" style="-fx-background-color: #3F2B63;" stylesheets="@../css/fullpackstyling.css">
          <children>
             <Pane prefHeight="194.0" prefWidth="330.0">
@@ -66,16 +71,18 @@
             </Button>
          </children>
       </VBox>
-      <Text fx:id="name" layoutX="420.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-      <TableView fx:id="table_fav" layoutX="349.0" layoutY="158.0" prefHeight="685.0" prefWidth="922.0">
+      <Text fx:id="name" layoutX="573.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+         <font>
+            <Font size="18.0" />
+         </font></Text>
+      <TableView fx:id="table_fav" layoutX="573.0" layoutY="253.0" prefHeight="410.0" prefWidth="422.0">
         <columns>
             <TableColumn fx:id="col_id" prefWidth="75.0" text="ID" visible="false" />
           <TableColumn fx:id="col_city" prefWidth="75.0" text="Ville" />
-          <TableColumn fx:id="col_name" prefWidth="100.0" text="Point d'intérêt" />
-            <TableColumn fx:id="col_manage" prefWidth="100.0" text="Gestion" />
-            <TableColumn fx:id="col_link" prefWidth="100.0" text="Lien" />
+          <TableColumn fx:id="col_name" prefWidth="143.0" text="Point d'intérêt" />
+            <TableColumn fx:id="col_manage" prefWidth="108.0" text="Gestion" />
+            <TableColumn fx:id="col_link" prefWidth="91.0" text="Lien" />
         </columns>
       </TableView>
-      <Text layoutX="357.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Favoris de" />
    </children>
 </AnchorPane>

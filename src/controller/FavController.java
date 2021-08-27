@@ -48,7 +48,7 @@ public class FavController implements Initializable {
     @Override
     public void initialize (URL url, ResourceBundle rb) {
 
-        name.setText(Data.username);
+        name.setText("Planifiez vos voyages en seulement quelques clics " + Data.username);
 
         // Set property to tableview columns
         col_id.setCellValueFactory(new PropertyValueFactory<>("id"));
