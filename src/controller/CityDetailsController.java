@@ -67,6 +67,9 @@ public class CityDetailsController implements Initializable {
     private Text id;
 
     @FXML
+    private Label lblarchitecte;
+
+    @FXML
     private Label lblcategorie;
 
     @FXML
@@ -110,6 +113,7 @@ public class CityDetailsController implements Initializable {
                 resume.setText(String.valueOf(table_ptinteret.getSelectionModel().getSelectedItem().getDescription()));
                 epoque.setText(table_ptinteret.getSelectionModel().getSelectedItem().getEpoque());
                 categorie.setText(table_ptinteret.getSelectionModel().getSelectedItem().getCategorie());
+                architecte.setText(table_ptinteret.getSelectionModel().getSelectedItem().getArchitecte());
 
 
                 // When point of interest selected show text
@@ -118,8 +122,10 @@ public class CityDetailsController implements Initializable {
                 resume.setVisible(true);
                 epoque.setVisible(true);
                 categorie.setVisible(true);
+                architecte.setVisible(true);
                 btnfav.setVisible(true);
 
+                lblarchitecte.setVisible(true);
                 lblcategorie.setVisible(true);
                 lblepoque.setVisible(true);
 

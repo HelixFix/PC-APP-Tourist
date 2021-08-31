@@ -22,6 +22,11 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="853.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CityDetailsController">
    <children>
+      <Text fx:id="architecte" layoutX="1018.0" layoutY="460.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" visible="false">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Text>
       <VBox layoutX="-5.0" layoutY="-4.0" prefHeight="863.0" prefWidth="330.0" style="-fx-background-color: #3F2B63;">
          <children>
             <Pane prefHeight="194.0" prefWidth="330.0">
@@ -87,8 +92,37 @@
             </Button>
          </children>
       </VBox>
+      <ImageView fx:id="img2View" fitHeight="150.0" fitWidth="200.0" layoutX="405.0" layoutY="644.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="img3View" fitHeight="150.0" fitWidth="200.0" layoutX="692.0" layoutY="645.0" pickOnBounds="true" preserveRatio="true" />
+      <Text fx:id="title" layoutX="347.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" visible="false">
+         <font>
+            <Font size="29.0" />
+         </font>
+      </Text>
+      <JFXTextArea fx:id="resume" layoutX="352.0" layoutY="90.0" prefHeight="533.0" prefWidth="520.0" visible="false">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </JFXTextArea>
+      <Line fx:id="line" endX="835.3333740234375" layoutX="429.0" layoutY="63.0" startX="-76.66665649414062" visible="false" />
+      <Text fx:id="id" layoutX="437.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" visible="false" />
+      <JFXButton fx:id="btnfav" layoutX="1201.0" layoutY="23.0" onAction="#favScreenButtonPushed" text="Favoris" visible="false">
+         <graphic>
+            <FontAwesomeIcon glyphName="HEART" />
+         </graphic>
+      </JFXButton>
       <Pane fx:id="rightsidepane" layoutX="963.0" layoutY="88.0" prefHeight="729.0" prefWidth="304.0" style="-fx-border-color: black;" visible="false">
          <children>
+            <Label fx:id="lblarchitecte" layoutX="102.0" layoutY="319.0" prefHeight="28.0" prefWidth="92.0" text="Architecte" visible="false">
+               <font>
+                  <Font name="System Bold" size="19.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblepoque" layoutX="110.0" layoutY="420.0" prefHeight="28.0" prefWidth="75.0" text="Époque" visible="false">
+               <font>
+                  <Font name="System Bold" size="19.0" />
+               </font>
+            </Label>
             <ImageView fx:id="img1View" fitHeight="150.0" fitWidth="200.0" layoutX="46.0" layoutY="95.0" pickOnBounds="true" preserveRatio="true" />
             <Text fx:id="categorie" layoutX="52.0" layoutY="570.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" visible="false">
                <font>
@@ -112,31 +146,7 @@
                   </Text>
                </children>
             </Pane>
-            <Label fx:id="lblepoque" layoutX="110.0" layoutY="420.0" prefHeight="28.0" prefWidth="75.0" text="Époque" visible="false">
-               <font>
-                  <Font name="System Bold" size="19.0" />
-               </font>
-            </Label>
          </children>
       </Pane>
-      <ImageView fx:id="img2View" fitHeight="150.0" fitWidth="200.0" layoutX="405.0" layoutY="644.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="img3View" fitHeight="150.0" fitWidth="200.0" layoutX="692.0" layoutY="645.0" pickOnBounds="true" preserveRatio="true" />
-      <Text fx:id="title" layoutX="347.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" visible="false">
-         <font>
-            <Font size="29.0" />
-         </font>
-      </Text>
-      <JFXTextArea fx:id="resume" layoutX="352.0" layoutY="90.0" prefHeight="533.0" prefWidth="520.0" visible="false">
-         <font>
-            <Font size="19.0" />
-         </font>
-      </JFXTextArea>
-      <Line fx:id="line" endX="835.3333740234375" layoutX="429.0" layoutY="63.0" startX="-76.66665649414062" visible="false" />
-      <Text fx:id="id" layoutX="437.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" visible="false" />
-      <JFXButton fx:id="btnfav" layoutX="1201.0" layoutY="23.0" onAction="#favScreenButtonPushed" text="Favoris" visible="false">
-         <graphic>
-            <FontAwesomeIcon glyphName="HEART" />
-         </graphic>
-      </JFXButton>
    </children>
 </AnchorPane>

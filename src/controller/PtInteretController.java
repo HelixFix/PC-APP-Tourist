@@ -201,7 +201,7 @@ public class PtInteretController implements Initializable {
         listeVille = bdd.select("SELECT ID_ville, nom_ville FROM ville;");
         bdd.stop();
         for (ArrayList<String> strings : listeVille) {
-            cmbville.getItems().addAll(strings.get(1));
+            cmbville.getItems().add(strings.get(1));
 
         }
     }
