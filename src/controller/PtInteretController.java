@@ -508,13 +508,6 @@ public class PtInteretController implements Initializable {
 
         Window owner = btnSave.getScene().getWindow();
 
-        btnbrwseimg1.setDisable(false);
-        btnbrwseimg2.setDisable(false);
-        btnbrwseimg3.setDisable(false);
-
-        btnpublish.setDisable(false);
-
-
         BDDManager2 db = new BDDManager2();
 
         if ( txtfldid.getText().trim().isEmpty() ) {
@@ -524,6 +517,11 @@ public class PtInteretController implements Initializable {
                     showAlert(owner);
 
             } else {
+                btnbrwseimg1.setDisable(false);
+                btnbrwseimg2.setDisable(false);
+                btnbrwseimg3.setDisable(false);
+
+                btnpublish.setDisable(false);
 
                 db.start("jdbc:mysql://localhost:3306/voyage?characterEncoding=utf8", "root", "");
                 String queryInterest = ("INSERT INTO `point_interet` (`ID_pt_interet`, `nom_pt_interet`, `epoque`, `categorie`, `description_pt_interet`, `nom_architecte`, `publier`, `chemin_photo1`, `chemin_photo2`, `chemin_photo3`, `ID_ville`) " +
