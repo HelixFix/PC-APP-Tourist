@@ -577,7 +577,7 @@ public class PtInteretController implements Initializable {
 
             BDDManager2 insert = new BDDManager2();
             insert.start("jdbc:mysql://localhost:3306/voyage?characterEncoding=utf8", "root", "");
-            String queryInterest = ("UPDATE `point_interet` SET `publier` = NOT publier WHERE `point_interet`.`ID_pt_interet` = " + txtfldid.getText() + "");
+            String queryInterest = ("UPDATE `point_interet` SET `publier` = NOT publier WHERE `point_interet`.`ID_pt_interet` = " + txtfldid.getText() + " AND `chemin_photo1` is not null");
             insert.update(queryInterest);
             insert.stop();
 

@@ -132,11 +132,8 @@ public class PointsOfInterest {
 
             for (PointsOfInterest pointsOfInterest: FavController.listM) {
                 if (pointsOfInterest.getBtnlink() == link) {
-                    
-
 
                     Data.idPtInterest = pointsOfInterest.getIdptinteret();
-
 
                     Parent usersParent = null;
                     try {
