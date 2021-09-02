@@ -124,3 +124,8 @@
     -fx-background-color : #9013fb;
 
 }
+
+.alert {
+     -fx-prompt-text-fill    : red;
+    -fx-font-weight : bold;
+}

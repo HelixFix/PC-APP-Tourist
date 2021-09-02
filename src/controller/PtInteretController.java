@@ -413,6 +413,9 @@ public class PtInteretController implements Initializable {
                     Image image = new Image("file:photo1.jpg");
 
                     img1View.setImage(image);
+
+                } else {
+                    btnbrwseimg1.setStyle("-fx-text-fill: red; -fx-font-weight: bold");
                 }
             }
         } catch (SQLException | IOException ex) {
@@ -499,6 +502,8 @@ public class PtInteretController implements Initializable {
         img3View.setImage(null);
 
         btnpublish.setDisable(true);
+
+        btnbrwseimg1.setStyle("-fx-text-fill: black;");
     }
 
     /**
@@ -522,6 +527,8 @@ public class PtInteretController implements Initializable {
                 btnbrwseimg3.setDisable(false);
 
                 btnpublish.setDisable(false);
+
+                btnbrwseimg1.setStyle("-fx-text-fill: red; -fx-font-weight: bold");
 
                 db.start("jdbc:mysql://localhost:3306/voyage?characterEncoding=utf8", "root", "");
                 String queryInterest = ("INSERT INTO `point_interet` (`ID_pt_interet`, `nom_pt_interet`, `epoque`, `categorie`, `description_pt_interet`, `nom_architecte`, `publier`, `chemin_photo1`, `chemin_photo2`, `chemin_photo3`, `ID_ville`) " +
