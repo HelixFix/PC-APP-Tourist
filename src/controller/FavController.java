@@ -77,7 +77,7 @@ public class FavController implements Initializable {
         bdd.start("jdbc:mysql://localhost:3306/voyage?characterEncoding=utf8", "root", "");
 
         // Select query string
-        String queryPointsOfInterest = ("SELECT DISTINCT id, point_interet.id_pt_interet, ville.nom_ville, point_interet.nom_pt_interet FROM `avoir` INNER JOIN point_interet ON point_interet.id_pt_interet = avoir.id_pt_interet INNER JOIN ville ON ville.id_ville = point_interet.id_ville INNER JOIN utilisateur ON utilisateur.ID_utilisateur = avoir.ID_utilisateur WHERE utilisateur.nom_utilisateur = \"" + Data.username +"\" ORDER BY nom_ville");
+        String queryPointsOfInterest = ("SELECT DISTINCT id, point_interet.id_pt_interet, ville.nom_ville, point_interet.nom_pt_interet FROM `avoir` INNER JOIN point_interet ON point_interet.id_pt_interet = avoir.id_pt_interet INNER JOIN ville ON ville.id_ville = point_interet.id_ville INNER JOIN utilisateur ON utilisateur.ID_utilisateur = avoir.ID_utilisateur WHERE utilisateur.nom_utilisateur = \"" + Data.username +"\" AND `publier` = 1 ORDER BY nom_ville");
         ArrayList<ArrayList<String>> resultatDeMaRequete = new ArrayList<>(bdd.select(queryPointsOfInterest));
 
         for (ArrayList<String> strings : resultatDeMaRequete) {

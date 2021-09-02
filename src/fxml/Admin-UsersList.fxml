@@ -22,7 +22,7 @@
    <children>
       <VBox layoutX="-5.0" layoutY="-4.0" prefHeight="863.0" prefWidth="330.0" style="-fx-background-color: #3F2B63;" stylesheets="@../css/fullpackstyling.css">
          <children>
-            <Pane prefHeight="194.0" prefWidth="330.0">
+            <Pane prefHeight="200.0" prefWidth="200.0">
                <children>
                   <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="83.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
                      <image>
