@@ -154,6 +154,9 @@ public class PtInteretController implements Initializable {
                 img2View.setImage(null);
                 img3View.setImage(null);
 
+                txtfldnom.setStyle("-fx-text-fill: black; -fx-font-weight : normal;");
+                cmbville.setStyle("-fx-text-fill: black; -fx-font-weight : normal;");
+
                 showImage1(table_ptinteret.getSelectionModel().getSelectedItem().getIdptinteret());
                 showImage2(table_ptinteret.getSelectionModel().getSelectedItem().getIdptinteret());
                 showImage3(table_ptinteret.getSelectionModel().getSelectedItem().getIdptinteret());
@@ -287,12 +290,10 @@ public class PtInteretController implements Initializable {
             if (imagePath1 != null) {
                 InputStream image1 = new FileInputStream(imagePath1);
                 ps.setBlob(1, image1);
+                btnbrwseimg1.setStyle("-fx-text-fill: black;");
+                JOptionPane.showMessageDialog(null, "Photo 1 ajouter");
             } else {
                 ps.setNull(1, Types.NULL);
-            }
-
-            if(ps.executeUpdate() != 0) {
-                JOptionPane.showMessageDialog(null, "Photo 1 ajouter");
             }
 
 
@@ -332,14 +333,10 @@ public class PtInteretController implements Initializable {
             if (imagePath2 != null) {
                 InputStream image1 = new FileInputStream(imagePath2);
                 ps.setBlob(1, image1);
+                JOptionPane.showMessageDialog(null, "Photo 2 ajouter");
             } else {
                 ps.setNull(1, Types.NULL);
             }
-
-            if(ps.executeUpdate() != 0) {
-                JOptionPane.showMessageDialog(null, "Photo 2 ajouter");
-            }
-
 
         } catch (FileNotFoundException ignored){
 
@@ -377,14 +374,10 @@ public class PtInteretController implements Initializable {
             if (imagePath3 != null) {
                 InputStream image1 = new FileInputStream(imagePath3);
                 ps.setBlob(1, image1);
+                JOptionPane.showMessageDialog(null, "Photo 3 ajouter");
             } else {
                 ps.setNull(1, Types.NULL);
             }
-
-            if(ps.executeUpdate() != 0) {
-                JOptionPane.showMessageDialog(null, "Photo 3 ajouter");
-            }
-
 
         } catch (FileNotFoundException ignored){
 
@@ -413,7 +406,7 @@ public class PtInteretController implements Initializable {
                     Image image = new Image("file:photo1.jpg");
 
                     img1View.setImage(image);
-
+                    btnbrwseimg1.setStyle("-fx-text-fill: black;");
                 } else {
                     btnbrwseimg1.setStyle("-fx-text-fill: red; -fx-font-weight: bold");
                 }
@@ -503,7 +496,10 @@ public class PtInteretController implements Initializable {
 
         btnpublish.setDisable(true);
 
+        txtfldnom.setStyle("-fx-font-weight : bold;");
+        cmbville.setStyle("-fx-font-weight : bold;");
         btnbrwseimg1.setStyle("-fx-text-fill: black;");
+
     }
 
     /**
@@ -576,11 +572,25 @@ public class PtInteretController implements Initializable {
         alert.show();
     }
 
+    private static void showAlertPhoto(Window owner) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Form Error!");
+        alert.setHeaderText(null);
+        alert.setContentText("Veuillez ajouter une photo");
+        alert.initOwner(owner);
+        alert.show();
+    }
+
 
     /**
      * Quand cette méthode est appelé ont publie un point d'intérêt
      */
     public void publishScreenButtonPushed() {
+        Window owner = btnpublish.getScene().getWindow();
+
+        if (img1View.getImage() == null) {
+            showAlertPhoto(owner);
+        }
 
             BDDManager2 insert = new BDDManager2();
             insert.start("jdbc:mysql://localhost:3306/voyage?characterEncoding=utf8", "root", "");
