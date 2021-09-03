@@ -290,12 +290,13 @@ public class PtInteretController implements Initializable {
             if (imagePath1 != null) {
                 InputStream image1 = new FileInputStream(imagePath1);
                 ps.setBlob(1, image1);
-                btnbrwseimg1.setStyle("-fx-text-fill: black;");
-                JOptionPane.showMessageDialog(null, "Photo 1 ajouter");
+
             } else {
                 ps.setNull(1, Types.NULL);
             }
-
+            if(ps.executeUpdate() != 0) {
+                JOptionPane.showMessageDialog(null, "Photo 1 ajouter");
+            }
 
         } catch (FileNotFoundException ignored){
 
@@ -333,9 +334,12 @@ public class PtInteretController implements Initializable {
             if (imagePath2 != null) {
                 InputStream image1 = new FileInputStream(imagePath2);
                 ps.setBlob(1, image1);
-                JOptionPane.showMessageDialog(null, "Photo 2 ajouter");
+
             } else {
                 ps.setNull(1, Types.NULL);
+            }
+            if(ps.executeUpdate() != 0) {
+                JOptionPane.showMessageDialog(null, "Photo 2 ajouter");
             }
 
         } catch (FileNotFoundException ignored){
@@ -374,9 +378,11 @@ public class PtInteretController implements Initializable {
             if (imagePath3 != null) {
                 InputStream image1 = new FileInputStream(imagePath3);
                 ps.setBlob(1, image1);
-                JOptionPane.showMessageDialog(null, "Photo 3 ajouter");
             } else {
                 ps.setNull(1, Types.NULL);
+            }
+            if(ps.executeUpdate() != 0) {
+                JOptionPane.showMessageDialog(null, "Photo 3 ajouter");
             }
 
         } catch (FileNotFoundException ignored){
