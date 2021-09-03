@@ -165,6 +165,7 @@ public class CityDetailsController implements Initializable {
             resume.setText(listM.get(0).getDescription());
             epoque.setText(listM.get(0).getEpoque());
             categorie.setText(listM.get(0).getCategorie());
+            architecte.setText(listM.get(0).getArchitecte());
 
 
             title.setVisible(true);
