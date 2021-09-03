@@ -173,7 +173,9 @@ public class CityDetailsController implements Initializable {
             epoque.setVisible(true);
             categorie.setVisible(true);
             btnfav.setVisible(true);
+            architecte.setVisible(true);
 
+            lblarchitecte.setVisible(true);
             lblcategorie.setVisible(true);
             lblepoque.setVisible(true);
 

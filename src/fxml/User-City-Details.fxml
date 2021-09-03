@@ -99,7 +99,7 @@
             <Font size="29.0" />
          </font>
       </Text>
-      <JFXTextArea fx:id="resume" layoutX="352.0" layoutY="90.0" prefHeight="533.0" prefWidth="520.0" visible="false">
+      <JFXTextArea fx:id="resume" layoutX="352.0" layoutY="90.0" prefHeight="533.0" prefWidth="573.0" visible="false">
          <font>
             <Font size="19.0" />
          </font>
