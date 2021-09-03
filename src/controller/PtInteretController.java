@@ -576,7 +576,7 @@ public class PtInteretController implements Initializable {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Form Error!");
         alert.setHeaderText(null);
-        alert.setContentText("Veuillez ajouter une photo");
+        alert.setContentText("Veuillez ajouter la photo 1");
         alert.initOwner(owner);
         alert.show();
     }

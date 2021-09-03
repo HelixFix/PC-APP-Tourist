@@ -46,11 +46,11 @@
                               <content>
                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="259.0" prefWidth="386.0">
                                        <children>
-                                          <JFXPasswordField fx:id="txtfldadminpassword" focusColor="#e431e4" labelFloat="true" layoutX="46.0" layoutY="104.0" prefWidth="277.0" promptText="Admin Password">
+                                          <JFXPasswordField fx:id="txtfldadminpassword" focusColor="#e431e4" labelFloat="true" layoutX="46.0" layoutY="104.0" prefWidth="277.0" promptText="Mot de passe">
                                              <font>
                                                 <Font name="System Bold Italic" size="13.0" />
                                              </font></JFXPasswordField>
-                                          <JFXTextField fx:id="txtfldadminusername" focusColor="#e431e4" labelFloat="true" layoutX="46.0" layoutY="43.0" prefWidth="277.0" promptText="Admin Username">
+                                          <JFXTextField fx:id="txtfldadminusername" focusColor="#e431e4" labelFloat="true" layoutX="46.0" layoutY="43.0" prefWidth="277.0" promptText="Pseudo">
                                              <font>
                                                 <Font name="System Bold Italic" size="13.0" />
                                              </font></JFXTextField>
