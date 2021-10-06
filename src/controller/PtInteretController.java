@@ -48,11 +48,10 @@ public class PtInteretController implements Initializable {
     String imagePath2 = null;
     String imagePath3 = null;
 
+    String username = "root";
+    String password = "";
+    String dburl = "jdbc:mysql://localhost:3306/voyage?characterEncoding=utf8";
 
-
-    public PtInteretController() {
-
-    }
 
     @FXML
     private JFXTextField txtfldid;
@@ -244,7 +243,7 @@ public class PtInteretController implements Initializable {
         list.clear();
 
         BDDManager2 bdd = new BDDManager2();
-        bdd.start("jdbc:mysql://localhost:3306/voyage?characterEncoding=utf8", "root", "");
+        bdd.start(dburl, username, password);
 
         String queryPointsOfInterest = ("SELECT `ID_pt_interet` FROM `point_interet` ORDER BY ID_pt_interet DESC LIMIT 1");
         ArrayList<ArrayList<String>> resultatDeMaRequete = new ArrayList<>(bdd.select(queryPointsOfInterest));
@@ -456,11 +455,12 @@ public class PtInteretController implements Initializable {
             String imageQuery = ("SELECT `chemin_photo3` FROM `point_interet` WHERE `ID_pt_interet` = "+idptinterest+"");
             ps=My_CNX.getConnection().prepareStatement(imageQuery);
             System.out.println(imageQuery);
+            OutputStream os = new FileOutputStream(("photo3.jpg"));
 
             rs = ps.executeQuery();
             if (rs.next()){
                 InputStream is = rs.getBinaryStream(1);
-                OutputStream os = new FileOutputStream(("photo3.jpg"));
+
 
 
                 byte[]contents = new byte[1024];
@@ -478,6 +478,7 @@ public class PtInteretController implements Initializable {
         } catch (SQLException | IOException ex) {
             Logger.getLogger(PtInteretController.class.getName()).log(Level.SEVERE,null,ex);
         }
+
     }
 
     /**
@@ -532,7 +533,7 @@ public class PtInteretController implements Initializable {
 
                 btnbrwseimg1.setStyle("-fx-text-fill: red; -fx-font-weight: bold");
 
-                db.start("jdbc:mysql://localhost:3306/voyage?characterEncoding=utf8", "root", "");
+                db.start(dburl, username, password);
                 String queryInterest = ("INSERT INTO `point_interet` (`ID_pt_interet`, `nom_pt_interet`, `epoque`, `categorie`, `description_pt_interet`, `nom_architecte`, `publier`, `chemin_photo1`, `chemin_photo2`, `chemin_photo3`, `ID_ville`) " +
                         "VALUES (NULL, \"" + txtfldnom.getText() + "\", \"" + txtfldepoque.getText() + "\", \"" + txtfldcategorie.getText() + "\",\"" + txtareadescription.getText() + "\", \"" + txtfldarchitecte.getText() + "\", '0', NULL, NULL, NULL, \"" +  idVille + "\")");
                 db.insert(queryInterest);
@@ -556,7 +557,7 @@ public class PtInteretController implements Initializable {
 
             } else {
 
-                db.start("jdbc:mysql://localhost:3306/voyage?characterEncoding=utf8", "root", "");
+                db.start(dburl, username, password);
                 String queryInterest = ("UPDATE `point_interet` SET `nom_pt_interet` = \"" + txtfldnom.getText() + "\", `epoque` = \"" + txtfldepoque.getText() + "\", `categorie` = \"" + txtfldcategorie.getText() + "\", `description_pt_interet` = \"" + txtareadescription.getText() + "\", `nom_architecte` = \"" + txtfldarchitecte.getText() + "\", `ID_ville` = " + idVille + " " +
                         "WHERE `point_interet`.`ID_pt_interet` = " + txtfldid.getText() + "");
                 db.update(queryInterest);
